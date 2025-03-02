@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
+import '../home/presentation/view/home_view.dart';
 
 class BottomNavigationBarRoot extends StatelessWidget {
   const BottomNavigationBarRoot({super.key});
@@ -14,7 +15,7 @@ class BottomNavigationBarRoot extends StatelessWidget {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         final List<Widget> pages = [
-          Text('Home'),
+          const HomeView(),
           Text('Cart'),
           Text('Points'),
           Text('Track Order'),
