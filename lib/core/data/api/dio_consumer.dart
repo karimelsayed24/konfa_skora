@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../../constants/app_constants.dart';
+import '../../constants/endpoints_strings.dart';
 import '../../errors/exceptions.dart';
 import '../cached/cache_helper.dart';
 import 'api_consumer.dart';
@@ -8,7 +8,7 @@ class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = AppConstants.baseUrl;
+    dio.options.baseUrl = EndpointsStrings.baseUrl;
     dio.interceptors.add(LogInterceptor(
       request: true,
       requestBody: true,

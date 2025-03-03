@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:konaf_skora/core/utils/app_strings.dart';
 
 import '../../../../../core/common/widgets/custom_text_form_field.dart';
+import 'auth_text_field_widget.dart';
 
 class FirstAndLastNameRow extends StatelessWidget {
 final TextEditingController firstNameController;
@@ -19,7 +20,7 @@ final TextEditingController firstNameController;
     return Row(
       children: [
          Expanded(
-          child: CustomTextFormField(
+          child: AuthTextFieldWidget(
             isPassword: false,
              controller: firstNameController,
             hintText:AppStrings.firstName,
@@ -28,7 +29,7 @@ final TextEditingController firstNameController;
         ),
         SizedBox(width: 5.w),
          Expanded(
-          child: CustomTextFormField(
+          child: AuthTextFieldWidget(
             isPassword: false,
               controller: lastNameController,
             hintText:  AppStrings.lastName,

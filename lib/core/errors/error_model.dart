@@ -3,14 +3,17 @@ part 'error_model.g.dart';
 
 @JsonSerializable()
 class ErrorModel {
-  @JsonKey(name: 'message')
+  @JsonKey(name: 'msg')
   final String message;
-  @JsonKey(name: 'status')
-  final String? code;
+  @JsonKey(name: 'key')
+  final String? key;
+
+  final List<dynamic>? data;
 
   ErrorModel({
     required this.message,
-    this.code,
+    this.key,
+    this.data,
   });
 
   factory ErrorModel.fromJson(Map<String, dynamic> json) =>

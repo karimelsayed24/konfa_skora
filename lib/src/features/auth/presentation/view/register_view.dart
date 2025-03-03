@@ -16,7 +16,8 @@ class RegisterView extends StatelessWidget {
         centerTitle: true,
         title: const RegisterAppBar(primaryText: '1', secondaryText: '| 2'),
       ),
-      body: const RegisterForm(),
+      body:  const RegisterForm(),
+      
     );
   }
 }

@@ -13,7 +13,8 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final Color? fillColor;
-  final void Function()? toggeleObscure;
+  final void Function()? toggleObscure;
+ final TextInputType? keyboardType;
 
   const CustomTextFormField({
     super.key,
@@ -26,7 +27,8 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.prefixIcon,
     this.isPassword = false,
-    this.toggeleObscure,
+    this.toggleObscure,
+    this.keyboardType,
   });
 
   @override
@@ -36,18 +38,22 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
+        keyboardType: keyboardType,
+        textInputAction: TextInputAction.next,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
               vertical: 18.0.w,
               horizontal: 12.0.w,
             ),
             hintText: hintText,
-            hintStyle: AppStyles.s12,
+            hintStyle: AppStyles.s12.copyWith(
+              color: AppColors.grey,
+            ),
             fillColor: fillColor ?? AppColors.white,
             filled: true,
             suffixIcon: isPassword
                 ? IconButton(
-                    onPressed: toggeleObscure,
+                    onPressed: toggleObscure,
                     icon: Visibility(
                         visible: obscureText,
                         replacement: const Icon(
@@ -56,12 +62,11 @@ class CustomTextFormField extends StatelessWidget {
                         child: const Icon(Icons.visibility_off_outlined)),
                     color: AppColors.grey,
                   )
-                : null,
+                : suffixIcon,
             prefixIcon: prefixIcon,
             border: InputBorder.none,
             enabledBorder: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: Color.fromARGB(255, 207, 205, 205)),
+              borderSide: const BorderSide(color: AppColors.grey),
               borderRadius: BorderRadius.circular(5.0),
             ),
             focusedBorder: OutlineInputBorder(
@@ -70,7 +75,7 @@ class CustomTextFormField extends StatelessWidget {
             ),
             errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: AppColors.red),
-              borderRadius: BorderRadius.circular(55.0),
+              borderRadius: BorderRadius.circular(5.0),
             )),
         validator: validator ?? (value) => null,
         maxLines: maxLines,

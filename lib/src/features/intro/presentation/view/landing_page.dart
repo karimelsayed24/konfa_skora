@@ -6,6 +6,7 @@ import 'package:konaf_skora/core/common/widgets/have_an_account.dart';
 import 'package:konaf_skora/core/routes/router_names.dart';
 import 'package:konaf_skora/core/theme/app_colors.dart';
 import 'package:konaf_skora/core/utils/app_styles.dart';
+import 'package:konaf_skora/src/features/auth/presentation/view/login_view.dart';
 import 'package:konaf_skora/src/features/intro/presentation/widget/intro_header.dart';
 
 class LandingPageView extends StatelessWidget {
@@ -23,7 +24,21 @@ class LandingPageView extends StatelessWidget {
             text: "انشاء حساب / تسجيل الدخول",
             textStyle: AppStyles.s16,
             onPressed: () {
-              context.push(RouterNames.register);
+              showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: MediaQuery.of(context).size.height * 0.8,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: const LoginViewSheet(),
+                      )));
+              // context.push(RouterNames.register);
             },
             backgroundColor: AppColors.lightGrey,
             borderRadius: BorderRadius.circular(12),

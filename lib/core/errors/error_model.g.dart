@@ -7,12 +7,14 @@ part of 'error_model.dart';
 // **************************************************************************
 
 ErrorModel _$ErrorModelFromJson(Map<String, dynamic> json) => ErrorModel(
-      message: json['message'] as String,
-      code: json['status'] as String?,
+      message: json['msg'] as String,
+      key: json['key'] as String?,
+      data: json['data'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$ErrorModelToJson(ErrorModel instance) =>
     <String, dynamic>{
-      'message': instance.message,
-      'status': instance.code,
+      'msg': instance.message,
+      'key': instance.key,
+      'data': instance.data,
     };
