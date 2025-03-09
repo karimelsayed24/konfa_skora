@@ -1,0 +1,45 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'best_seller_response.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BestSellerResponse _$BestSellerResponseFromJson(Map<String, dynamic> json) =>
+    BestSellerResponse(
+      key: json['key'] as String,
+      msg: json['msg'] as String,
+      data: (json['data'] as List<dynamic>)
+          .map((e) => BestSellerItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$BestSellerResponseToJson(BestSellerResponse instance) =>
+    <String, dynamic>{
+      'key': instance.key,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+BestSellerItem _$BestSellerItemFromJson(Map<String, dynamic> json) =>
+    BestSellerItem(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      description: json['description'] as String,
+      image: json['image'] as String,
+      avgRate: json['avg_rate'] as String,
+      price: json['price'] as String,
+      isFavorite: json['is_favorited'] as bool,
+    );
+
+Map<String, dynamic> _$BestSellerItemToJson(BestSellerItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'description': instance.description,
+      'image': instance.image,
+      'avg_rate': instance.avgRate,
+      'price': instance.price,
+      'is_favorited': instance.isFavorite,
+    };

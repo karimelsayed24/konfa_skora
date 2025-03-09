@@ -21,9 +21,9 @@ class CategoryGridView extends StatelessWidget {
     return SliverGrid(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        childAspectRatio: 0.9,
-        crossAxisSpacing: 15,
-        mainAxisSpacing: 15,
+        childAspectRatio: 0.8,
+        crossAxisSpacing: 11,
+        mainAxisSpacing: 23,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {

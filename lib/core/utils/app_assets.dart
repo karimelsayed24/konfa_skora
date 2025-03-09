@@ -5,6 +5,7 @@ abstract class AppAssets {
   static const String cake3 = "assets/images/cake3.png";
   static const String konafa = "assets/images/konafa.png";
   static const String sokara = "assets/images/sokara.png";
+  static const String profileImage = "assets/images/profileImage.jpeg";
   static const String konafatSokara = "assets/images/konafat_sokara.png";
 
   // icons

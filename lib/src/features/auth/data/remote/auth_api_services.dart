@@ -13,14 +13,7 @@ abstract class AuthApiServices {
       String phone, String password);
   Future<Either<ErrorModel, LoginResponse>> register(UserRequest userRequest);
 
-  // Future<Either<ErrorModel, String>> forgetPassword(
-  //     String userType, String identifier);
-
-  // Future<Either<ErrorModel, String>> verifyResetCode(
-  //     String userType, String otp, String identifier);
-  // Future<Either<ErrorModel, String>> resetPassword(
-  //     String userType, String otp, String password, String identifier);
-  // Future<Either<ErrorModel, String>> verifyEmail(String userType, String otp);
+  
 }
 
 class AuthApiServicesImpl extends AuthApiServices {

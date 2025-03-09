@@ -16,4 +16,7 @@ abstract class RouterNames {
   static const String personalInfoView = '/personalInfoView';
   static const String favoriteView = '/favoriteView';
   static const String verifyCodeView = '/verifyCodeView';
+  static const String editProfile = '/editProfile';
+  static const String myOrdersView = '/myOrdersView';
+  static const String myOrderDetails ='/myOrderDetails';
 }

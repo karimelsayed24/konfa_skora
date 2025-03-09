@@ -1,0 +1,44 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'daily_order_response.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+DailyOrderResponse _$DailyOrderResponseFromJson(Map<String, dynamic> json) =>
+    DailyOrderResponse(
+      key: json['key'] as String,
+      msg: json['msg'] as String,
+      data: (json['data'] as List<dynamic>)
+          .map((e) => ProductItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$DailyOrderResponseToJson(DailyOrderResponse instance) =>
+    <String, dynamic>{
+      'key': instance.key,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+ProductItem _$ProductItemFromJson(Map<String, dynamic> json) => ProductItem(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      price: json['price'] as String,
+      avgRate: json['avg_rate'] as String,
+      description: json['description'] as String,
+      image: json['image'] as String,
+      discount: (json['discount'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$ProductItemToJson(ProductItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'price': instance.price,
+      'avg_rate': instance.avgRate,
+      'description': instance.description,
+      'image': instance.image,
+      'discount': instance.discount,
+    };

@@ -1,11 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:konaf_skora/core/services/service_locator.dart';
 
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../home/presentation/view/home_view.dart';
+import '../profile/presentation/logic/profile_cubit.dart';
+import '../profile/presentation/view/profile_view.dart';
 
 class BottomNavigationBarRoot extends StatelessWidget {
   const BottomNavigationBarRoot({super.key});
@@ -19,11 +21,10 @@ class BottomNavigationBarRoot extends StatelessWidget {
           Text('Cart'),
           Text('Points'),
           Text('Track Order'),
-          Text('Profile'),
-         // const ManagerHomView(),
-         // const AcceptEmployeeView(),
-        //  const ManagerNotificationView(),
-        //  const ManagerProfileView(),
+          BlocProvider(
+            create: (context) => getIt<ProfileCubit>(),
+            child: const ProfileView(),
+          ),
         ];
         return Scaffold(
           backgroundColor: AppColors.lightGrey,
@@ -64,12 +65,12 @@ class BottomNavigationBarRoot extends StatelessWidget {
                   icon: Icon(Icons.card_giftcard_rounded),
                   label: AppStrings.points,
                 ),
-                 BottomNavigationBarItem(
+                BottomNavigationBarItem(
                   icon: Icon(Icons.share_location),
                   label: AppStrings.trackOrder,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person ),
+                  icon: Icon(Icons.person),
                   label: AppStrings.profile,
                 ),
               ],

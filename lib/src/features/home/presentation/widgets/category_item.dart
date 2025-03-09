@@ -1,6 +1,9 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/utils/app_styles.dart';
 
 class CategoryItem extends StatelessWidget {
   final Map<String, dynamic> category;
@@ -12,43 +15,27 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      //  mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 70,
-            width: 70,
+            height: 110.h,
+            width: 125.w,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(35),
+              borderRadius: BorderRadius.circular(11.r),
               image: DecorationImage(
                 image: AssetImage(category['image']),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),
           const SizedBox(height: 10),
           Text(
             category['name'],
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppStyles.s14
           ),
         ],
-      ),
+      
     );
   }
 }

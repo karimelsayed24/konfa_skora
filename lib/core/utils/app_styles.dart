@@ -10,6 +10,13 @@ class AppStyles {
     color: AppColors.black,
   );
 
+   static TextStyle s22 = TextStyle(
+    fontFamily: 'Cairo',
+    fontSize: 22.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.primaryColor,
+  );
+
   static TextStyle s20 = TextStyle(
     fontFamily: 'Cairo',
     fontSize: 20.0.sp,
@@ -27,6 +34,12 @@ class AppStyles {
   static TextStyle s16 = TextStyle(
     fontFamily: 'Cairo',
     fontSize: 16.0.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black,
+  );
+  static TextStyle s15 = TextStyle(
+    fontFamily: 'Cairo',
+    fontSize: 15.0.sp,
     fontWeight: FontWeight.w500,
     color: AppColors.black,
   );
