@@ -22,7 +22,7 @@ Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
 
 UserProfileModel _$UserProfileModelFromJson(Map<String, dynamic> json) =>
     UserProfileModel(
-      image: json['image'] as String,
+      image: json['image'] as String?,
       lng: json['lng'] as String?,
       lat: json['lat'] as String?,
       mapDesc: json['map_desc'] as String?,

@@ -35,9 +35,8 @@ class OrderCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Image column
               const ImageColumn(
-                image: '',
+                image:'order.image',
               ),
               SizedBox(width: 10.w),
 

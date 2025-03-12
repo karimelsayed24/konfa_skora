@@ -6,6 +6,7 @@ import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_styles.dart';
+import 'log_out_dialog.dart';
 
 class ProfileMenuItems extends StatelessWidget {
   const ProfileMenuItems({super.key});
@@ -18,16 +19,24 @@ class ProfileMenuItems extends StatelessWidget {
           context.push(RouterNames.editProfile);
         }),
         _buildMenuItem(Icons.shopping_bag_outlined, AppStrings.myOrder, () {
-          context.push(RouterNames.myOrderDetails , extra: {'orderId': 1});
+          context.push(RouterNames.myOrdersView);
         }),
         _buildMenuItem(
-            Icons.notifications_outlined, AppStrings.notification, () {}),
+            Icons.notifications_outlined, AppStrings.notification, () {
+          context.push(RouterNames.notificationPermissionScreen,);
+            }),
         _buildMenuItem(
-            Icons.headset_mic_outlined, AppStrings.privacyPolicy, () {}),
-        _buildMenuItem(Icons.settings_outlined, AppStrings.settings, () {}),
+            Icons.headset_mic_outlined, AppStrings.privacyPolicy, () {
+          context.push(RouterNames.supportPolicyView);
+            }),
+        _buildMenuItem(Icons.settings_outlined, AppStrings.settings, () {
+          context.push(RouterNames.settingsView);
+        }),
         _buildMenuItem(Icons.language_outlined, AppStrings.language, () {}),
         _buildMenuItem(Icons.dark_mode_outlined, AppStrings.darkMode, () {}),
-        _buildMenuItem(Icons.logout_outlined, AppStrings.logout, () {}),
+        _buildMenuItem(Icons.logout_outlined, AppStrings.logout, () {
+          showLogOut(context);
+        }),
       ],
     );
   }

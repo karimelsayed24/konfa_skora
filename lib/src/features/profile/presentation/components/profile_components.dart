@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,12 +16,12 @@ class ProfileComponents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ProfileCubit>().getProfile();
+
     return Column(
       children: [
         BlocConsumer<ProfileCubit, ProfileState>(
-          listener: (context, state) {
-            context.read<ProfileCubit>().getProfile();
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return Container(
               alignment: Alignment.center,
@@ -40,7 +39,7 @@ class ProfileComponents extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                    data.image,
+                                    data.image??'',
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -80,8 +79,8 @@ class ProfileComponents extends StatelessWidget {
                       ) ??
                       Text(
                         "no name",
-                        style: AppStyles.s16
-                            .copyWith(color: AppColors.greyText),
+                        style:
+                            AppStyles.s16.copyWith(color: AppColors.greyText),
                       ),
                   const SizedBox(height: 4),
                   state.whenOrNull(
@@ -94,15 +93,15 @@ class ProfileComponents extends StatelessWidget {
                       ) ??
                       Text(
                         'mg2*****@gmail.com',
-                        style: AppStyles.s10
-                            .copyWith(color: AppColors.secondGrey),
+                        style:
+                            AppStyles.s10.copyWith(color: AppColors.secondGrey),
                       ),
                 ],
               ),
             );
           },
         ),
-    
+
         // Menu Items
         const Expanded(
           child: ProfileMenuItems(),

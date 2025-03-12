@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:konaf_skora/src/features/auth/presentation/logic/login/login_cubit.dart';
+import 'package:konaf_skora/src/features/cart/presentation/logic/cart_cubit.dart';
 import 'package:konaf_skora/src/features/my_orders/data/remote/my_order_remote_ds.dart';
 import 'package:konaf_skora/src/features/profile/data/remote/profile_remote_ds.dart';
 
@@ -11,6 +12,10 @@ import '../../src/features/auth/domain/repository/auth_repo.dart';
 import '../../src/features/auth/domain/usecase/login_use_case.dart';
 import '../../src/features/auth/domain/usecase/register_use_case.dart';
 import '../../src/features/auth/presentation/logic/register/register_cubit.dart';
+import '../../src/features/cart/data/remote/cart_api_services.dart';
+import '../../src/features/cart/data/remote/cart_remote_ds.dart';
+import '../../src/features/cart/domain/repo/cart_repository.dart';
+import '../../src/features/cart/domain/usecase/cart_use_case.dart';
 import '../../src/features/home/data/remote/home_api_services.dart';
 import '../../src/features/home/data/remote/home_remote_ds.dart';
 import '../../src/features/home/domain/repo/home_repo.dart';
@@ -26,9 +31,18 @@ import '../../src/features/my_orders/presentation/logic/order_details_cubit.dart
 import '../../src/features/my_orders/presentation/logic/orders_cubit.dart';
 import '../../src/features/profile/data/remote/profile_api_services.dart';
 import '../../src/features/profile/domain/repo/profile_repository.dart';
+import '../../src/features/profile/domain/usecase/change_password_usecase.dart';
+import '../../src/features/profile/domain/usecase/delete_account_usecase.dart';
 import '../../src/features/profile/domain/usecase/get_profile_usecase.dart';
+import '../../src/features/profile/domain/usecase/logout_usecsae.dart';
 import '../../src/features/profile/domain/usecase/update_profile_usecase.dart';
+import '../../src/features/profile/presentation/logic/change_password_cubit.dart';
 import '../../src/features/profile/presentation/logic/profile_cubit.dart';
+import '../../src/features/support_policy/data/remote/questions_api_services.dart';
+import '../../src/features/support_policy/data/remote/questions_remote_ds.dart';
+import '../../src/features/support_policy/domain/repo/questions_repository.dart';
+import '../../src/features/support_policy/domain/usecase/get_questions_usecase.dart';
+import '../../src/features/support_policy/presentation/logic/questions_cubit.dart';
 import '../app_cubit/app_cubit.dart';
 import '../data/api/api_consumer.dart';
 import '../data/api/dio_consumer.dart';
@@ -44,6 +58,8 @@ void setupLocator() {
   getIt
       .registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: getIt<Dio>()));
   getIt.registerLazySingleton<ImagePicker>(() => ImagePicker());
+  getIt.registerLazySingleton<CartApiServices>(
+      () => CartApiServicesImpl(getIt()));
 
 //!Api Services //
 
@@ -56,6 +72,9 @@ void setupLocator() {
   );
   getIt.registerLazySingleton<OrdersApiServices>(
       () => OrdersApiServicesImpl(getIt()));
+  getIt.registerLazySingleton<CartRemoteDs>(() => CartRemoteDsImpl(getIt()));
+  getIt.registerLazySingleton<QuestionsApiServices>(
+      () => QuestionsApiServicesImpl(getIt()));
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<AuthRemoteDs>(() => AuthRemoteDsImpl(getIt()));
@@ -64,6 +83,8 @@ void setupLocator() {
       () => ProfileRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<MyOrderRemoteDs>(
       () => MyOrderRemoteDsImpl(getIt()));
+  getIt.registerLazySingleton<QuestionsRemoteDs>(
+      () => QuestionsRemoteDsImpl(getIt()));
 
   /// !-- Repositories -- ///
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -73,6 +94,10 @@ void setupLocator() {
   );
   getIt.registerLazySingleton<OrdersRepository>(
       () => OrdersRepositoryImpl(getIt()));
+  getIt
+      .registerLazySingleton<CartRepository>(() => CartRepositoryImpl(getIt()));
+  getIt.registerLazySingleton<QuestionsRepository>(
+      () => QuestionsRepositoryImpl(getIt()));
 
   /// !-- UseCases -- ///
   getIt.registerLazySingleton<LoginUseCase>(() => LoginUseCase(getIt()));
@@ -84,12 +109,31 @@ void setupLocator() {
   getIt.registerLazySingleton(() => UpdateProfileUseCase(getIt()));
   getIt.registerLazySingleton(() => GetMyOrdersUseCase(getIt()));
   getIt.registerLazySingleton(() => GetOrderDetailsUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetCartItemsUseCase(getIt()));
+  getIt.registerLazySingleton(() => AddToCartUseCase(getIt()));
+  getIt.registerLazySingleton(() => RemoveFromCartUseCase(getIt()));
+  getIt.registerLazySingleton(() => UpdateCartItemQuantityUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetQuestionsUseCase(getIt()));
+  getIt.registerLazySingleton(() => ChangePasswordUseCase(getIt()));
+  getIt.registerLazySingleton(() => LogoutUseCase(getIt()));
+  getIt.registerLazySingleton(() => DeleteAccountUseCase(getIt()));
+
+  
+
 
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
   getIt.registerLazySingleton<RegisterCubit>(() => RegisterCubit(getIt()));
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt(), getIt(), getIt()));
-  getIt.registerFactory(() => ProfileCubit(getIt(), getIt()));
+  getIt.registerFactory(() => ProfileCubit(getIt(), getIt(), getIt(), getIt()));
   getIt.registerFactory(() => OrdersCubit(getIt()));
   getIt.registerFactory(() => OrderDetailsCubit(getIt()));
+  getIt.registerFactory(() => CartCubit(
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+      ));
+  getIt.registerFactory(() => QuestionsCubit(getIt()));
+  getIt.registerFactory(() => ChangePasswordCubit(getIt()));
 }

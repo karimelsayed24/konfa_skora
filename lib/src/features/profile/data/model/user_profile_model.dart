@@ -20,7 +20,7 @@ class ProfileResponse {
 
 @JsonSerializable()
 class UserProfileModel {
-  final String image;
+  final String? image;
   final String? lng;
   final String? lat;
   @JsonKey(name: 'map_desc')

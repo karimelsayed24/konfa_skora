@@ -51,7 +51,7 @@ class _LoginFormState extends State<LoginForm> {
             if (response.responseKey=='ActivationNeeded') {
             // context.push(RouterNames.otpVerification);
             } else {
-              //context.push(RouterNames.home);
+              context.push(RouterNames.bottomNavigationBarRoot);
             }
           },
           error: (error) {

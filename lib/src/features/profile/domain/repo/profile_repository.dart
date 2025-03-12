@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/errors/error_model.dart';
+import '../../data/model/change_password_response.dart';
 import '../../data/model/user_profile_model.dart';
 import '../../data/remote/profile_remote_ds.dart';
 
@@ -15,6 +16,12 @@ abstract class ProfileRepository {
     //required String location,
     String? image,
   });
+   Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(
+      String oldPassword, String password, String passwordConfirmation);
+
+      
+      Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount();
+      Future<Either<ErrorModel, ChangePasswordResponse>> logOut();
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -46,5 +53,20 @@ class ProfileRepositoryImpl implements ProfileRepository {
       //location: location,
       image: image,
     );
+  }
+  
+  @override
+  Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(String oldPassword, String password, String passwordConfirmation) async {
+    return await remoteDS.changePassword(oldPassword, password, passwordConfirmation);
+  }
+  
+  @override
+  Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount() async {
+    return await remoteDS.deleteAccount();
+  }
+  
+  @override
+  Future<Either<ErrorModel, ChangePasswordResponse>> logOut() async {
+    return await remoteDS.logOut();
   }
 }

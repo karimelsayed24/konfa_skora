@@ -11,7 +11,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   Future<void> getMyOrders() async {
     emit(OrdersLoading());
     
-    final result = await getMyOrdersUseCase();
+    final result = await getMyOrdersUseCase.call();
     
     result.fold(
       (error) => emit(OrdersError(error.message)),

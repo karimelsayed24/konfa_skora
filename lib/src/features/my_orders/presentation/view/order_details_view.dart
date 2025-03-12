@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/utils/app_styles.dart';
+import '../../../../../core/utils/custom_app_bar.dart';
 import '../logic/order_details_cubit.dart';
 import '../logic/order_details_state.dart';
 import '../widgets/build_order_details.dart';
@@ -17,19 +15,7 @@ class OrderDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon:
-                const Icon(Icons.arrow_forward_ios, color: AppColors.greyText),
-            onPressed: () => context.pop(context),
-          ),
-        ],
-        title: Text(AppStrings.myOrderDetails, style: AppStyles.s22),
-      ),
+      appBar: customAppBar(context, AppStrings.myOrderDetails),
       body: BlocBuilder<OrderDetailsCubit, OrderDetailsState>(
         builder: (context, state) {
           return state.maybeWhen(

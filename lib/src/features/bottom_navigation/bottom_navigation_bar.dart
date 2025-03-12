@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:konaf_skora/core/services/service_locator.dart';
+import 'package:konaf_skora/src/features/cart/presentation/logic/cart_cubit.dart';
 
 import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
+import '../cart/presentation/view/cart_view.dart';
 import '../home/presentation/view/home_view.dart';
 import '../profile/presentation/logic/profile_cubit.dart';
 import '../profile/presentation/view/profile_view.dart';
@@ -18,7 +20,10 @@ class BottomNavigationBarRoot extends StatelessWidget {
       builder: (context, state) {
         final List<Widget> pages = [
           const HomeView(),
-          Text('Cart'),
+          BlocProvider(
+            create: (context) => getIt<CartCubit >()..getCartItems(),
+            child: const CartView(),
+          ),
           Text('Points'),
           Text('Track Order'),
           BlocProvider(
