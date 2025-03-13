@@ -8,6 +8,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../cart/presentation/view/cart_view.dart';
 import '../home/presentation/view/home_view.dart';
+import '../points/presentation/view/points_view.dart';
 import '../profile/presentation/logic/profile_cubit.dart';
 import '../profile/presentation/view/profile_view.dart';
 
@@ -24,8 +25,8 @@ class BottomNavigationBarRoot extends StatelessWidget {
             create: (context) => getIt<CartCubit >()..getCartItems(),
             child: const CartView(),
           ),
-          Text('Points'),
-          Text('Track Order'),
+          const PointsView(),
+          const Text('Track Order'),
           BlocProvider(
             create: (context) => getIt<ProfileCubit>(),
             child: const ProfileView(),

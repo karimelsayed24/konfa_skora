@@ -29,6 +29,11 @@ import '../../src/features/my_orders/domain/usecase/get_my_orders_usecase.dart';
 import '../../src/features/my_orders/domain/usecase/get_order_details_use_case.dart';
 import '../../src/features/my_orders/presentation/logic/order_details_cubit.dart';
 import '../../src/features/my_orders/presentation/logic/orders_cubit.dart';
+import '../../src/features/points/data/remote/prize_products_api_services.dart';
+import '../../src/features/points/data/remote/prize_products_remote_ds.dart';
+import '../../src/features/points/domain/repo/prize_products_repository.dart';
+import '../../src/features/points/domain/usecase/point_usecase.dart';
+import '../../src/features/points/presentation/logic/prize_product_cubit.dart';
 import '../../src/features/profile/data/remote/profile_api_services.dart';
 import '../../src/features/profile/domain/repo/profile_repository.dart';
 import '../../src/features/profile/domain/usecase/change_password_usecase.dart';
@@ -72,19 +77,26 @@ void setupLocator() {
   );
   getIt.registerLazySingleton<OrdersApiServices>(
       () => OrdersApiServicesImpl(getIt()));
-  getIt.registerLazySingleton<CartRemoteDs>(() => CartRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<QuestionsApiServices>(
       () => QuestionsApiServicesImpl(getIt()));
+
+  getIt.registerLazySingleton<PrizeProductsApiServices>(
+      () => PrizeProductsApiServicesImpl(getIt()));
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<AuthRemoteDs>(() => AuthRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<HomeRemoteDs>(() => HomeRemoteDsImpl(getIt()));
+  getIt.registerLazySingleton<CartRemoteDs>(() => CartRemoteDsImpl(getIt()));
+
   getIt.registerLazySingleton<ProfileRemoteDs>(
       () => ProfileRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<MyOrderRemoteDs>(
       () => MyOrderRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<QuestionsRemoteDs>(
       () => QuestionsRemoteDsImpl(getIt()));
+
+  getIt.registerLazySingleton<PrizeProductsRemoteDs>(
+      () => PrizeProductsRemoteDsImpl(getIt()));
 
   /// !-- Repositories -- ///
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -98,6 +110,8 @@ void setupLocator() {
       .registerLazySingleton<CartRepository>(() => CartRepositoryImpl(getIt()));
   getIt.registerLazySingleton<QuestionsRepository>(
       () => QuestionsRepositoryImpl(getIt()));
+  getIt.registerLazySingleton<PrizeProductsRepository>(
+      () => PrizeProductsRepositoryImpl(getIt()));
 
   /// !-- UseCases -- ///
   getIt.registerLazySingleton<LoginUseCase>(() => LoginUseCase(getIt()));
@@ -118,8 +132,9 @@ void setupLocator() {
   getIt.registerLazySingleton(() => LogoutUseCase(getIt()));
   getIt.registerLazySingleton(() => DeleteAccountUseCase(getIt()));
 
-  
-
+  getIt.registerLazySingleton(() => GetPrizeProductsUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetExtraPointsOptionsUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetUserPointsUseCase(getIt()));
 
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
@@ -136,4 +151,9 @@ void setupLocator() {
       ));
   getIt.registerFactory(() => QuestionsCubit(getIt()));
   getIt.registerFactory(() => ChangePasswordCubit(getIt()));
+  getIt.registerFactory(() => PrizeProductsCubit(
+        getPrizeProductsUseCase: getIt(),
+        getExtraPointsOptionsUseCase: getIt(),
+        getUserPointsUseCase: getIt(),
+      ));
 }

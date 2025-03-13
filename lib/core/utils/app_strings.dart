@@ -61,6 +61,8 @@ abstract class AppStrings {
       delete = 'حذف',
       cancel = 'الغاء',
       yes = 'نعم',
+      collectAndWin ='جمع واكسب', 
+      collectPointsAndWin =  '  جمع نقط و اكسب معانا خصم يصل الي 70% ',
       settingsPersonalInfo = "اعدادات الملف الشخصى",
       personalInfoData = "بيانات الملف الشخصى",
       introText =
@@ -71,6 +73,10 @@ abstract class AppStrings {
       visit6Doctors = " قم بزيارة 6 اطباءاليوم",
       dailyMissonsDone = "قمت بتحقيق 60% من هدفك اليومي",
       monthlyMissonsDone = "قمت بتحقيق 60% من هدفك الشهري",
+      requiredPoints = "النقاط المطلوبة",
+      currentPoints = "النقاط الحالية",
+      collectPointAndGetGift = 'جمع عدد النقاط المطلوبه و احصل علي هديتك مجانا ',
+      redeemNow = 'استبدل الان',
       dailuPlane = "الخطه اليوميه",
       addDailyPlan = "اضافة الخطة اليومية",
       creatAcount = "انشئ حساب",
@@ -125,6 +131,11 @@ abstract class AppStrings {
       profile = "الصفحة الشخصية",
       trackOrder = "تتبع طلبك",
       points = "النقاط",
+      point = 'نقط',
+      pointsEarned = 'النقاط المكتسبه', 
+      youWillGetAGift = 'ستحصل علي هديتك  عند حصولك علي250 نقطة اضافية',
+      rewards = "المكافأت",
+      earnExtraPoints =  'اكسب نقاط إضافية',
       cart = "السلة",
       performanceDetails = "احصائيات الاداء",
       editProfile = "تعديل الملف الشخصى",
@@ -149,5 +160,6 @@ abstract class AppStrings {
       youThinkOfTheRestaurant = 'ما رايك فى تجربه المطعم؟',
       feedbackWillHelpImprove = 'ستساعد ملاحظاتك في تحسين تجربة التطبيق',
       personalProfile = "الملف الشخصى",
+
       myName = "احمد سلمان ";
 }

@@ -19,6 +19,9 @@ abstract class EndpointsStrings {
   static const String deleteFromCart = 'api/delete-cart';
   static const String updateCart = 'api/update-cart';
   static const String getQuestions = 'api/faqs';
+  static const String getPrizeProducts = 'api/prize-products';
+  static const String getExtraPointsOptions = 'api/settings';
+  static const String getUserPoints = 'api/points';
 }
 
 

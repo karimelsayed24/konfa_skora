@@ -37,6 +37,7 @@ class ProfileMenuItems extends StatelessWidget {
         _buildMenuItem(Icons.logout_outlined, AppStrings.logout, () {
           showLogOut(context);
         }),
+        SizedBox(height: 20.h),
       ],
     );
   }
