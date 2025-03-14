@@ -1,5 +1,7 @@
 abstract class AppStrings {
-  static const appName = "دليل المدينه",
+  static const appName = "كنافة سكرة",
+      rateApp =  'قيم تطبيق ',
+      clickStarToRate = 'اضغط علي النجوم لاعطاء التقييم',
       skip = "تخطي",
       createNewAccount = "انشاء حساب جديد !",
       welcome = "مرحبا بك  ",

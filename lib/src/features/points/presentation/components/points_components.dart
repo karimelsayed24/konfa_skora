@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/services/service_locator.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../auth/presentation/widgets/create_account_title.dart';
 import '../logic/prize_product_cubit.dart';
 import '../logic/prize_products_state.dart';
+import '../logic/rate/rate_app_cubit.dart';
 import '../widgets/points_earned_container.dart';
 import 'extra_points_components.dart';
 import 'rewards_components.dart';
@@ -43,7 +44,8 @@ class PointsComponents extends StatelessWidget {
                     RewardsComponents(
                         prizeProductsResponse: prizeProductsResponse),
                     SizedBox(height: 20.h),
-                    ExtraPointsComponents(extraPointsOptionsResponse: extraPointsOptionsResponse),
+                    ExtraPointsComponents(
+                        extraPointsOptionsResponse: extraPointsOptionsResponse),
                   ],
                 ),
               ),

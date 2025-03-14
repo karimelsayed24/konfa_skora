@@ -3,12 +3,14 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../../core/errors/error_model.dart';
 import '../../data/model/prize_products_response.dart';
+import '../../data/model/rate_app_response.dart';
 import '../../data/remote/prize_products_remote_ds.dart';
 
 abstract class PrizeProductsRepository {
   Future<Either<ErrorModel, PrizeProductsResponse>> getPrizeProducts();
     Future<Either<ErrorModel, ExtraPointsOptionsResponse>> getExtraPointsOptions();
   Future<Either<ErrorModel, UserPointsResponse>> getUserPoints();
+   Future<Either<ErrorModel, RateAppResponse>> rateApp();
 }
 
 class PrizeProductsRepositoryImpl implements PrizeProductsRepository {
@@ -29,6 +31,11 @@ class PrizeProductsRepositoryImpl implements PrizeProductsRepository {
   @override
   Future<Either<ErrorModel, UserPointsResponse>> getUserPoints() async {
     return remoteDs.getUserPoints();
+  }
+  
+  @override
+  Future<Either<ErrorModel, RateAppResponse>> rateApp() async {
+    return remoteDs.rateApp();
   }
 
 }

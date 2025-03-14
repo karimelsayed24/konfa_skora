@@ -5,11 +5,13 @@ import '../../../../../core/data/api/api_consumer.dart';
 import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/errors/exceptions.dart';
 import '../model/prize_products_response.dart';
+import '../model/rate_app_response.dart';
 
 abstract class PrizeProductsApiServices {
  Future<Either<ErrorModel, PrizeProductsResponse>> getPrizeProducts();
   Future<Either<ErrorModel, ExtraPointsOptionsResponse>> getExtraPointsOptions();
   Future<Either<ErrorModel, UserPointsResponse>> getUserPoints();
+  Future<Either<ErrorModel, RateAppResponse>> rateApp();
   }
 
 class PrizeProductsApiServicesImpl implements PrizeProductsApiServices {
@@ -49,4 +51,16 @@ class PrizeProductsApiServicesImpl implements PrizeProductsApiServices {
       return Left(e.errorModel);
     }
   }
+
+  @override
+   Future<Either<ErrorModel, RateAppResponse>> rateApp()async{
+     try {
+      final response = await api.post(EndpointsStrings.rateApp);
+      final rateAppResponse = RateAppResponse.fromJson(response);
+      return Right(rateAppResponse);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+   }
+  
 }

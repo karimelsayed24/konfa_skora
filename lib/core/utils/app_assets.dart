@@ -15,4 +15,7 @@ abstract class AppAssets {
   static const String editCamera = "assets/svg/editCamera.svg";
   static const String sevenLines = "assets/svg/sevenLines.svg";
   static const String giftIcon = "assets/svg/giftIcon.svg";
+  static const String iconForRate = "assets/svg/iconForRate.svg";
+
+  
 }

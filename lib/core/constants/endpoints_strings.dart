@@ -22,6 +22,7 @@ abstract class EndpointsStrings {
   static const String getPrizeProducts = 'api/prize-products';
   static const String getExtraPointsOptions = 'api/settings';
   static const String getUserPoints = 'api/points';
+  static const String rateApp = 'api/rate-app';
 }
 
 

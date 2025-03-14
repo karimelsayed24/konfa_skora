@@ -33,7 +33,9 @@ import '../../src/features/points/data/remote/prize_products_api_services.dart';
 import '../../src/features/points/data/remote/prize_products_remote_ds.dart';
 import '../../src/features/points/domain/repo/prize_products_repository.dart';
 import '../../src/features/points/domain/usecase/point_usecase.dart';
+import '../../src/features/points/domain/usecase/rate_app_usecase.dart';
 import '../../src/features/points/presentation/logic/prize_product_cubit.dart';
+import '../../src/features/points/presentation/logic/rate/rate_app_cubit.dart';
 import '../../src/features/profile/data/remote/profile_api_services.dart';
 import '../../src/features/profile/domain/repo/profile_repository.dart';
 import '../../src/features/profile/domain/usecase/change_password_usecase.dart';
@@ -135,6 +137,7 @@ void setupLocator() {
   getIt.registerLazySingleton(() => GetPrizeProductsUseCase(getIt()));
   getIt.registerLazySingleton(() => GetExtraPointsOptionsUseCase(getIt()));
   getIt.registerLazySingleton(() => GetUserPointsUseCase(getIt()));
+  getIt.registerLazySingleton(() => RateAppUseCase(getIt()));
 
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
@@ -156,4 +159,8 @@ void setupLocator() {
         getExtraPointsOptionsUseCase: getIt(),
         getUserPointsUseCase: getIt(),
       ));
+
+  getIt.registerFactory(() => RateAppCubit(getIt()));
+
+      
 }
