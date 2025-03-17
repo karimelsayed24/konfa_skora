@@ -22,4 +22,6 @@ abstract class RouterNames {
   static const String  supportPolicyView = '/supportPolicyView';
   static const String  settingsView = '/settingsView';
  static const String  changePassword = '/changePassword';
+ static const String locationSelectorView = '/locationSelectorView';
+  static const String  checkoutView = '/checkoutView';
 }

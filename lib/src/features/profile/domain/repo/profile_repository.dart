@@ -16,12 +16,12 @@ abstract class ProfileRepository {
     //required String location,
     String? image,
   });
-   Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(
+   Future<Either<ErrorModel, PublicResponse>> changePassword(
       String oldPassword, String password, String passwordConfirmation);
 
       
-      Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount();
-      Future<Either<ErrorModel, ChangePasswordResponse>> logOut();
+      Future<Either<ErrorModel, PublicResponse>> deleteAccount();
+      Future<Either<ErrorModel, PublicResponse>> logOut();
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
@@ -56,17 +56,17 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(String oldPassword, String password, String passwordConfirmation) async {
+  Future<Either<ErrorModel, PublicResponse>> changePassword(String oldPassword, String password, String passwordConfirmation) async {
     return await remoteDS.changePassword(oldPassword, password, passwordConfirmation);
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount() async {
+  Future<Either<ErrorModel, PublicResponse>> deleteAccount() async {
     return await remoteDS.deleteAccount();
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> logOut() async {
+  Future<Either<ErrorModel, PublicResponse>> logOut() async {
     return await remoteDS.logOut();
   }
 }

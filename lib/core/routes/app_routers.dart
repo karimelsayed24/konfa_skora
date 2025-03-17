@@ -7,7 +7,11 @@ import 'package:konaf_skora/src/features/support_policy/presentation/logic/quest
 
 import '../../src/features/auth/presentation/logic/register/register_cubit.dart';
 import '../../src/features/bottom_navigation/bottom_navigation_bar.dart';
+import '../../src/features/cart/data/model/cart_response_model.dart';
+import '../../src/features/cart/presentation/view/check_out_view.dart';
 import '../../src/features/intro/presentation/view/landing_page.dart';
+import '../../src/features/location/presentation/logic/address_cubit.dart';
+import '../../src/features/location/presentation/view/location_selector_view.dart';
 import '../../src/features/my_orders/presentation/logic/order_details_cubit.dart';
 import '../../src/features/my_orders/presentation/logic/orders_cubit.dart';
 import '../../src/features/my_orders/presentation/view/my_orders_view.dart';
@@ -70,6 +74,26 @@ final GoRouter router = GoRouter(
       path: RouterNames.settingsView,
       builder: (context, state) => const SettingsView(),
     ),
+    GoRoute(
+      path: RouterNames.checkoutView,
+      builder: (context, state) {
+        final cartData = state.extra as CartData;
+        
+        return BlocProvider(
+
+        create: (context) => getIt<AddressCubit>(),
+        child:  CheckoutView(cartData: cartData,),
+      );
+      }
+    ),
+    GoRoute(
+      path: RouterNames.locationSelectorView,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<AddressCubit>(),
+        child: const LocationSelectorView(),
+      ),
+    ),
+
     GoRoute(
       path: RouterNames.supportPolicyView,
       builder: (context, state) => BlocProvider(

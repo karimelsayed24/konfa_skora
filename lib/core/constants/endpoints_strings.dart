@@ -23,6 +23,11 @@ abstract class EndpointsStrings {
   static const String getExtraPointsOptions = 'api/settings';
   static const String getUserPoints = 'api/points';
   static const String rateApp = 'api/rate-app';
+
+  static const String getAddresses = 'api/addresses';
+  static const String storeAddress = 'api/store-address';
+  static const String deleteAddress = 'api/delete-address/';
+  static const String checkOut = 'api/store-order';
 }
 
 

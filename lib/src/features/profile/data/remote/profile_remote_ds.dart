@@ -16,11 +16,11 @@ abstract class ProfileRemoteDs {
    // required String location,
     String? image,
   });
-   Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(
+   Future<Either<ErrorModel, PublicResponse>> changePassword(
       String oldPassword, String password, String passwordConfirmation);
       
-      Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount();
-      Future<Either<ErrorModel, ChangePasswordResponse>> logOut();
+      Future<Either<ErrorModel, PublicResponse>> deleteAccount();
+      Future<Either<ErrorModel, PublicResponse>> logOut();
 }
 
 class ProfileRemoteDsImpl implements ProfileRemoteDs {
@@ -52,17 +52,17 @@ class ProfileRemoteDsImpl implements ProfileRemoteDs {
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(String oldPassword, String password, String passwordConfirmation) async {
+  Future<Either<ErrorModel, PublicResponse>> changePassword(String oldPassword, String password, String passwordConfirmation) async {
     return api.changePassword(oldPassword, password, passwordConfirmation);
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount() async {
+  Future<Either<ErrorModel, PublicResponse>> deleteAccount() async {
     return api.deleteAccount();
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> logOut() async {
+  Future<Either<ErrorModel, PublicResponse>> logOut() async {
     return api.logOut();
   }
 

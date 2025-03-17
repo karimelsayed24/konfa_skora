@@ -21,11 +21,11 @@ abstract class ProfileApiServices {
   });
 
   //change password
-  Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(
+  Future<Either<ErrorModel, PublicResponse>> changePassword(
       String oldPassword, String password, String passwordConfirmation);
 
-      Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount();
-      Future<Either<ErrorModel, ChangePasswordResponse>> logOut();
+      Future<Either<ErrorModel, PublicResponse>> deleteAccount();
+      Future<Either<ErrorModel, PublicResponse>> logOut();
 }
 
 class ProfileApiServicesImpl implements ProfileApiServices {
@@ -88,7 +88,7 @@ class ProfileApiServicesImpl implements ProfileApiServices {
   }
 
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> changePassword(
+  Future<Either<ErrorModel, PublicResponse>> changePassword(
       String oldPassword, String password, String passwordConfirmation) async {
     try {
       final response = await api.post(EndpointsStrings.changePassword, data: {
@@ -96,7 +96,7 @@ class ProfileApiServicesImpl implements ProfileApiServices {
         'password': password,
         'password_confirmation': passwordConfirmation,
       });
-      final changePasswordResponse = ChangePasswordResponse.fromJson(response);
+      final changePasswordResponse = PublicResponse.fromJson(response);
       return Right(changePasswordResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);
@@ -104,10 +104,10 @@ class ProfileApiServicesImpl implements ProfileApiServices {
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> deleteAccount() async{
+  Future<Either<ErrorModel, PublicResponse>> deleteAccount() async{
     try {
       final response = await api.post(EndpointsStrings.deleteAccount);
-      final changePasswordResponse = ChangePasswordResponse.fromJson(response);
+      final changePasswordResponse = PublicResponse.fromJson(response);
       return Right(changePasswordResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);
@@ -115,10 +115,10 @@ class ProfileApiServicesImpl implements ProfileApiServices {
   }
   
   @override
-  Future<Either<ErrorModel, ChangePasswordResponse>> logOut() async{
+  Future<Either<ErrorModel, PublicResponse>> logOut() async{
     try {
       final response = await api.post(EndpointsStrings.logout);
-      final changePasswordResponse = ChangePasswordResponse.fromJson(response);
+      final changePasswordResponse = PublicResponse.fromJson(response);
       return Right(changePasswordResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);

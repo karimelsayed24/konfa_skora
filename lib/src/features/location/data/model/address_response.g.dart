@@ -1,0 +1,40 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'address_response.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+AddressResponse _$AddressResponseFromJson(Map<String, dynamic> json) =>
+    AddressResponse(
+      key: json['key'] as String,
+      msg: json['msg'] as String,
+      data: (json['data'] as List<dynamic>)
+          .map((e) => AddressData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$AddressResponseToJson(AddressResponse instance) =>
+    <String, dynamic>{
+      'key': instance.key,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+AddressData _$AddressDataFromJson(Map<String, dynamic> json) => AddressData(
+      id: (json['id'] as num).toInt(),
+      title: json['title'] as String,
+      mapDesc: json['map_desc'] as String,
+      lng: json['lng'] as String,
+      lat: json['lat'] as String,
+    );
+
+Map<String, dynamic> _$AddressDataToJson(AddressData instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'map_desc': instance.mapDesc,
+      'lng': instance.lng,
+      'lat': instance.lat,
+    };

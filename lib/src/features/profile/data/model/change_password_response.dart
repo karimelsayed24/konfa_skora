@@ -3,19 +3,19 @@ import 'package:json_annotation/json_annotation.dart';
 part 'change_password_response.g.dart';
 
 @JsonSerializable()
-class ChangePasswordResponse {
+class PublicResponse {
   final String key;
   final String msg;
   final List<dynamic> data;
 
-  ChangePasswordResponse({
+  PublicResponse({
     required this.key,
     required this.msg,
     required this.data,
   });
 
-  factory ChangePasswordResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChangePasswordResponseFromJson(json);
+  factory PublicResponse.fromJson(Map<String, dynamic> json) =>
+      _$PublicResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ChangePasswordResponseToJson(this);
+  Map<String, dynamic> toJson() => _$PublicResponseToJson(this);
 }

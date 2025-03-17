@@ -11,7 +11,7 @@ class LogoutUseCase {
 
   LogoutUseCase(this.repository);
 
-   Future<Either<ErrorModel, ChangePasswordResponse>> call() async {
+   Future<Either<ErrorModel, PublicResponse>> call() async {
     return await repository.logOut();
   }
 }

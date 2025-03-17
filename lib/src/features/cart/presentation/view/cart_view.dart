@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:konaf_skora/core/utils/app_strings.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../components/cart_components.dart';
@@ -13,7 +14,7 @@ class CartView extends StatelessWidget {
       appBar: AppBar(
         
         title: const Text(
-          'السلة',
+          AppStrings.cart,
           style: TextStyle(color: AppColors.primaryColor),
           textAlign: TextAlign.center,
         ),

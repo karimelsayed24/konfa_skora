@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../my_orders/presentation/widgets/image_column.dart';
@@ -29,7 +31,12 @@ class BuildCartContent extends StatelessWidget {
         ),
         BuildOrderSummary(
             prices: cartData.cartPrices, currency: cartData.currency),
-        buildCheckoutButton(context),
+      CustomButton(
+      onPressed: () {
+        context.push(RouterNames.checkoutView , extra : cartData);
+      },
+      text: AppStrings.goToPay,
+    )
       ],
     );
   }
@@ -63,17 +70,10 @@ class BuildCartContent extends StatelessWidget {
                 ],
               ),
             ),
-            // Quantity controls
           ],
         ),
       ),
     );
   }
 
-  Widget buildCheckoutButton(BuildContext context) {
-    return CustomButton(
-      onPressed: () {},
-      text: AppStrings.goToPay,
-    );
-  }
 }

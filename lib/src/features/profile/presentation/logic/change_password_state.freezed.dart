@@ -20,7 +20,7 @@ mixin _$ChangePasswordState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChangePasswordResponse response) success,
+    required TResult Function(PublicResponse response) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ChangePasswordState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChangePasswordResponse response)? success,
+    TResult? Function(PublicResponse response)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ChangePasswordState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChangePasswordResponse response)? success,
+    TResult Function(PublicResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChangePasswordResponse response) success,
+    required TResult Function(PublicResponse response) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChangePasswordResponse response)? success,
+    TResult? Function(PublicResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -154,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChangePasswordResponse response)? success,
+    TResult Function(PublicResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChangePasswordResponse response) success,
+    required TResult Function(PublicResponse response) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChangePasswordResponse response)? success,
+    TResult? Function(PublicResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChangePasswordResponse response)? success,
+    TResult Function(PublicResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -329,7 +329,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ChangePasswordResponse response});
+  $Res call({PublicResponse response});
 }
 
 /// @nodoc
@@ -351,7 +351,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as ChangePasswordResponse,
+              as PublicResponse,
     ));
   }
 }
@@ -362,7 +362,7 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.response);
 
   @override
-  final ChangePasswordResponse response;
+  final PublicResponse response;
 
   @override
   String toString() {
@@ -394,7 +394,7 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChangePasswordResponse response) success,
+    required TResult Function(PublicResponse response) success,
     required TResult Function(String message) error,
   }) {
     return success(response);
@@ -405,7 +405,7 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChangePasswordResponse response)? success,
+    TResult? Function(PublicResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return success?.call(response);
@@ -416,7 +416,7 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChangePasswordResponse response)? success,
+    TResult Function(PublicResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -465,9 +465,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements ChangePasswordState {
-  const factory _Success(final ChangePasswordResponse response) = _$SuccessImpl;
+  const factory _Success(final PublicResponse response) = _$SuccessImpl;
 
-  ChangePasswordResponse get response;
+  PublicResponse get response;
 
   /// Create a copy of ChangePasswordState
   /// with the given fields replaced by the non-null parameter values.
@@ -546,7 +546,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChangePasswordResponse response) success,
+    required TResult Function(PublicResponse response) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -557,7 +557,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChangePasswordResponse response)? success,
+    TResult? Function(PublicResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -568,7 +568,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChangePasswordResponse response)? success,
+    TResult Function(PublicResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

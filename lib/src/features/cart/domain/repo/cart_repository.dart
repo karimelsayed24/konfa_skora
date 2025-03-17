@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../../core/errors/error_model.dart';
 import '../../data/model/cart_response_model.dart';
+import '../../data/model/pay_response.dart';
 import '../../data/remote/cart_remote_ds.dart';
 
 abstract class CartRepository {
@@ -11,6 +12,7 @@ abstract class CartRepository {
   Future<Either<ErrorModel, CartResponse>> deleteCart(int cartItemId);
   Future<Either<ErrorModel, CartResponse>> updateCart(
       int cartItemId, int quantity, int isFree);
+  Future<Either<ErrorModel, PayResponse>> checkOut(int addressId, int payType);
 
 }
 
@@ -37,5 +39,10 @@ class CartRepositoryImpl implements CartRepository {
   @override
   Future<Either<ErrorModel, CartResponse>> updateCart(int cartItemId, int quantity, int isFree) async {
     return remote.updateCart(cartItemId, quantity, isFree);
+  }
+  
+  @override
+  Future<Either<ErrorModel, PayResponse>> checkOut(int addressId, int payType)async {
+    return remote.checkOut(addressId ,payType);
   }
 }

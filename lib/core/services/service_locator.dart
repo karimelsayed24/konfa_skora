@@ -16,6 +16,8 @@ import '../../src/features/cart/data/remote/cart_api_services.dart';
 import '../../src/features/cart/data/remote/cart_remote_ds.dart';
 import '../../src/features/cart/domain/repo/cart_repository.dart';
 import '../../src/features/cart/domain/usecase/cart_use_case.dart';
+import '../../src/features/cart/domain/usecase/check_out_use_case.dart';
+import '../../src/features/cart/presentation/logic/checkout_cubit.dart';
 import '../../src/features/home/data/remote/home_api_services.dart';
 import '../../src/features/home/data/remote/home_remote_ds.dart';
 import '../../src/features/home/domain/repo/home_repo.dart';
@@ -23,6 +25,11 @@ import '../../src/features/home/domain/usecase/get_banner_uc.dart';
 import '../../src/features/home/domain/usecase/get_best_seller_uc.dart';
 import '../../src/features/home/domain/usecase/get_daily_order_uc.dart';
 import '../../src/features/home/presentation/logic/home_cubit.dart';
+import '../../src/features/location/data/remote/address_api_services.dart';
+import '../../src/features/location/data/remote/address_remote_ds.dart';
+import '../../src/features/location/domain/repo/address_repo.dart';
+import '../../src/features/location/domain/usecase/address_use_case.dart';
+import '../../src/features/location/presentation/logic/address_cubit.dart';
 import '../../src/features/my_orders/data/remote/my_order_api_services.dart';
 import '../../src/features/my_orders/domain/repo/my_order_repository.dart';
 import '../../src/features/my_orders/domain/usecase/get_my_orders_usecase.dart';
@@ -85,6 +92,9 @@ void setupLocator() {
   getIt.registerLazySingleton<PrizeProductsApiServices>(
       () => PrizeProductsApiServicesImpl(getIt()));
 
+    getIt.registerLazySingleton<AddressApiServices>(
+      () => AddressApiServicesImpl(getIt()));
+
   ///! --DataSources-- ///
   getIt.registerLazySingleton<AuthRemoteDs>(() => AuthRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<HomeRemoteDs>(() => HomeRemoteDsImpl(getIt()));
@@ -99,6 +109,8 @@ void setupLocator() {
 
   getIt.registerLazySingleton<PrizeProductsRemoteDs>(
       () => PrizeProductsRemoteDsImpl(getIt()));
+  getIt.registerLazySingleton<AddressRemoteDs>(
+      () => AddressRemoteDsImpl(getIt()));
 
   /// !-- Repositories -- ///
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -114,6 +126,7 @@ void setupLocator() {
       () => QuestionsRepositoryImpl(getIt()));
   getIt.registerLazySingleton<PrizeProductsRepository>(
       () => PrizeProductsRepositoryImpl(getIt()));
+  getIt.registerLazySingleton<AddressRepo>(() => AddressRepoImpl(getIt()));
 
   /// !-- UseCases -- ///
   getIt.registerLazySingleton<LoginUseCase>(() => LoginUseCase(getIt()));
@@ -138,6 +151,10 @@ void setupLocator() {
   getIt.registerLazySingleton(() => GetExtraPointsOptionsUseCase(getIt()));
   getIt.registerLazySingleton(() => GetUserPointsUseCase(getIt()));
   getIt.registerLazySingleton(() => RateAppUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetAllAddressUseCase(getIt()));
+  getIt.registerLazySingleton(() => StoreAddressUseCase(getIt()));
+  getIt.registerLazySingleton(() => DeleteAddressUseCase(getIt()));
+  getIt.registerLazySingleton(() => CheckOutUseCase(getIt()));
 
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
@@ -161,6 +178,11 @@ void setupLocator() {
       ));
 
   getIt.registerFactory(() => RateAppCubit(getIt()));
+  getIt.registerFactory(() => AddressCubit(
+      getAllAddressUseCase: getIt(),
+      storeAddressUseCase: getIt(),
+      deleteAddressUseCase: getIt()));
+  getIt.registerFactory(() => CheckOutCubit(getIt()));
 
       
 }

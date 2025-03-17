@@ -6,6 +6,10 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Konaf Skora</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>هذا التطبيق يحتاج إلى الوصول إلى موقعك لعرض العناوين القريبة</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>هذا التطبيق يحتاج إلى الوصول إلى موقعك لعرض العناوين القريبة</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

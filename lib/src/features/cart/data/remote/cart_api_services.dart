@@ -5,6 +5,7 @@ import '../../../../../core/data/api/api_consumer.dart';
 import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/errors/exceptions.dart';
 import '../model/cart_response_model.dart';
+import '../model/pay_response.dart';
 
 abstract class CartApiServices {
   Future<Either<ErrorModel, CartResponse>> getCartItems();
@@ -13,6 +14,9 @@ abstract class CartApiServices {
   Future<Either<ErrorModel, CartResponse>> deleteCart(int cartItemId);
   Future<Either<ErrorModel, CartResponse>> updateCart(
       int cartItemId, int quantity, int isFree);
+
+      //checkOut 
+  Future<Either<ErrorModel, PayResponse>> checkOut(int addressId, int payType);
 }
 
 class CartApiServicesImpl implements CartApiServices {
@@ -73,6 +77,20 @@ class CartApiServicesImpl implements CartApiServices {
       final cartResponse = CartResponse.fromJson(response);
       return Right(cartResponse);
     } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+  }
+  
+  @override
+  Future<Either<ErrorModel, PayResponse>> checkOut(int addressId, int payType) async{
+    try{
+      final response = await api.post(EndpointsStrings.checkOut, data: {
+        'address_id': addressId,
+        'pay_type': payType
+      });
+      final payResponse = PayResponse.fromJson(response);
+      return Right(payResponse);
+    } on ServerException catch(e){
       return Left(e.errorModel);
     }
   }

@@ -6,6 +6,7 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../data/model/cart_response_model.dart';
+import 'price_row.dart';
 
 class BuildOrderSummary extends StatelessWidget {
   const BuildOrderSummary(
@@ -33,15 +34,15 @@ class BuildOrderSummary extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          _buildPriceRow(
+          buildPriceRow(
               AppStrings.productsPrice, '${prices.price} $currency'),
-          _buildPriceRow(
+          buildPriceRow(
               AppStrings.deliveryCost, '${prices.deliveryPrice} $currency'),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
             child: Divider(height: 1, color: Colors.grey),
           ),
-          _buildPriceRow(
+          buildPriceRow(
             AppStrings.totalPrice,
             '${prices.totalPrice} $currency',
             isTotal: true,
@@ -51,30 +52,6 @@ class BuildOrderSummary extends StatelessWidget {
     );
   }
 
-  Widget _buildPriceRow(String label, String value, {bool isTotal = false}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: isTotal ? 20 : 14,
-              color: isTotal ? AppColors.primaryColor : Colors.black,
-            ),
-          ),
-          Text(
-            value,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: isTotal ? 18 : 14,
-              color: isTotal ? AppColors.primaryColor : Colors.grey[600],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+ 
+  
 }

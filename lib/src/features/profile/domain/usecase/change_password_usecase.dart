@@ -8,7 +8,7 @@ class ChangePasswordUseCase {
   final ProfileRepository _repository;
 
   ChangePasswordUseCase(this._repository);
- Future<Either<ErrorModel, ChangePasswordResponse>> execute(
+ Future<Either<ErrorModel, PublicResponse>> execute(
       String oldPassword, String password, String passwordConfirmation)async {
     return _repository.changePassword(oldPassword, password, passwordConfirmation);
 }
