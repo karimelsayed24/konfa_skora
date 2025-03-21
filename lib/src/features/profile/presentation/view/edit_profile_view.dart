@@ -24,9 +24,7 @@ class EditProfileView extends StatefulWidget {
 
 class _EditProfileViewState extends State<EditProfileView> {
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _locationController = TextEditingController();
   final TextEditingController _birthDateController = TextEditingController();
 
   @override
@@ -38,9 +36,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   @override
   void dispose() {
     _nameController.dispose();
-    _emailController.dispose();
     _phoneController.dispose();
-    _locationController.dispose();
     _birthDateController.dispose();
     super.dispose();
   }
@@ -68,10 +64,8 @@ class _EditProfileViewState extends State<EditProfileView> {
               loaded: (profile) {
                 _nameController.text =
                     '${profile.firstName} ${profile.lastName}';
-                _emailController.text = profile.email;
                 _phoneController.text = profile.phone;
-                _locationController.text =
-                    profile.mapDesc ?? 'التجمع الخامس - القاهرة';
+              
                 _birthDateController.text = _formatDate(profile.birthDate);
               },
               orElse: () {},
@@ -183,14 +177,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                           hintText: 'روحي محمد',
                           prefixIcon: Icons.person_outline,
                         ),
-                        const SizedBox(height: 15),
-                        Text('البريد الالكتروني', style: AppStyles.s16),
-                        const SizedBox(height: 5),
-                        _buildTextField(
-                          controller: _emailController,
-                          hintText: 'mogamal2234889@gmail.com',
-                          prefixIcon: Icons.email_outlined,
-                        ),
+                       
                         const SizedBox(height: 15),
                         Text('الهاتف', style: AppStyles.s16),
                         const SizedBox(height: 5),
@@ -200,14 +187,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                           prefixIcon: Icons.phone_outlined,
                         ),
                         const SizedBox(height: 15),
-                        Text('الموقع', style: AppStyles.s16),
-                        const SizedBox(height: 5),
-                        _buildTextField(
-                          controller: _locationController,
-                          hintText: 'التجمع الخامس - القاهرة',
-                          prefixIcon: Icons.location_on_outlined,
-                        ),
-                        const SizedBox(height: 15),
+                      
                         Text('تاريخ الميلاد', style: AppStyles.s16),
                         const SizedBox(height: 5),
                         _buildTextField(
@@ -296,7 +276,7 @@ class _EditProfileViewState extends State<EditProfileView> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(1950),
+      firstDate: DateTime(1970),
       lastDate: DateTime.now(),
       builder: (context, child) {
         return Theme(
@@ -330,10 +310,8 @@ class _EditProfileViewState extends State<EditProfileView> {
     context.read<ProfileCubit>().updateProfile(
           firstName: firstName,
           lastName: lastName,
-          email: _emailController.text,
           phone: _phoneController.text,
           birthDate: _convertDateFormat(_birthDateController.text),
-          location: _locationController.text,
         );
   }
 

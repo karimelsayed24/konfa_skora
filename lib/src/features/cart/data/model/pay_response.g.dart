@@ -20,7 +20,7 @@ Map<String, dynamic> _$PayResponseToJson(PayResponse instance) =>
     };
 
 PayData _$PayDataFromJson(Map<String, dynamic> json) => PayData(
-      redirectUrl: json['redirect_url'] as String,
+      redirectUrl: json['redirect_url'] as String?,
     );
 
 Map<String, dynamic> _$PayDataToJson(PayData instance) => <String, dynamic>{

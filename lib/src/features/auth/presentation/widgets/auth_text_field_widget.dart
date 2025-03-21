@@ -25,7 +25,6 @@ class AuthTextFieldWidget extends StatefulWidget {
   final void Function()? onPressedSuffix;
   final int? maxLines;
   final FormFieldValidator<String>? validator;
-
   @override
   State<AuthTextFieldWidget> createState() => _AuthTextFieldWidgetState();
 }

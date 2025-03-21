@@ -41,20 +41,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> updateProfile({
     required String firstName,
     required String lastName,
-    required String email,
     required String phone,
     required String birthDate,
-    required String location,
   }) async {
     emit(const ProfileState.updateLoading());
 
     final params = UpdateProfileParams(
       firstName: firstName,
       lastName: lastName,
-      email: email,
       phone: phone,
       birthDate: birthDate,
-      //  location: location,
       image: selectedImagePath,
     );
 

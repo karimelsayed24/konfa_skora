@@ -18,6 +18,8 @@ abstract class AppAssets {
   static const String sevenLines = "assets/svg/sevenLines.svg";
   static const String giftIcon = "assets/svg/giftIcon.svg";
   static const String iconForRate = "assets/svg/iconForRate.svg";
+  static const String successIcon = "assets/svg/successIcon.svg";
+
 
   
 }

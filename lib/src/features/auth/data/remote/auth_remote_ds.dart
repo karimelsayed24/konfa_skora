@@ -9,14 +9,14 @@ abstract class AuthRemoteDs {
     Future<Either<ErrorModel, LoginResponse>> login(
       String phone, String password);
   Future<Either<ErrorModel, LoginResponse>> register(UserRequest userRequest);
-  // Future<Either<ErrorModel, String>> verifyEmail(String userType, String otp);
-  // Future<Either<ErrorModel, String>> forgetPassword(
-  //     String userType, String identifier);
-
-  // Future<Either<ErrorModel, String>> verifyResetCode(
-  //     String userType, String otp, String identifier);
-  // Future<Either<ErrorModel, String>> resetPassword(
-  //     String userType, String otp, String password, String identifier);
+  
+   Future<Either<ErrorModel, LoginResponse>> verifyEmail(String phone, String otp);
+  Future<Either<ErrorModel, String>> resendCode(String phone,);
+ Future<Either<ErrorModel, LoginResponse>> setLocation(
+       String mapDesc, double lat, double lng);
+ Future<Either<ErrorModel, String>> forgetPassword(String email,);
+   Future<Either<ErrorModel, String>> verifyForgetPassword(String email, String otp);
+  Future<Either<ErrorModel, String>> resetPassword(String email, String otp, String password , String confirmPassword);
 }
 
 class AuthRemoteDsImpl extends AuthRemoteDs {
@@ -32,29 +32,36 @@ class AuthRemoteDsImpl extends AuthRemoteDs {
   Future<Either<ErrorModel, LoginResponse>> register(userRequest) async{
     return apiServices.register(userRequest);
   }
-
-
-
-  // @override
-  // Future<Either<ErrorModel, String>> verifyEmail(
-  //     String userType, String otp) async {
-  //   return await apiServices.verifyEmail(userType, otp);
-  // }
-
- 
   
-  // @override
-  // Future<Either<ErrorModel, String>> forgetPassword(String userType, String identifier) async {
-  //   return await apiServices.forgetPassword(userType, identifier);
-  // }
+  @override
+  Future<Either<ErrorModel, String>> resendCode(String phone)async {
+    return await apiServices.resendCode(phone);
+  }
   
-  // @override
-  // Future<Either<ErrorModel, String>> resetPassword(String userType, String otp, String password, String identifier) async {
-  //   return await apiServices.resetPassword(userType, otp, password, identifier);
-  // }
+  @override
+  Future<Either<ErrorModel, LoginResponse>> verifyEmail(String phone, String otp) async{
+    return await apiServices.verifyEmail(phone, otp);
+  }
   
-  // @override
-  // Future<Either<ErrorModel, String>> verifyResetCode(String userType, String otp, String identifier) async {
-  //   return await apiServices.verifyResetCode(userType, otp, identifier);
-  // }
+  @override
+  Future<Either<ErrorModel, LoginResponse>> setLocation(String mapDesc, double lat, double lng) async{
+    return await apiServices.setLocation(mapDesc, lat, lng);
+  }
+  
+  @override
+  Future<Either<ErrorModel, String>> forgetPassword(String email) async{
+    return await apiServices.forgetPassword(email);
+  }
+  
+  @override
+  Future<Either<ErrorModel, String>> resetPassword(String email, String otp, String password, String confirmPassword)async {
+    return await apiServices.resetPassword(email, otp, password, confirmPassword);
+  }
+  
+  @override
+  Future<Either<ErrorModel, String>> verifyForgetPassword(String email, String otp) async{
+    return await apiServices.verifyForgetPassword(email, otp);
+  }
+
+
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:konaf_skora/core/utils/app_assets.dart';
 
 import '../../../../../core/common/widgets/custom_btn.dart';
+import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_styles.dart';
@@ -23,26 +26,27 @@ class _WayToPaymentState extends State<WayToPayment> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CheckOutCubit , CheckOutState>(
+    return BlocListener<CheckOutCubit, CheckOutState>(
       listener: (context, state) {
-       state.maybeWhen(
-         orElse: (){},
-         loading: (){
-           ScaffoldMessenger.of(context).showSnackBar(
-             const SnackBar(
-               content: Text('جاري تنفيذ الطلب'),
-               backgroundColor: Colors.green,
-             ),
-           );
-         },
-         success: (response){
-          UrlLauncherMethods.launchInApp(response.data.redirectUrl);
-          
-         },
-         error: (message){
-         
-         }
-       );
+        state.maybeWhen(
+            orElse: () {},
+            loading: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('جاري تنفيذ الطلب'),
+                  backgroundColor: Colors.blueAccent,
+                ),
+              );
+            },
+            success: (response) {
+              if(response.data.redirectUrl!=null){
+                UrlLauncherMethods.launchInApp(response.data.redirectUrl!);
+              
+              }else{
+                    context.push(RouterNames.successPage,);
+              }
+            },
+            error: (message) {});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,26 +61,28 @@ class _WayToPaymentState extends State<WayToPayment> {
           const SizedBox(height: 12),
           Container(
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
-                  blurRadius: 5,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+              borderRadius: BorderRadius.circular(6.r),
+              border: Border.all(color: AppColors.borderGrey),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 4),
+            padding: EdgeInsets.all(16.r),
             child: Column(
               children: [
-                // Cash on delivery option
                 ListTile(
-                  trailing: const Text(
-                    AppStrings.cashOnDelivery,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
+                  trailing: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Image.asset(
+                      AppAssets.cash,
+                      width: 24,
+                      height: 24,
+                      errorBuilder: (context, error, stackTrace) => Icon(
+                        Icons.money,
+                        size: 24,
+                        color: Colors.green[700],
+                      ),
                     ),
                   ),
                   leading: Row(
@@ -92,34 +98,36 @@ class _WayToPaymentState extends State<WayToPayment> {
                         },
                         activeColor: const Color(0xFFEF8A8A),
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(4),
+                      const Text(
+                        AppStrings.cashOnDelivery,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
                         ),
-                        child: Image.asset(
-                          AppAssets.cash,
-                          width: 24,
-                          height: 24,
-                          errorBuilder: (context, error, stackTrace) => Icon(
-                            Icons.money,
-                            size: 24,
-                            color: Colors.green[700],
-                          ),
-                        ),
-                      ),
+                      )
                     ],
                   ),
                 ),
                 const Divider(height: 1, indent: 16, endIndent: 16),
-                // VISA option
                 ListTile(
-                  trailing: const Text(
-                    AppStrings.visa,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
+                  trailing: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Image.asset(
+                      AppAssets.visa,
+                      width: 40,
+                      height: 24,
+                      errorBuilder: (context, error, stackTrace) => Text(
+                        'VISA',
+                        style: TextStyle(
+                          color: Colors.blue[800],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
                     ),
                   ),
                   leading: Row(
@@ -135,55 +143,50 @@ class _WayToPaymentState extends State<WayToPayment> {
                         },
                         activeColor: const Color(0xFFEF8A8A),
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Image.asset(
-                          AppAssets.visa,
-                          width: 40,
-                          height: 24,
-                          errorBuilder: (context, error, stackTrace) => Text(
-                            'VISA',
-                            style: TextStyle(
-                              color: Colors.blue[800],
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                            ),
-                          ),
+                      const Text(
+                        AppStrings.visa,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
                         ),
                       ),
                     ],
                   ),
                 ),
-                CustomButton(
-                  onPressed: () {
-                    if (widget.selectedAddress == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('الرجاء اختيار عنوان للتوصيل'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                      return;
-                    }
-                    context.read<CheckOutCubit>().checkOut(
-                          addressId: widget.selectedAddress!.id,
-                          payType:
-                              _paymentMethod == PaymentMethod.cash.toString()
-                                  ? 0
-                                  : 1,
-                        );
-                    print(
-                        'تم الطلب: ${widget.selectedAddress!.id} العنوان: ${widget.selectedAddress?.title}, طريقة الدفع: $_paymentMethod');
-                  },
-                  text: AppStrings.goToPay,
-                ),
+              
               ],
             ),
           ),
+                    const SizedBox(height: 12),
+
+            Align(
+              alignment: Alignment.center,
+              child: CustomButton(
+                    onPressed: () {
+                      if (widget.selectedAddress == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('الرجاء اختيار عنوان للتوصيل'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                        return;
+                      }
+                      context.read<CheckOutCubit>().checkOut(
+                            addressId: widget.selectedAddress!.id,
+                            payType:
+                                _paymentMethod == PaymentMethod.cash.toString()
+                                    ? 0
+                                    : 1,
+                          );
+                      print(
+                          'تم الطلب: ${widget.selectedAddress!.id} العنوان: ${widget.selectedAddress?.title}, طريقة الدفع: $_paymentMethod');
+                    },
+                    text: AppStrings.goToPay,
+                  ),
+            ),
+                                 SizedBox(height: 16.h),
+
         ],
       ),
     );

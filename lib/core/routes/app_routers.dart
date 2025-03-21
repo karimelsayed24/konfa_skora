@@ -5,10 +5,16 @@ import 'package:konaf_skora/src/features/auth/presentation/view/register_view.da
 import 'package:konaf_skora/src/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:konaf_skora/src/features/support_policy/presentation/logic/questions_cubit.dart';
 
+import '../../src/features/auth/presentation/logic/password_reset_cubit.dart';
 import '../../src/features/auth/presentation/logic/register/register_cubit.dart';
+import '../../src/features/auth/presentation/logic/set_location/set_location_cubit.dart';
+import '../../src/features/auth/presentation/view/forget_password_view.dart';
+import '../../src/features/auth/presentation/view/reset_password_view.dart';
+import '../../src/features/auth/presentation/view/verify_otp_view.dart';
 import '../../src/features/bottom_navigation/bottom_navigation_bar.dart';
 import '../../src/features/cart/data/model/cart_response_model.dart';
 import '../../src/features/cart/presentation/view/check_out_view.dart';
+import '../../src/features/cart/presentation/view/success_page.dart';
 import '../../src/features/intro/presentation/view/landing_page.dart';
 import '../../src/features/location/presentation/logic/address_cubit.dart';
 import '../../src/features/location/presentation/view/location_selector_view.dart';
@@ -36,6 +42,35 @@ final GoRouter router = GoRouter(
               create: (context) => getIt<RegisterCubit>(),
               child: const RegisterView(),
             )),
+
+
+    GoRoute(
+      path: RouterNames.resetPasswordView,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<PasswordResetCubit>(),
+        child: const ResetPasswordView(),
+      ),
+    ),
+
+
+ GoRoute(
+      path: RouterNames.verifyOtpView,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<PasswordResetCubit>(),
+        child: const VerifyOtpView(),
+      ),
+    ),
+
+
+
+GoRoute(
+      path: RouterNames.forgetPasswordView,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<PasswordResetCubit>(),
+        child: const ForgetPasswordView(),
+      ),
+    ),
+
     GoRoute(
       path: RouterNames.bottomNavigationBarRoot,
       builder: (context, state) => const BottomNavigationBarRoot(),
@@ -74,6 +109,13 @@ final GoRouter router = GoRouter(
       path: RouterNames.settingsView,
       builder: (context, state) => const SettingsView(),
     ),
+    
+     GoRoute(
+      path: RouterNames.successPage,
+      builder: (context, state) => const SuccessPage(),
+    ),
+
+
     GoRoute(
       path: RouterNames.checkoutView,
       builder: (context, state) {
@@ -89,7 +131,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.locationSelectorView,
       builder: (context, state) => BlocProvider(
-        create: (context) => getIt<AddressCubit>(),
+        create: (context) => getIt<SetLocationCubit>(),
         child: const LocationSelectorView(),
       ),
     ),

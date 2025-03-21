@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:konaf_skora/core/utils/app_styles.dart';
 
+import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 
 class AddressSection extends StatelessWidget {
@@ -20,18 +22,21 @@ class AddressSection extends StatelessWidget {
           ],
         ),
         subtitle: Text(subAddress, style: AppStyles.s12),
-        trailing: Stack(
-          children: [
-            Icon(Icons.notifications, size: 24.r, color: AppColors.fillGrey),
-            Positioned(
-              right: 0,
-              top: 0,
-              child: CircleAvatar(
-                radius: 5.r,
-                backgroundColor: AppColors.primaryColor,
+        trailing: InkWell(
+        onTap: () =>   context.push(RouterNames.notificationPermissionScreen),
+          child: Stack(
+            children: [
+              Icon(Icons.notifications, size: 24.r, color: AppColors.fillGrey),
+              Positioned(
+                right: 0,
+                top: 0,
+                child: CircleAvatar(
+                  radius: 5.r,
+                  backgroundColor: AppColors.primaryColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 }

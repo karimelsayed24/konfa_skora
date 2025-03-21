@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:konaf_skora/core/services/service_locator.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '../components/best_seller_list_view.dart';
 import '../components/category_grid_view.dart';
 import '../components/daily_offer_list_view.dart';
@@ -34,8 +35,8 @@ class _HomeComponentsState extends State<HomeComponents> {
       slivers: [
         const SliverToBoxAdapter(
           child: AddressSection(
-            address: 'القاهره',
-            subAddress: 'التجمع الخامس , القاهرة ',
+            address: AppStrings.welcome,
+            subAddress: AppStrings.welcomeToKonafaSokar,
           ),
         ),
 

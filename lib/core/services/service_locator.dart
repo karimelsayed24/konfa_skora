@@ -9,9 +9,16 @@ import 'package:konaf_skora/src/features/profile/data/remote/profile_remote_ds.d
 import '../../src/features/auth/data/remote/auth_api_services.dart';
 import '../../src/features/auth/data/remote/auth_remote_ds.dart';
 import '../../src/features/auth/domain/repository/auth_repo.dart';
+import '../../src/features/auth/domain/usecase/forget_password_use_case.dart';
 import '../../src/features/auth/domain/usecase/login_use_case.dart';
 import '../../src/features/auth/domain/usecase/register_use_case.dart';
+import '../../src/features/auth/domain/usecase/resend_code_use_case.dart';
+import '../../src/features/auth/domain/usecase/set_location_use_case.dart';
+import '../../src/features/auth/domain/usecase/verify_email_use_case.dart';
+import '../../src/features/auth/presentation/logic/password_reset_cubit.dart';
 import '../../src/features/auth/presentation/logic/register/register_cubit.dart';
+import '../../src/features/auth/presentation/logic/set_location/set_location_cubit.dart';
+import '../../src/features/auth/presentation/logic/verification/verification_cubit.dart';
 import '../../src/features/cart/data/remote/cart_api_services.dart';
 import '../../src/features/cart/data/remote/cart_remote_ds.dart';
 import '../../src/features/cart/domain/repo/cart_repository.dart';
@@ -92,7 +99,7 @@ void setupLocator() {
   getIt.registerLazySingleton<PrizeProductsApiServices>(
       () => PrizeProductsApiServicesImpl(getIt()));
 
-    getIt.registerLazySingleton<AddressApiServices>(
+  getIt.registerLazySingleton<AddressApiServices>(
       () => AddressApiServicesImpl(getIt()));
 
   ///! --DataSources-- ///
@@ -155,6 +162,13 @@ void setupLocator() {
   getIt.registerLazySingleton(() => StoreAddressUseCase(getIt()));
   getIt.registerLazySingleton(() => DeleteAddressUseCase(getIt()));
   getIt.registerLazySingleton(() => CheckOutUseCase(getIt()));
+  getIt.registerLazySingleton(() => SetLocationUseCase(getIt()));
+  getIt.registerLazySingleton(() => VerifyEmailUseCase(getIt()));
+  getIt.registerLazySingleton(() => ResendCodeUseCase(getIt()));
+
+ getIt.registerLazySingleton(() => ForgetPasswordUseCase(getIt()));
+  getIt.registerLazySingleton(() => VerifyForgetPasswordUseCase(getIt()));
+  getIt.registerLazySingleton(() => ResetPasswordUseCase(getIt()));
 
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
@@ -184,5 +198,12 @@ void setupLocator() {
       deleteAddressUseCase: getIt()));
   getIt.registerFactory(() => CheckOutCubit(getIt()));
 
-      
+  getIt
+      .registerLazySingleton<SetLocationCubit>(() => SetLocationCubit(getIt()));
+  getIt.registerLazySingleton<VerificationCubit>(() => VerificationCubit(getIt(), getIt()));
+  getIt.registerFactory(() => PasswordResetCubit(
+    getIt<ForgetPasswordUseCase>(),
+    getIt<VerifyForgetPasswordUseCase>(),
+    getIt<ResetPasswordUseCase>(),
+  ));
 }

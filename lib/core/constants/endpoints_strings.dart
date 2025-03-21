@@ -5,6 +5,15 @@ abstract class EndpointsStrings {
   static const String logout = 'api/logout';
   static const String deleteAccount = 'api/delete-account';
   static const String register = 'api/register';
+  static const String verifyEmail = 'api/verify-email';
+  static const String forgetPassword = 'api/reset-password-send-code';
+   static const String checkCode = 'api/reset-password-check-code';
+  static const String resetPassword = 'api/reset-password';
+
+
+
+  static const String resendCode = 'api/resend-code';
+  static const String setLocation = 'api/set-location';
   static const String banners = 'api/banners';
   static const String bestSeller = 'api/most-sold-products';
   static const String dailyOrder = 'api/offers';

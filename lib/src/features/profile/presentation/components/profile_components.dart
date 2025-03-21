@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,41 +32,44 @@ class ProfileComponents extends StatelessWidget {
                   Stack(
                     alignment: Alignment.bottomRight,
                     children: [
-                      state.whenOrNull(
-                            loaded: (data) => Container(
-                              width: 128.r,
-                              height: 128.r,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    data.image??'',
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ) ??
-                          Container(
-                            width: 128.r,
-                            height: 128.r,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey,
-                              image: DecorationImage(
-                                image: AssetImage(AppAssets.profileImage),
-                              ),
-                            ),
-                          ),
-                      Container(
-                        padding: EdgeInsets.all(4.r),
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(Icons.camera_alt,
-                            color: Colors.grey, size: 18.r),
+            state.whenOrNull(
+              loaded: (data) => Container(
+                width: 128.r,
+                height: 128.r,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: data.image ?? '',
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
                       ),
+                    ),
+                  ),
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              ),
+            ) ?? 
+            SizedBox(height: 10.r),
+                          
+           
+             
+                      // Container(
+                      //   padding: EdgeInsets.all(4.r),
+                      //   decoration: const BoxDecoration(
+                      //     color: Colors.white,
+                      //     shape: BoxShape.circle,
+                      //   ),
+                      //   child: Icon(Icons.camera_alt,
+                      //       color: Colors.grey, size: 18.r),
+                      // ),
                     ],
                   ),
                   SizedBox(height: 10.r),

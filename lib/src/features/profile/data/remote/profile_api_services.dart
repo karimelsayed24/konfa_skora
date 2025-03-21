@@ -13,10 +13,8 @@ abstract class ProfileApiServices {
   Future<Either<ErrorModel, ProfileResponse>> updateProfile({
     required String firstName,
     required String lastName,
-    required String email,
     required String phone,
     required String birthDate,
-    // required String location,
     String? image,
   });
 
@@ -48,20 +46,16 @@ class ProfileApiServicesImpl implements ProfileApiServices {
   Future<Either<ErrorModel, ProfileResponse>> updateProfile({
     required String firstName,
     required String lastName,
-    required String email,
     required String phone,
     required String birthDate,
-    // required String location,
     String? image,
   }) async {
     try {
       Map<String, dynamic> data = {
         'first_name': firstName,
         'last_name': lastName,
-        'email': email,
         'phone': phone,
         'birth_date': birthDate,
-        //'location': location,
       };
 
       if (image != null) {

@@ -80,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {
-                  //  context.push(RouterNames.forgotPassword);
+                   context.push(RouterNames.forgetPasswordView);
                 },
                 child: Text(
                   AppStrings.forgetPassword,

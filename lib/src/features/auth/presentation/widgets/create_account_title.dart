@@ -33,10 +33,14 @@ final String subTitle;
               ),
             ),
             // const SizedBox(height: 10),
-            Text(
-              subTitle,
-              style: AppStyles.s16.copyWith(
-                color: AppColors.grey,
+            FittedBox(
+              child: Text(
+                subTitle,
+                //overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: AppStyles.s14.copyWith(
+                  color: AppColors.grey,
+                ),
               ),
             ),
           ],

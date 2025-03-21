@@ -6,9 +6,6 @@ abstract class RouterNames {
   static const String login = '/gfdfa';
   static const String maps = '/maps';
   static const String register = '/register';
-  static const String forgetPassword = '/forgetPassword';
-  static const String resetPassword = '/resetPassword';
-  static const String otp = '/otp';
   static const String home = '/home';
   static const String bottomNavigationBarRoot = '/bottomNavigationBarRoot';
   static const String placeDetailsView = '/placeDetailsView';
@@ -24,4 +21,10 @@ abstract class RouterNames {
  static const String  changePassword = '/changePassword';
  static const String locationSelectorView = '/locationSelectorView';
   static const String  checkoutView = '/checkoutView';
+
+  static const String  successPage = '/successPage';
+
+  static const String  resetPasswordView = '/resetPasswordView';
+  static const String  verifyOtpView = '/verifyOtpView';
+  static const String  forgetPasswordView = '/forgetPasswordView';
 }

@@ -7,19 +7,15 @@ import '../repo/profile_repository.dart';
 class UpdateProfileParams {
   final String firstName;
   final String lastName;
-  final String email;
   final String phone;
   final String birthDate;
-  // final String location;
   final String? image;
 
   UpdateProfileParams({
     required this.firstName,
     required this.lastName,
-    required this.email,
     required this.phone,
     required this.birthDate,
-    // required this.location,
     this.image,
   });
 }
@@ -33,7 +29,6 @@ class UpdateProfileUseCase {
     return await repository.updateProfile(
       firstName: params.firstName,
       lastName: params.lastName,
-      email: params.email,
       phone: params.phone,
       birthDate: params.birthDate,
       image: params.image,

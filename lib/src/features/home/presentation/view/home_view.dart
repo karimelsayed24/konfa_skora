@@ -11,13 +11,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Directionality(
-        textDirection: TextDirection.rtl,
-        child: SafeArea(
-          child: BlocProvider(
-            create: (context) => getIt<HomeCubit>(),
-            child: const HomeComponents(),
-          ),
+      body: SafeArea(
+        child: BlocProvider(
+          create: (context) => getIt<HomeCubit>(),
+          child: const HomeComponents(),
         ),
       ),
     );

@@ -10,10 +10,8 @@ abstract class ProfileRepository {
   Future<Either<ErrorModel, ProfileResponse>> updateProfile({
     required String firstName,
     required String lastName,
-    required String email,
     required String phone,
     required String birthDate,
-    //required String location,
     String? image,
   });
    Future<Either<ErrorModel, PublicResponse>> changePassword(
@@ -38,7 +36,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<Either<ErrorModel, ProfileResponse>> updateProfile({
     required String firstName,
     required String lastName,
-    required String email,
     required String phone,
     required String birthDate,
     // required String location,
@@ -47,7 +44,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return await remoteDS.updateProfile(
       firstName: firstName,
       lastName: lastName,
-      email: email,
       phone: phone,
       birthDate: birthDate,
       //location: location,

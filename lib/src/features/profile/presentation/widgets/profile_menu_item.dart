@@ -32,7 +32,6 @@ class ProfileMenuItems extends StatelessWidget {
         _buildMenuItem(Icons.settings_outlined, AppStrings.settings, () {
           context.push(RouterNames.settingsView);
         }),
-        _buildMenuItem(Icons.language_outlined, AppStrings.language, () {}),
         _buildMenuItem(Icons.dark_mode_outlined, AppStrings.darkMode, () {}),
         _buildMenuItem(Icons.logout_outlined, AppStrings.logout, () {
           showLogOut(context);

@@ -18,7 +18,6 @@ import '../widgets/create_account_title.dart';
 import '../widgets/first_and_last_name_row.dart';
 import '../widgets/phone_and_date_row.dart';
 
-
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
 
@@ -69,16 +68,27 @@ class _RegisterFormState extends State<RegisterForm> {
             showToast(message: error.message, state: ToastStates.ERROR);
           },
           success: (response) {
-            showToast(message: response.msg, state:ToastStates.SUCCESS ,);
-            context.pop(context); 
+            showToast(
+              message: response.msg,
+              state: ToastStates.SUCCESS,
+            );
+            context.pop(context);
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,
               backgroundColor: Colors.transparent,
-              builder: (context) => OtpVerificationSheet(
-                onSubmit: (otp) {
-                  print('Submitted OTP: $otp');
-                },
+              builder: (context) => ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.8,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                  ),
+                  child: OtpVerificationSheet(
+                    phone: response.data.phone,
+                  ),
+                ),
               ),
             );
           },
@@ -117,14 +127,13 @@ class _RegisterFormState extends State<RegisterForm> {
                   hintText: AppStrings.enterPasswordHint,
                   controller: passwordController,
                   isPassword: true,
-                  
                   validator: Validator.validatePassword,
                 ),
                 SizedBox(height: 20.h),
                 AuthTextFieldWidget(
                   hintText: AppStrings.hintConfirmPassword,
                   controller: confirmPasswordController,
-                    isPassword: true,
+                  isPassword: true,
                   validator: Validator.validatePassword,
                 ),
                 SizedBox(height: 20.h),

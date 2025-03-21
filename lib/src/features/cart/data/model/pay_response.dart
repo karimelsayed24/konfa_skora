@@ -17,9 +17,9 @@ class PayResponse {
 @JsonSerializable()
 class PayData {
   @JsonKey(name: 'redirect_url')
-  final String redirectUrl;
+  final String? redirectUrl;
 
-  PayData({required this.redirectUrl});
+  PayData({ this.redirectUrl});
 
   factory PayData.fromJson(Map<String, dynamic> json) => _$PayDataFromJson(json);
   Map<String, dynamic> toJson() => _$PayDataToJson(this);

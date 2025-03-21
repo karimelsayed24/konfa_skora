@@ -10,10 +10,8 @@ abstract class ProfileRemoteDs {
   Future<Either<ErrorModel, ProfileResponse>> updateProfile({
     required String firstName,
     required String lastName,
-    required String email,
     required String phone,
     required String birthDate,
-   // required String location,
     String? image,
   });
    Future<Either<ErrorModel, PublicResponse>> changePassword(
@@ -35,16 +33,13 @@ class ProfileRemoteDsImpl implements ProfileRemoteDs {
   Future<Either<ErrorModel, ProfileResponse>> updateProfile({
     required String firstName,
     required String lastName,
-    required String email,
     required String phone,
     required String birthDate,
-    // required String location,
     String? image,
   }) async {
     return api.updateProfile(
       firstName: firstName,
       lastName: lastName,
-      email: email,
       phone: phone,
       birthDate: birthDate,
       image: image,

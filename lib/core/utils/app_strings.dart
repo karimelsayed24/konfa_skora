@@ -1,8 +1,12 @@
 abstract class AppStrings {
   static const appName = "كنافة سكرة",
       rateApp =  'قيم تطبيق ',
+      welcomeToKonafaSokar = "مرحبا بك في كنافة سكرة",
+      thanks = 'شكرا لك',
       clickStarToRate = 'اضغط علي النجوم لاعطاء التقييم',
       skip = "تخطي",
+      otpCode = "رمز OTP ",
+      otpVerification = 'التحقق من OTP',
       createNewAccount = "انشاء حساب جديد !",
       welcome = "مرحبا بك  ",
       yourLocation = " حدد موقعك"  ,
@@ -17,7 +21,7 @@ abstract class AppStrings {
       paymentMethod = 'طريقة الدفع',
       cashOnDelivery = 'الدفع عند الاستلام',
       visa = 'VISA',
-
+addNewAddress = 'اضف عنوان جديد',
       emailHint = "بريدك الالكتروني",
       birthday = 'تاريخ ميلادك',
       next = 'اكمل',
@@ -26,6 +30,7 @@ abstract class AppStrings {
       productsPrice = 'سعر المنتجات',
       totalPrice = 'المبلغ الاجمالي',
       currentPassword = 'كلمة المرور الحالية',
+      newPasswordShouldHaveKeyAndNumber  = 'يجب ان تحتوي كلمه المرور الجديدة علي حروف و ارقام و رموز ',
       // newPassword = 'كلمة المرور الجديدة',
       // confirmPassword = 'تأكيد كلمة المرور',
       personalData = "البيانات الشخصية",
@@ -39,7 +44,6 @@ abstract class AppStrings {
       logout = 'تسجيل الخروج',
       logoutConfirmation = 'هل انت متأكد من تسجيل الخروج ؟',
       register = " تسجيل جديد",
-      otpVerification = 'التحقق من OTP',
       otpVerificationSubTitle =
           'يرجى التحقق من بريدك الإلكتروني للحصول على رمز التحقق',
       welcomeInLogin = 'مرحبا بك مره اخرى فى تطبيق دليل المدينه',

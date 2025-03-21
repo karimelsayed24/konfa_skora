@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:konaf_skora/core/routes/router_names.dart';
+
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/utils/app_styles.dart';
 
 class AddNewOrder extends StatelessWidget {
   const AddNewOrder({
@@ -7,30 +12,29 @@ class AddNewOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      child: TextButton.icon(
-        onPressed: () {
-          // Handle add new address tap
-        },
-        icon: Container(
-          decoration: BoxDecoration(
+    return TextButton.icon(
+      onPressed: () {
+context.push(RouterNames.locationSelectorView);
+      },
+      icon: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
             color: Colors.green,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          padding: const EdgeInsets.all(2),
-          child: const Icon(
-            Icons.add,
-            size: 12,
-            color: Colors.white,
+            width: 1,
           ),
         ),
-        label: const Text(
-          'اضافة عنوان جديد',
-          style: TextStyle(
-            color: Colors.green,
-            fontSize: 14,
-          ),
+        padding: const EdgeInsets.all(2),
+        child: const Icon(
+          Icons.add,
+          size: 12,
+          color: Colors.green,
+        ),
+      ),
+      label:  Text(
+       AppStrings.addNewAddress,
+        style: AppStyles.s14.copyWith(
+          color: Colors.green,
         ),
       ),
     );
