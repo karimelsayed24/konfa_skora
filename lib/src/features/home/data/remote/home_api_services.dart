@@ -12,6 +12,7 @@ abstract class HomeApiServices {
   Future<Either<ErrorModel, BannerResponse>> getBanner();
   Future<Either<ErrorModel, DailyOrderResponse>> getDailyOrder();
   Future<Either<ErrorModel, BestSellerResponse>> getBestSeller();
+  Future<Either<ErrorModel, bool>> addToFavorite(int productId);
 }
 
 class HomeApiServicesImpl extends HomeApiServices {
@@ -23,34 +24,42 @@ class HomeApiServicesImpl extends HomeApiServices {
       final response = await api.get(EndpointsStrings.banners);
       final bannerResponse = BannerResponse.fromJson(response);
       return Right(bannerResponse);
-    }  on ServerException catch (e) {
+    } on ServerException catch (e) {
       return Left(e.errorModel);
     }
   }
-  
+
   @override
   Future<Either<ErrorModel, BestSellerResponse>> getBestSeller() async {
     try {
       final response = await api.get(EndpointsStrings.bestSeller);
       final bestSellerResponse = BestSellerResponse.fromJson(response);
       return Right(bestSellerResponse);
-    }  on ServerException catch (e) {
+    } on ServerException catch (e) {
       return Left(e.errorModel);
     }
   }
-  
+
   @override
   Future<Either<ErrorModel, DailyOrderResponse>> getDailyOrder() async {
     try {
       final response = await api.get(EndpointsStrings.dailyOrder);
       final dailyOrderResponse = DailyOrderResponse.fromJson(response);
       return Right(dailyOrderResponse);
-    }  on ServerException catch (e) {
+    } on ServerException catch (e) {
       return Left(e.errorModel);
     }
   }
 
-
+  @override
+  Future<Either<ErrorModel, bool>> addToFavorite(int productId) async {
+    try {
+      final response = await api.post(
+        EndpointsStrings.addToFavorite + productId.toString(),
+      );
+      return Right(response['data']['is_favorite']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+  }
 }
-  
-

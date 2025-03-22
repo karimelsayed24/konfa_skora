@@ -65,7 +65,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                           initialAddress: _selectedAddress,
                         ),
                         const SizedBox(height: 6),
-                        const AddNewOrder(),
+                        const AddNewAddress(),
                         const SizedBox(height: 24),
                         WayToPayment(
                           selectedAddress: _selectedAddress,

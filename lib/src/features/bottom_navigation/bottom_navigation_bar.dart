@@ -9,7 +9,7 @@ import '../../../core/utils/app_strings.dart';
 import '../cart/presentation/view/cart_view.dart';
 import '../home/presentation/view/home_view.dart';
 import '../location/presentation/logic/address_cubit.dart';
-import '../location/presentation/view/location_selector_view.dart';
+import '../auth/presentation/view/set_location_selector_view.dart';
 import '../points/presentation/view/points_view.dart';
 import '../profile/presentation/logic/profile_cubit.dart';
 import '../profile/presentation/view/profile_view.dart';
@@ -30,7 +30,7 @@ class BottomNavigationBarRoot extends StatelessWidget {
           const PointsView(),
           BlocProvider(
             create: (context) => getIt<AddressCubit>(),
-            child: const LocationSelectorView(),
+            child: const SetLocationSelectorView(),
           ),
           BlocProvider(
             create: (context) => getIt<ProfileCubit>(),

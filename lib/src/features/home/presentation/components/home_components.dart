@@ -58,8 +58,8 @@ class _HomeComponentsState extends State<HomeComponents> {
           sliver: CategoryGridView(),
         ),
 
-        const SliverToBoxAdapter(
-          child: SectionTitle(title: 'العروض اليومية'),
+       const  SliverToBoxAdapter(
+          child: SectionTitle(title: AppStrings.dailyOffers),
         ),
 
         const SliverToBoxAdapter(
@@ -67,7 +67,7 @@ class _HomeComponentsState extends State<HomeComponents> {
         ),
 
         const SliverToBoxAdapter(
-          child: SectionTitle(title: 'الأكثر طلبا'),
+          child: SectionTitle(title: AppStrings.bestSeller),
         ),
 
         const SliverToBoxAdapter(

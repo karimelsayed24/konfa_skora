@@ -27,4 +27,5 @@ abstract class RouterNames {
   static const String  resetPasswordView = '/resetPasswordView';
   static const String  verifyOtpView = '/verifyOtpView';
   static const String  forgetPasswordView = '/forgetPasswordView';
+  static const String  addNewAddressView = '/addNewAddressView';
 }

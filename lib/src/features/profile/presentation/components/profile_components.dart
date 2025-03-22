@@ -61,15 +61,6 @@ class ProfileComponents extends StatelessWidget {
                           
            
              
-                      // Container(
-                      //   padding: EdgeInsets.all(4.r),
-                      //   decoration: const BoxDecoration(
-                      //     color: Colors.white,
-                      //     shape: BoxShape.circle,
-                      //   ),
-                      //   child: Icon(Icons.camera_alt,
-                      //       color: Colors.grey, size: 18.r),
-                      // ),
                     ],
                   ),
                   SizedBox(height: 10.r),

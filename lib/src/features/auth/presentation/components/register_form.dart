@@ -162,7 +162,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
                 SizedBox(height: 12.h),
                 HaveAnAccountWidget(
-                  onTap: () {},
+                  onTap: () {
+                    context.pop(context);
+                  },
                   title1: AppStrings.haveAnAccount,
                   title2: AppStrings.signIn,
                 )

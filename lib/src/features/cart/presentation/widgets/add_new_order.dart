@@ -5,8 +5,8 @@ import 'package:konaf_skora/core/routes/router_names.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/utils/app_styles.dart';
 
-class AddNewOrder extends StatelessWidget {
-  const AddNewOrder({
+class AddNewAddress extends StatelessWidget {
+  const AddNewAddress({
     super.key,
   });
 
@@ -14,7 +14,7 @@ class AddNewOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
-context.push(RouterNames.locationSelectorView);
+context.push(RouterNames.addNewAddressView,);
       },
       icon: Container(
         decoration: BoxDecoration(

@@ -12,22 +12,24 @@ class SuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset(AppAssets.successIcon),
-        SizedBox(height: 40.h),
-        Text(
-          AppStrings.thanks,
-          style: TextStyle(fontSize: 24.sp),
-        ),
-        SizedBox(height: 40.h),
-        CustomButton(
-          text: 'تتبع طلبك',
-          onPressed: () {},
-        )
-      ],
-    ));
+        body: Center(
+          child: Column(
+           // crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+          SvgPicture.asset(AppAssets.successIcon),
+          SizedBox(height: 40.h),
+          Text(
+            AppStrings.thanks,
+            style: TextStyle(fontSize: 24.sp),
+          ),
+          SizedBox(height: 40.h),
+          CustomButton(
+            text: 'تتبع طلبك',
+            onPressed: () {},
+          )
+                ],
+              ),
+        ));
   }
 }

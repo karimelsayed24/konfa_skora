@@ -10,6 +10,8 @@ abstract class HomeRepo {
   Future<Either<ErrorModel, BannerResponse>> getBanner();
     Future<Either<ErrorModel, DailyOrderResponse>> getDailyOrder();
   Future<Either<ErrorModel, BestSellerResponse>> getBestSeller();
+    Future<Either<ErrorModel, bool>> addToFavorite(int productId);
+
 
 }
 
@@ -30,5 +32,10 @@ class HomeRepoImpl extends HomeRepo {
   @override
   Future<Either<ErrorModel, DailyOrderResponse>> getDailyOrder() async {
     return remoteDs.getDailyOrder();
+  }
+  
+  @override
+  Future<Either<ErrorModel, bool>> addToFavorite(int productId) async {
+    return remoteDs.addToFavorite(productId);
   }
 }

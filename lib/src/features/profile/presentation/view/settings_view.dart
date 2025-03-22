@@ -32,7 +32,7 @@ class SettingsView extends StatelessWidget {
           ),
           BuildSettingItem(
             icon: Icons.share,
-            title: AppStrings.language,
+            title: AppStrings.shareApp,
             onTap: () {},
           ),
           Divider(

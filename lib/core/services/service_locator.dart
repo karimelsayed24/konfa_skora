@@ -28,9 +28,11 @@ import '../../src/features/cart/presentation/logic/checkout_cubit.dart';
 import '../../src/features/home/data/remote/home_api_services.dart';
 import '../../src/features/home/data/remote/home_remote_ds.dart';
 import '../../src/features/home/domain/repo/home_repo.dart';
+import '../../src/features/home/domain/usecase/add_to_favorite_use_case.dart';
 import '../../src/features/home/domain/usecase/get_banner_uc.dart';
 import '../../src/features/home/domain/usecase/get_best_seller_uc.dart';
 import '../../src/features/home/domain/usecase/get_daily_order_uc.dart';
+import '../../src/features/home/presentation/logic/favorite/favorite_cubit.dart';
 import '../../src/features/home/presentation/logic/home_cubit.dart';
 import '../../src/features/location/data/remote/address_api_services.dart';
 import '../../src/features/location/data/remote/address_remote_ds.dart';
@@ -169,6 +171,8 @@ void setupLocator() {
  getIt.registerLazySingleton(() => ForgetPasswordUseCase(getIt()));
   getIt.registerLazySingleton(() => VerifyForgetPasswordUseCase(getIt()));
   getIt.registerLazySingleton(() => ResetPasswordUseCase(getIt()));
+  getIt.registerLazySingleton(() => AddToFavoriteUseCase(getIt()));
+
 
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
@@ -206,4 +210,6 @@ void setupLocator() {
     getIt<VerifyForgetPasswordUseCase>(),
     getIt<ResetPasswordUseCase>(),
   ));
+    getIt.registerFactory<FavoriteCubit>(() => FavoriteCubit(getIt()));
+
 }

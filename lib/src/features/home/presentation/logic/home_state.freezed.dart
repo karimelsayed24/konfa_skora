@@ -16,11 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-// Banner state
-  BannerState get bannerState =>
-      throw _privateConstructorUsedError; // BestSeller state
-  BestSellerState get bestSellerState =>
-      throw _privateConstructorUsedError; // DailyOrder state
+  BannerState get bannerState => throw _privateConstructorUsedError;
+  BestSellerState get bestSellerState => throw _privateConstructorUsedError;
   DailyOrderState get dailyOrderState => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
@@ -174,15 +171,12 @@ class _$HomeStateImpl implements _HomeState {
       this.bestSellerState = const BestSellerState(),
       this.dailyOrderState = const DailyOrderState()});
 
-// Banner state
   @override
   @JsonKey()
   final BannerState bannerState;
-// BestSeller state
   @override
   @JsonKey()
   final BestSellerState bestSellerState;
-// DailyOrder state
   @override
   @JsonKey()
   final DailyOrderState dailyOrderState;
@@ -224,11 +218,10 @@ abstract class _HomeState implements HomeState {
       final BestSellerState bestSellerState,
       final DailyOrderState dailyOrderState}) = _$HomeStateImpl;
 
-// Banner state
   @override
-  BannerState get bannerState; // BestSeller state
+  BannerState get bannerState;
   @override
-  BestSellerState get bestSellerState; // DailyOrder state
+  BestSellerState get bestSellerState;
   @override
   DailyOrderState get dailyOrderState;
 

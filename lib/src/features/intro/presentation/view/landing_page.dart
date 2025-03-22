@@ -5,6 +5,7 @@ import 'package:konaf_skora/core/common/widgets/custom_btn.dart';
 import 'package:konaf_skora/core/common/widgets/have_an_account.dart';
 import 'package:konaf_skora/core/routes/router_names.dart';
 import 'package:konaf_skora/core/theme/app_colors.dart';
+import 'package:konaf_skora/core/utils/app_strings.dart';
 import 'package:konaf_skora/core/utils/app_styles.dart';
 import 'package:konaf_skora/src/features/auth/presentation/view/login_view.dart';
 import 'package:konaf_skora/src/features/intro/presentation/widget/intro_header.dart';
@@ -21,7 +22,7 @@ class LandingPageView extends StatelessWidget {
         children: [
           const IntroHeader(),
           CustomButton(
-            text: "انشاء حساب / تسجيل الدخول",
+            text: AppStrings.signIn,
             textStyle: AppStyles.s16,
             onPressed: () {
               showModalBottomSheet(
@@ -46,9 +47,12 @@ class LandingPageView extends StatelessWidget {
             height: 57.h,
           ),
           CustomButton(
-            text: "تصفح",
+            text: AppStrings.register,
             textStyle: AppStyles.s20.copyWith(color: AppColors.white),
-            onPressed: () {},
+            onPressed: () {
+                              context.push(RouterNames.register);
+
+            },
             backgroundColor: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(12),
             width: 358.w,

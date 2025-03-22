@@ -17,6 +17,7 @@ abstract class EndpointsStrings {
   static const String banners = 'api/banners';
   static const String bestSeller = 'api/most-sold-products';
   static const String dailyOrder = 'api/offers';
+static const String addToFavorite = 'api/toggle-favourite/';
 
   static const String getProfile = 'api/get-profile';
   static const String changePassword = 'api/change-password';

@@ -17,7 +17,8 @@ import '../../src/features/cart/presentation/view/check_out_view.dart';
 import '../../src/features/cart/presentation/view/success_page.dart';
 import '../../src/features/intro/presentation/view/landing_page.dart';
 import '../../src/features/location/presentation/logic/address_cubit.dart';
-import '../../src/features/location/presentation/view/location_selector_view.dart';
+import '../../src/features/auth/presentation/view/set_location_selector_view.dart';
+import '../../src/features/location/presentation/view/add_new_address_view.dart';
 import '../../src/features/my_orders/presentation/logic/order_details_cubit.dart';
 import '../../src/features/my_orders/presentation/logic/orders_cubit.dart';
 import '../../src/features/my_orders/presentation/view/my_orders_view.dart';
@@ -43,7 +44,6 @@ final GoRouter router = GoRouter(
               child: const RegisterView(),
             )),
 
-
     GoRoute(
       path: RouterNames.resetPasswordView,
       builder: (context, state) => BlocProvider(
@@ -52,8 +52,7 @@ final GoRouter router = GoRouter(
       ),
     ),
 
-
- GoRoute(
+    GoRoute(
       path: RouterNames.verifyOtpView,
       builder: (context, state) => BlocProvider(
         create: (context) => getIt<PasswordResetCubit>(),
@@ -61,9 +60,7 @@ final GoRouter router = GoRouter(
       ),
     ),
 
-
-
-GoRoute(
+    GoRoute(
       path: RouterNames.forgetPasswordView,
       builder: (context, state) => BlocProvider(
         create: (context) => getIt<PasswordResetCubit>(),
@@ -109,30 +106,38 @@ GoRoute(
       path: RouterNames.settingsView,
       builder: (context, state) => const SettingsView(),
     ),
-    
-     GoRoute(
+
+    GoRoute(
       path: RouterNames.successPage,
       builder: (context, state) => const SuccessPage(),
     ),
 
+    GoRoute(
+        path: RouterNames.addNewAddressView,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt<AddressCubit>(),
+            child: const AddNewAddressView(),
+          );
+        }),
 
     GoRoute(
-      path: RouterNames.checkoutView,
-      builder: (context, state) {
-        final cartData = state.extra as CartData;
-        
-        return BlocProvider(
+        path: RouterNames.checkoutView,
+        builder: (context, state) {
+          final cartData = state.extra as CartData;
 
-        create: (context) => getIt<AddressCubit>(),
-        child:  CheckoutView(cartData: cartData,),
-      );
-      }
-    ),
+          return BlocProvider(
+            create: (context) => getIt<AddressCubit>(),
+            child: CheckoutView(
+              cartData: cartData,
+            ),
+          );
+        }),
     GoRoute(
       path: RouterNames.locationSelectorView,
       builder: (context, state) => BlocProvider(
         create: (context) => getIt<SetLocationCubit>(),
-        child: const LocationSelectorView(),
+        child: const SetLocationSelectorView(),
       ),
     ),
 
