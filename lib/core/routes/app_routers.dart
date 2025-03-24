@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:konaf_skora/core/routes/router_names.dart';
 import 'package:konaf_skora/src/features/auth/presentation/view/register_view.dart';
+import 'package:konaf_skora/src/features/category/presentation/logic/categories_products_cubit.dart';
 import 'package:konaf_skora/src/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:konaf_skora/src/features/support_policy/presentation/logic/questions_cubit.dart';
 
@@ -15,6 +16,12 @@ import '../../src/features/bottom_navigation/bottom_navigation_bar.dart';
 import '../../src/features/cart/data/model/cart_response_model.dart';
 import '../../src/features/cart/presentation/view/check_out_view.dart';
 import '../../src/features/cart/presentation/view/success_page.dart';
+import '../../src/features/category/data/model/category_model.dart';
+import '../../src/features/category/presentation/logic/categories_cubit.dart';
+import '../../src/features/category/presentation/logic/product_details_cubit.dart';
+import '../../src/features/category/presentation/view/categories_product_view.dart';
+import '../../src/features/category/presentation/view/categories_view.dart';
+import '../../src/features/category/presentation/view/product_details_view.dart';
 import '../../src/features/intro/presentation/view/landing_page.dart';
 import '../../src/features/location/presentation/logic/address_cubit.dart';
 import '../../src/features/auth/presentation/view/set_location_selector_view.dart';
@@ -102,6 +109,37 @@ final GoRouter router = GoRouter(
       path: RouterNames.notificationPermissionScreen,
       builder: (context, state) => const NotificationsView(),
     ),
+    GoRoute(
+      path: RouterNames.productDetailsView,
+      builder: (context, state) {
+        final productId = state.extra as int;
+        return BlocProvider(
+          create: (context) => getIt<ProductDetailsCubit>()
+            ..fetchProductDetails(productId),
+          child: ProductDetailsView( ),
+        );
+      },
+      
+    ),
+
+    GoRoute(
+      path: RouterNames.categoriesView,
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<CategoriesCubit>()..getCategories(),
+        child: const CategoriesView(),
+      ),
+    ),
+     GoRoute(
+      path: RouterNames.categoryProductsView,
+      builder: (context, state) {
+        final category = state.extra as CategoryModel;
+        return BlocProvider(
+          create: (context) => getIt<CategoryProductsCubit>()..getProducts(category: category),
+          child: CategoryProductView(category: category),
+        );
+      },
+     ),
+
     GoRoute(
       path: RouterNames.settingsView,
       builder: (context, state) => const SettingsView(),

@@ -9,6 +9,7 @@ abstract class AppColors {
   static const Color secondGrey = Color(0xFFA3A3A3);
   static const Color fillGrey = Color(0xFFEDECEC);
   static const Color iconColor = Color(0xFF4D4C4C);
+  static const Color filterGrey = Color(0xFFF8F8F8);
   static const Color greyText = Color(0xFF585858);
   static const Color lightGrey = Color(0xFFF4F3F3);
   static const Color borderGrey = Color(0xFFDBDBDB);

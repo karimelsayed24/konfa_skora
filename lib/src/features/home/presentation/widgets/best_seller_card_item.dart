@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:konaf_skora/src/features/home/presentation/logic/favorite/favorite_cubit.dart';
 
+import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../data/model/best_seller_response.dart';
@@ -144,7 +146,10 @@ class BestSellerCardItem extends StatelessWidget {
                             color: AppColors.white,
                             size: 20.r,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                        //      context.push(RouterNames.productDetailsView,
+                        // extra: item.id);
+                          },
                         ),
                       ),
                     ],

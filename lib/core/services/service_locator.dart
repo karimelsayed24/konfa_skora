@@ -25,6 +25,15 @@ import '../../src/features/cart/domain/repo/cart_repository.dart';
 import '../../src/features/cart/domain/usecase/cart_use_case.dart';
 import '../../src/features/cart/domain/usecase/check_out_use_case.dart';
 import '../../src/features/cart/presentation/logic/checkout_cubit.dart';
+import '../../src/features/category/data/remote/categories_api_services.dart';
+import '../../src/features/category/data/remote/categories_remote_ds.dart';
+import '../../src/features/category/domain/repo/categories_repository.dart';
+import '../../src/features/category/domain/usecase/get_categories_products_use_case.dart';
+import '../../src/features/category/domain/usecase/get_categories_use_case.dart';
+import '../../src/features/category/domain/usecase/product_details_use_case.dart';
+import '../../src/features/category/presentation/logic/categories_cubit.dart';
+import '../../src/features/category/presentation/logic/categories_products_cubit.dart';
+import '../../src/features/category/presentation/logic/product_details_cubit.dart';
 import '../../src/features/home/data/remote/home_api_services.dart';
 import '../../src/features/home/data/remote/home_remote_ds.dart';
 import '../../src/features/home/domain/repo/home_repo.dart';
@@ -103,6 +112,8 @@ void setupLocator() {
 
   getIt.registerLazySingleton<AddressApiServices>(
       () => AddressApiServicesImpl(getIt()));
+  getIt.registerLazySingleton<CategoriesApiService>(
+      () => CategoriesApiServiceImpl(getIt()));
 
   ///! --DataSources-- ///
   getIt.registerLazySingleton<AuthRemoteDs>(() => AuthRemoteDsImpl(getIt()));
@@ -120,6 +131,8 @@ void setupLocator() {
       () => PrizeProductsRemoteDsImpl(getIt()));
   getIt.registerLazySingleton<AddressRemoteDs>(
       () => AddressRemoteDsImpl(getIt()));
+  getIt.registerLazySingleton<CategoriesRemoteDs>(
+      () => CategoriesRemoteDsImpl(getIt()));
 
   /// !-- Repositories -- ///
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(getIt()));
@@ -136,6 +149,8 @@ void setupLocator() {
   getIt.registerLazySingleton<PrizeProductsRepository>(
       () => PrizeProductsRepositoryImpl(getIt()));
   getIt.registerLazySingleton<AddressRepo>(() => AddressRepoImpl(getIt()));
+  getIt.registerLazySingleton<CategoriesRepository>(
+      () => CategoriesRepositoryImpl(getIt()));
 
   /// !-- UseCases -- ///
   getIt.registerLazySingleton<LoginUseCase>(() => LoginUseCase(getIt()));
@@ -168,11 +183,13 @@ void setupLocator() {
   getIt.registerLazySingleton(() => VerifyEmailUseCase(getIt()));
   getIt.registerLazySingleton(() => ResendCodeUseCase(getIt()));
 
- getIt.registerLazySingleton(() => ForgetPasswordUseCase(getIt()));
+  getIt.registerLazySingleton(() => ForgetPasswordUseCase(getIt()));
   getIt.registerLazySingleton(() => VerifyForgetPasswordUseCase(getIt()));
   getIt.registerLazySingleton(() => ResetPasswordUseCase(getIt()));
   getIt.registerLazySingleton(() => AddToFavoriteUseCase(getIt()));
-
+  getIt.registerLazySingleton(() => GetCategoriesUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetCategoryProductsUseCase(getIt()));
+  getIt.registerLazySingleton(() => GetProductDetailsUseCase(getIt()));
 
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
@@ -204,12 +221,17 @@ void setupLocator() {
 
   getIt
       .registerLazySingleton<SetLocationCubit>(() => SetLocationCubit(getIt()));
-  getIt.registerLazySingleton<VerificationCubit>(() => VerificationCubit(getIt(), getIt()));
+  getIt.registerLazySingleton<VerificationCubit>(
+      () => VerificationCubit(getIt(), getIt()));
   getIt.registerFactory(() => PasswordResetCubit(
-    getIt<ForgetPasswordUseCase>(),
-    getIt<VerifyForgetPasswordUseCase>(),
-    getIt<ResetPasswordUseCase>(),
-  ));
-    getIt.registerFactory<FavoriteCubit>(() => FavoriteCubit(getIt()));
-
+        getIt<ForgetPasswordUseCase>(),
+        getIt<VerifyForgetPasswordUseCase>(),
+        getIt<ResetPasswordUseCase>(),
+      ));
+  getIt.registerFactory<FavoriteCubit>(() => FavoriteCubit(getIt()));
+  getIt.registerFactory<CategoriesCubit>(() => CategoriesCubit(getIt()));
+  getIt.registerFactory<CategoryProductsCubit>(
+      () => CategoryProductsCubit(getIt()));
+  getIt
+      .registerFactory<ProductDetailsCubit>(() => ProductDetailsCubit(getIt()));
 }

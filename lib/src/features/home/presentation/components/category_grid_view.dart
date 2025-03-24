@@ -1,21 +1,39 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../../core/utils/app_assets.dart';
+import '../../../../../core/routes/router_names.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../category/data/model/category_model.dart';
+import '../../../category/presentation/logic/categories_cubit.dart';
+import '../../../category/presentation/logic/categories_state.dart';
 import '../widgets/category_item.dart';
 
-class CategoryGridView extends StatelessWidget {
-   CategoryGridView({super.key});
-   
-  final List<Map<String, dynamic>> _categories = 
-  const [
-    {'name': 'سلطات', 'image': AppAssets.cake1},
-    {'name': 'شوكولاتة', 'image':  AppAssets.cake2},
-    {'name': 'كيك', 'image':  AppAssets.cake3},
-    {'name': 'حلوى شرقية', 'image':  AppAssets.cake1},
-    {'name': 'آيس كريم', 'image':  AppAssets.cake3},
-    {'name': 'مشروبات', 'image':  AppAssets.cake2},
-  ];
+class CategoriesInHome extends StatelessWidget {
+  const CategoriesInHome({
+    super.key,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CategoriesCubit, CategoriesState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          loading: () => const SliverToBoxAdapter(
+              child: Center(child: CircularProgressIndicator())),
+          loaded: (categories) => HomeCategoryGridView(categories: categories),
+          error: (message) => SliverToBoxAdapter(
+              child: Center(child: Text(message, style: TextStyle(color: AppColors.primaryColor)))),
+          orElse: () => const SliverToBoxAdapter(child: SizedBox()),
+        );
+      },
+    );
+  }
+}
+
+class HomeCategoryGridView extends StatelessWidget {
+  const HomeCategoryGridView({super.key, required this.categories});
+  final List<CategoryModel> categories;
   @override
   Widget build(BuildContext context) {
     return SliverGrid(
@@ -27,9 +45,15 @@ class CategoryGridView extends StatelessWidget {
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          return CategoryItem(category: _categories[index]);
+          return CategoryItem(
+            category: categories[index],
+            onTap: () {
+              context.push(RouterNames.categoryProductsView,
+                  extra: categories[index]);
+            },
+          );
         },
-        childCount: _categories.length,
+        childCount: categories.length > 6 ? 6 : categories.length,
       ),
     );
   }

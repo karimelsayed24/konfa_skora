@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:konaf_skora/core/services/service_locator.dart';
-
 import '../../../../../core/utils/app_strings.dart';
 import '../components/best_seller_list_view.dart';
 import '../components/category_grid_view.dart';
@@ -10,7 +8,6 @@ import '../logic/home_cubit.dart';
 import '../widgets/address_section.dart';
 import '../widgets/banner_section.dart';
 import '../widgets/category_section.dart';
-import '../widgets/search_row.dart';
 import '../widgets/section_title.dart';
 
 class HomeComponents extends StatefulWidget {
@@ -31,50 +28,46 @@ class _HomeComponentsState extends State<HomeComponents> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: AddressSection(
             address: AppStrings.welcome,
             subAddress: AppStrings.welcomeToKonafaSokar,
           ),
         ),
 
-        const SliverToBoxAdapter(
-          child: SearchRow(),
+      
+        SliverToBoxAdapter(
+          child: BannerSection(),
         ),
 
-       const SliverToBoxAdapter(
-          child:  BannerSection(),
-        ),
-
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: CategorySection(),
         ),
 
-        // Categories grid
         SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          sliver: CategoryGridView(),
-        ),
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            sliver: CategoriesInHome(),
+            ),
 
-       const  SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: SectionTitle(title: AppStrings.dailyOffers),
         ),
 
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: DailyOffersListView(),
         ),
 
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: SectionTitle(title: AppStrings.bestSeller),
         ),
 
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: BestSellerListView(),
         ),
 
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: SizedBox(height: 20),
         ),
       ],
