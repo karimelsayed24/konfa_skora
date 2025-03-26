@@ -6,8 +6,8 @@ import '../logic/product_details_cubit.dart';
 import '../logic/product_details_state.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  const ProductDetailsView({super.key});
-
+  const ProductDetailsView({super.key, this.isFree});
+final int? isFree;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,7 @@ class ProductDetailsView extends StatelessWidget {
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (message) => Center(child: Text(message)),
             loaded: (productDetails) =>
-                ProductDetailsBody(productDetails: productDetails.data),
+                ProductDetailsBody(productDetails: productDetails.data ,isFree :isFree??0),
           );
         },
       ),

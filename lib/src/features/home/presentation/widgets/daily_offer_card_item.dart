@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../data/model/daily_order_response.dart';
@@ -113,7 +115,14 @@ class DailyOfferCardItem extends StatelessWidget {
                           color: AppColors.white,
                           size: 20.r,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                            context.push(RouterNames.productDetailsView,
+                        extra: {
+                          'isFree': 0,
+                          'productId': item.id
+                        }
+                            );
+                        },
                       ),
                     ),
                   ],

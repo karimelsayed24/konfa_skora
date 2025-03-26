@@ -21,7 +21,7 @@ class CartComponents extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           },
           loading: () => const Center(child: CircularProgressIndicator()),
-          loaded: (cartData) => BuildCartContent(cartData: cartData),
+          loaded: (cartData) => BuildCartContent(cartData: cartData.data),
           error: (message) => Center(
             child: Text(
               message,

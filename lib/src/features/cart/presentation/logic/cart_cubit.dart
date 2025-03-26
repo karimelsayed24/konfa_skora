@@ -21,20 +21,21 @@ class CartCubit extends Cubit<CartState> {
     final result = await getCartItemsUseCase.call();
     result.fold(
       (error) => emit(CartState.error(error.message)),
-      (response) => emit(CartState.loaded(response.data)),
+      (response) => emit(CartState.loaded(response)),
     );
   }
 
   Future<void> addToCart(
-    int productId,
-    int quantity,
-    int isFree,
+   {required int productId,
+  required  int quantity,
+    required int isFree,
+   }
   ) async {
     emit(const CartState.loading());
     final result = await addToCartUseCase.call(productId, quantity, isFree);
     result.fold(
       (error) => emit(CartState.error(error.message)),
-      (response) => emit(CartState.loaded(response.data)),
+      (response) => emit(CartState.loaded(response)),
     );
   }
 
@@ -43,7 +44,7 @@ class CartCubit extends Cubit<CartState> {
     final result = await removeFromCartUseCase.call(cartItemId);
     result.fold(
       (error) => emit(CartState.error(error.message)),
-      (response) => emit(CartState.loaded(response.data)),
+      (response) => emit(CartState.loaded(response)),
     );
   }
 
@@ -57,7 +58,7 @@ class CartCubit extends Cubit<CartState> {
         await updateCartItemQuantityUseCase.call(productId, quantity, isFree);
     result.fold(
       (error) => emit(CartState.error(error.message)),
-      (response) => emit(CartState.loaded(response.data)),
+      (response) => emit(CartState.loaded(response)),
     );
   }
 }

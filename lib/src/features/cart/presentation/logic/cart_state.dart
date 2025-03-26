@@ -8,6 +8,6 @@ part 'cart_state.freezed.dart';
 class CartState with _$CartState {
   const factory CartState.initial() = _Initial;
   const factory CartState.loading() = _Loading;
-  const factory CartState.loaded(CartData cartData) = _Loaded;
+  const factory CartState.loaded( CartResponse cartData) = _Loaded;
   const factory CartState.error(String message) = _Error;
 }

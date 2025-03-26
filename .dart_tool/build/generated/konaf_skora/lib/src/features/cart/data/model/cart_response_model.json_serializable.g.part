@@ -5,7 +5,7 @@
 CartResponse _$CartResponseFromJson(Map<String, dynamic> json) => CartResponse(
       key: json['key'] as String,
       msg: json['msg'] as String,
-      data: CartData.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'],
     );
 
 Map<String, dynamic> _$CartResponseToJson(CartResponse instance) =>

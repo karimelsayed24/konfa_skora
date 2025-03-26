@@ -10,10 +10,32 @@ import 'package:konaf_skora/core/utils/app_styles.dart';
 import 'package:konaf_skora/src/features/auth/presentation/view/login_view.dart';
 import 'package:konaf_skora/src/features/intro/presentation/widget/intro_header.dart';
 
-class LandingPageView extends StatelessWidget {
+import '../../../../../core/data/cached/cache_helper.dart';
+
+class LandingPageView extends StatefulWidget {
   const LandingPageView({
     super.key,
   });
+
+  @override
+  State<LandingPageView> createState() => _LandingPageViewState();
+}
+
+class _LandingPageViewState extends State<LandingPageView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkTokenAndNavigate();
+    });
+  }
+
+  void _checkTokenAndNavigate() {
+    String? token = CacheHelper.getToken();
+    if (token != null && token.isNotEmpty) {
+      context.go(RouterNames.bottomNavigationBarRoot);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +72,7 @@ class LandingPageView extends StatelessWidget {
             text: AppStrings.register,
             textStyle: AppStyles.s20.copyWith(color: AppColors.white),
             onPressed: () {
-                              context.push(RouterNames.register);
-
+              context.push(RouterNames.register);
             },
             backgroundColor: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(12),

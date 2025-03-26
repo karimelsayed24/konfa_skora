@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:konaf_skora/core/utils/app_styles.dart';
 
 import '../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
+import '../../../cart/presentation/logic/cart_cubit.dart';
 import '../../data/model/product_details_response.dart';
 import 'custom_title_in_details.dart';
 
 class ProductAdditionsSection extends StatefulWidget {
+  const ProductAdditionsSection({super.key, required this.additions, required this.productId, required this.isFree, });
   final List<Addition> additions;
-
-  const ProductAdditionsSection({super.key, required this.additions});
-
+final int productId;
+final int isFree;
   @override
-  _ProductAdditionsSectionState createState() =>
+  State<ProductAdditionsSection> createState() =>
       _ProductAdditionsSectionState();
 }
 
@@ -25,7 +27,6 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
   @override
   void initState() {
     super.initState();
-    // Initialize selected additions with false values
     _selectedAdditions =
         List.generate(widget.additions.length, (index) => false);
   }
@@ -63,7 +64,7 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon:  Icon(Icons.add, size: 16.r,color: Colors.white),
+                    icon: Icon(Icons.add, size: 16.r, color: Colors.white),
                     onPressed: _incrementQuantity,
                   ),
                   Text(
@@ -74,7 +75,7 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
                     ),
                   ),
                   IconButton(
-                    icon:  Icon(Icons.remove, size: 16.r, color: Colors.white),
+                    icon: Icon(Icons.remove, size: 16.r, color: Colors.white),
                     onPressed: _decrementQuantity,
                   ),
                 ],
@@ -82,17 +83,15 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
             ),
           ],
         ),
-         SizedBox(height: 16.h),
-
-       const CustomTitleInDetails(
-              title: AppStrings.additions,
-            ),
+        SizedBox(height: 16.h),
+        const CustomTitleInDetails(
+          title: AppStrings.additions,
+        ),
         Text(
           AppStrings.makeAdditionAsYouNeed,
           style: AppStyles.s12,
         ),
-                 SizedBox(height: 16.h),
-
+        SizedBox(height: 16.h),
         Column(
           children: List.generate(widget.additions.length, (index) {
             final addition = widget.additions[index];
@@ -104,7 +103,6 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
               },
               child: Row(
                 children: [
-                
                   Expanded(
                     child: Row(
                       children: [
@@ -126,14 +124,13 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       '${addition.price} ر.س',
-                      style:AppStyles.s12.copyWith(
+                      style: AppStyles.s12.copyWith(
                         color: AppColors.textColor,
                         fontWeight: FontWeight.w400,
-                      ), 
-                     
+                      ),
                     ),
                   ),
-                    Checkbox(
+                  Checkbox(
                     value: _selectedAdditions[index],
                     onChanged: (bool? value) {
                       setState(() {
@@ -141,7 +138,7 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
                       });
                     },
                     side: const BorderSide(color: AppColors.primaryColor),
-                    activeColor:AppColors.primaryColor,
+                    activeColor: AppColors.primaryColor,
                     checkColor: AppColors.white,
                   ),
                 ],
@@ -149,18 +146,23 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
             );
           }),
         ),
-         SizedBox(height: 30.h),
+        SizedBox(height: 30.h),
         Align(
           alignment: Alignment.center,
           child: CustomButton(
             text: AppStrings.addToCart,
             onPressed: () {
+              context.read<CartCubit>().addToCart(
+
+                    quantity: _quantity,
+                     productId: widget.productId,
+                      isFree: widget.isFree,
+                  );
               // Add to cart logic
             },
           ),
         ),
       ],
-      
     );
   }
 }

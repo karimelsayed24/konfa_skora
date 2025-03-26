@@ -73,7 +73,12 @@ class CategoryProductItem extends StatelessWidget {
                   onPressed: () {
                     print('------------------${product.id}') ;
                     context.push(RouterNames.productDetailsView,
-                        extra: product.id);
+                        extra: {
+                          'isFree': 0,
+                          'productId': product.id
+                        }
+                       
+                        );
                   },
                   textStyle: AppStyles.s12.copyWith(
                     color: AppColors.white,

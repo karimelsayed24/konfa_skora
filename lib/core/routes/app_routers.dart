@@ -14,6 +14,7 @@ import '../../src/features/auth/presentation/view/reset_password_view.dart';
 import '../../src/features/auth/presentation/view/verify_otp_view.dart';
 import '../../src/features/bottom_navigation/bottom_navigation_bar.dart';
 import '../../src/features/cart/data/model/cart_response_model.dart';
+import '../../src/features/cart/presentation/logic/cart_cubit.dart';
 import '../../src/features/cart/presentation/view/check_out_view.dart';
 import '../../src/features/cart/presentation/view/success_page.dart';
 import '../../src/features/category/data/model/category_model.dart';
@@ -22,6 +23,7 @@ import '../../src/features/category/presentation/logic/product_details_cubit.dar
 import '../../src/features/category/presentation/view/categories_product_view.dart';
 import '../../src/features/category/presentation/view/categories_view.dart';
 import '../../src/features/category/presentation/view/product_details_view.dart';
+import '../../src/features/home/presentation/logic/favorite/favorite_cubit.dart';
 import '../../src/features/intro/presentation/view/landing_page.dart';
 import '../../src/features/location/presentation/logic/address_cubit.dart';
 import '../../src/features/auth/presentation/view/set_location_selector_view.dart';
@@ -112,14 +114,23 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: RouterNames.productDetailsView,
       builder: (context, state) {
-        final productId = state.extra as int;
-        return BlocProvider(
-          create: (context) => getIt<ProductDetailsCubit>()
-            ..fetchProductDetails(productId),
-          child: ProductDetailsView( ),
+        final extra = state.extra as Map<String, dynamic>;
+        final productId = extra['productId'] as int;
+        final isFree = extra['isFree'] as int;
+        return MultiBlocProvider(providers: [
+          BlocProvider(
+            create: (context) => getIt<ProductDetailsCubit>()
+              ..fetchProductDetails(productId),
+          ),
+          BlocProvider(
+            create: (context) => getIt<CartCubit>(),
+          ),
+          BlocProvider(create: (context) => getIt<FavoriteCubit>()),
+        ],
+          child: ProductDetailsView(isFree: isFree),
         );
+        
       },
-      
     ),
 
     GoRoute(
@@ -129,16 +140,17 @@ final GoRouter router = GoRouter(
         child: const CategoriesView(),
       ),
     ),
-     GoRoute(
+    GoRoute(
       path: RouterNames.categoryProductsView,
       builder: (context, state) {
         final category = state.extra as CategoryModel;
         return BlocProvider(
-          create: (context) => getIt<CategoryProductsCubit>()..getProducts(category: category),
+          create: (context) =>
+              getIt<CategoryProductsCubit>()..getProducts(category: category),
           child: CategoryProductView(category: category),
         );
       },
-     ),
+    ),
 
     GoRoute(
       path: RouterNames.settingsView,

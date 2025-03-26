@@ -23,13 +23,12 @@ class BestSellerCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<FavoriteCubit, FavoriteState>(
       listener: (context, state) {
-      state.maybeWhen(
-        loaded: (message) {
-                             context.read<HomeCubit>().getBestSeller();
-
-        },
-        orElse: () {},
-      );
+        state.maybeWhen(
+          loaded: (message) {
+            context.read<HomeCubit>().getBestSeller();
+          },
+          orElse: () {},
+        );
       },
       child: Container(
         width: 215.w,
@@ -147,8 +146,8 @@ class BestSellerCardItem extends StatelessWidget {
                             size: 20.r,
                           ),
                           onPressed: () {
-                        //      context.push(RouterNames.productDetailsView,
-                        // extra: item.id);
+                            context.push(RouterNames.productDetailsView,
+                                extra: {'isFree': 0, 'productId': item.id});
                           },
                         ),
                       ),
