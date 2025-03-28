@@ -21,6 +21,7 @@ mixin _$CartState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CartResponse cartData) loaded,
+    required TResult Function(String message) successAddToCart,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$CartState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CartResponse cartData)? loaded,
+    TResult? Function(String message)? successAddToCart,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$CartState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CartResponse cartData)? loaded,
+    TResult Function(String message)? successAddToCart,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$CartState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessAddToCart value) successAddToCart,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$CartState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessAddToCart value)? successAddToCart,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$CartState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessAddToCart value)? successAddToCart,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -132,6 +138,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CartResponse cartData) loaded,
+    required TResult Function(String message) successAddToCart,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -143,6 +150,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CartResponse cartData)? loaded,
+    TResult? Function(String message)? successAddToCart,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -154,6 +162,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CartResponse cartData)? loaded,
+    TResult Function(String message)? successAddToCart,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -169,6 +178,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessAddToCart value) successAddToCart,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -180,6 +190,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessAddToCart value)? successAddToCart,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -191,6 +202,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessAddToCart value)? successAddToCart,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -249,6 +261,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CartResponse cartData) loaded,
+    required TResult Function(String message) successAddToCart,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -260,6 +273,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CartResponse cartData)? loaded,
+    TResult? Function(String message)? successAddToCart,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -271,6 +285,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CartResponse cartData)? loaded,
+    TResult Function(String message)? successAddToCart,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -286,6 +301,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessAddToCart value) successAddToCart,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -297,6 +313,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessAddToCart value)? successAddToCart,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -308,6 +325,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessAddToCart value)? successAddToCart,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -394,6 +412,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CartResponse cartData) loaded,
+    required TResult Function(String message) successAddToCart,
     required TResult Function(String message) error,
   }) {
     return loaded(cartData);
@@ -405,6 +424,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CartResponse cartData)? loaded,
+    TResult? Function(String message)? successAddToCart,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(cartData);
@@ -416,6 +436,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CartResponse cartData)? loaded,
+    TResult Function(String message)? successAddToCart,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -431,6 +452,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessAddToCart value) successAddToCart,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -442,6 +464,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessAddToCart value)? successAddToCart,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -453,6 +476,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessAddToCart value)? successAddToCart,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -472,6 +496,166 @@ abstract class _Loaded implements CartState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SuccessAddToCartImplCopyWith<$Res> {
+  factory _$$SuccessAddToCartImplCopyWith(_$SuccessAddToCartImpl value,
+          $Res Function(_$SuccessAddToCartImpl) then) =
+      __$$SuccessAddToCartImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$SuccessAddToCartImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$SuccessAddToCartImpl>
+    implements _$$SuccessAddToCartImplCopyWith<$Res> {
+  __$$SuccessAddToCartImplCopyWithImpl(_$SuccessAddToCartImpl _value,
+      $Res Function(_$SuccessAddToCartImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$SuccessAddToCartImpl(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SuccessAddToCartImpl implements _SuccessAddToCart {
+  const _$SuccessAddToCartImpl(this.message);
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'CartState.successAddToCart(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessAddToCartImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessAddToCartImplCopyWith<_$SuccessAddToCartImpl> get copyWith =>
+      __$$SuccessAddToCartImplCopyWithImpl<_$SuccessAddToCartImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(CartResponse cartData) loaded,
+    required TResult Function(String message) successAddToCart,
+    required TResult Function(String message) error,
+  }) {
+    return successAddToCart(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(CartResponse cartData)? loaded,
+    TResult? Function(String message)? successAddToCart,
+    TResult? Function(String message)? error,
+  }) {
+    return successAddToCart?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(CartResponse cartData)? loaded,
+    TResult Function(String message)? successAddToCart,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (successAddToCart != null) {
+      return successAddToCart(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessAddToCart value) successAddToCart,
+    required TResult Function(_Error value) error,
+  }) {
+    return successAddToCart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessAddToCart value)? successAddToCart,
+    TResult? Function(_Error value)? error,
+  }) {
+    return successAddToCart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessAddToCart value)? successAddToCart,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (successAddToCart != null) {
+      return successAddToCart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessAddToCart implements CartState {
+  const factory _SuccessAddToCart(final String message) =
+      _$SuccessAddToCartImpl;
+
+  String get message;
+
+  /// Create a copy of CartState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessAddToCartImplCopyWith<_$SuccessAddToCartImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -546,6 +730,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CartResponse cartData) loaded,
+    required TResult Function(String message) successAddToCart,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -557,6 +742,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CartResponse cartData)? loaded,
+    TResult? Function(String message)? successAddToCart,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -568,6 +754,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CartResponse cartData)? loaded,
+    TResult Function(String message)? successAddToCart,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -583,6 +770,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessAddToCart value) successAddToCart,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -594,6 +782,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessAddToCart value)? successAddToCart,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -605,6 +794,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessAddToCart value)? successAddToCart,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

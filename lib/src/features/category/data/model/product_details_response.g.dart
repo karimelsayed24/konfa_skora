@@ -31,6 +31,7 @@ ProductDetails _$ProductDetailsFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String,
       recipe: json['recipe'] as String,
       isFavorited: json['is_favorited'] as bool,
+      canApplyPrize: (json['can_apply_prize'] as num).toInt(),
       additions: (json['additions'] as List<dynamic>)
           .map((e) => Addition.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -45,15 +46,18 @@ Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>
       'image': instance.image,
       'recipe': instance.recipe,
       'is_favorited': instance.isFavorited,
+      'can_apply_prize': instance.canApplyPrize,
       'additions': instance.additions,
     };
 
 Addition _$AdditionFromJson(Map<String, dynamic> json) => Addition(
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       price: json['price'] as String,
     );
 
 Map<String, dynamic> _$AdditionToJson(Addition instance) => <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'price': instance.price,
     };

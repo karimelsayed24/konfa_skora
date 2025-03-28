@@ -6,6 +6,7 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../home/presentation/logic/favorite/favorite_cubit.dart';
 import '../../../home/presentation/logic/favorite/favorite_state.dart';
+
 class ProductInfoWidget extends StatefulWidget {
   const ProductInfoWidget({
     super.key,
@@ -15,18 +16,18 @@ class ProductInfoWidget extends StatefulWidget {
     required this.id,
     required this.initialIsFavorite,
   });
-
   final String title;
   final String price;
   final String avgRate;
   final int id;
   final bool initialIsFavorite;
-
   @override
-  _ProductInfoWidgetState createState() => _ProductInfoWidgetState();
+  State<ProductInfoWidget> createState() => _ProductInfoWidgetState();
 }
 
 class _ProductInfoWidgetState extends State<ProductInfoWidget> {
+  
+
   late bool _isFavorite;
 
   @override
@@ -40,6 +41,7 @@ class _ProductInfoWidgetState extends State<ProductInfoWidget> {
     context.read<FavoriteCubit>().addFavorite(widget.id);
   }
 
+ 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -55,7 +57,6 @@ class _ProductInfoWidgetState extends State<ProductInfoWidget> {
             ),
             BlocConsumer<FavoriteCubit, FavoriteState>(
               listener: (context, state) {
-                // Update local state when bloc state changes
                 state.maybeWhen(
                   loaded: (isFavorite) {
                     setState(() {
@@ -72,16 +73,16 @@ class _ProductInfoWidgetState extends State<ProductInfoWidget> {
                   decoration: BoxDecoration(
                     color: AppColors.filterGrey,
                     borderRadius: BorderRadius.circular(14.r),
-                    border: Border.all(color: AppColors.borderGrey, width: .5.w),
+                    border:
+                        Border.all(color: AppColors.borderGrey, width: .5.w),
                   ),
                   child: InkWell(
                     onTap: _toggleFavorite,
                     child: Icon(
                       _isFavorite ? Icons.favorite : Icons.favorite_border,
                       size: 20.r,
-                      color: _isFavorite 
-                        ? AppColors.primaryColor 
-                        : AppColors.grey,
+                      color:
+                          _isFavorite ? AppColors.primaryColor : AppColors.grey,
                     ),
                   ),
                 );
@@ -96,8 +97,7 @@ class _ProductInfoWidgetState extends State<ProductInfoWidget> {
             Text(
               '5/ ${widget.avgRate}',
               style: AppStyles.s15.copyWith(
-                color: AppColors.textColor,
-                fontWeight: FontWeight.w500,
+                color: AppColors.grey,
               ),
             ),
           ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:konaf_skora/core/utils/app_strings.dart';
 
-import '../../../../../core/common/widgets/custom_text_form_field.dart';
 import 'auth_text_field_widget.dart';
 
 class FirstAndLastNameRow extends StatelessWidget {

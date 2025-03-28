@@ -9,8 +9,8 @@ import '../model/pay_response.dart';
 
 abstract class CartApiServices {
   Future<Either<ErrorModel, CartResponse>> getCartItems();
-  Future<Either<ErrorModel, CartResponse>> addToCart(
-      int productId, int quantity, int isFree);
+  Future<Either<ErrorModel, String>> addToCart(
+      int productId, int quantity, int isFree, List<Map<String, dynamic>> additions);
   Future<Either<ErrorModel, CartResponse>> deleteCart(int cartItemId);
   Future<Either<ErrorModel, CartResponse>> updateCart(
       int cartItemId, int quantity, int isFree);
@@ -36,18 +36,19 @@ class CartApiServicesImpl implements CartApiServices {
   }
 
   @override
-  Future<Either<ErrorModel, CartResponse>> addToCart(
-      int productId, int quantity, int isFree) async {
+  Future<Either<ErrorModel, String>> addToCart(
+      int productId, int quantity, int isFree ,List<Map<String, dynamic>> additions) async {
     try {
       final response = await api.post(
         EndpointsStrings.addToCart,
         data: {
           'product_id': productId,
           'quantity': quantity,
-          'is_free': isFree
+          'is_free': isFree,
+          'additions': '$additions',
         },
       );
-      final cartResponse = CartResponse.fromJson(response);
+      final cartResponse = response['msg'];
       return Right(cartResponse);
     } on ServerException catch (e) {
       return Left(e.errorModel);

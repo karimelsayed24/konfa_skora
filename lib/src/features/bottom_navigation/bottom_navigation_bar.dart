@@ -8,8 +8,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../cart/presentation/view/cart_view.dart';
 import '../home/presentation/view/home_view.dart';
-import '../location/presentation/logic/address_cubit.dart';
-import '../auth/presentation/view/set_location_selector_view.dart';
 import '../points/presentation/view/points_view.dart';
 import '../profile/presentation/logic/profile_cubit.dart';
 import '../profile/presentation/view/profile_view.dart';
@@ -28,10 +26,10 @@ class BottomNavigationBarRoot extends StatelessWidget {
             child: const CartView(),
           ),
           const PointsView(),
-          BlocProvider(
-            create: (context) => getIt<AddressCubit>(),
-            child: const SetLocationSelectorView(),
-          ),
+          // BlocProvider(
+          //   create: (context) => getIt<AddressCubit>(),
+          //   child: const SetLocationSelectorView(),
+          // ),
           BlocProvider(
             create: (context) => getIt<ProfileCubit>(),
             child: const ProfileView(),
@@ -76,10 +74,10 @@ class BottomNavigationBarRoot extends StatelessWidget {
                   icon: Icon(Icons.card_giftcard_rounded),
                   label: AppStrings.points,
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.share_location),
-                  label: AppStrings.trackOrder,
-                ),
+                // BottomNavigationBarItem(
+                //   icon: Icon(Icons.share_location),
+                //   label: AppStrings.trackOrder,
+                // ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label: AppStrings.profile,

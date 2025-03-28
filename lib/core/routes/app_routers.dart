@@ -116,7 +116,6 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final extra = state.extra as Map<String, dynamic>;
         final productId = extra['productId'] as int;
-        final isFree = extra['isFree'] as int;
         return MultiBlocProvider(providers: [
           BlocProvider(
             create: (context) => getIt<ProductDetailsCubit>()
@@ -127,7 +126,7 @@ final GoRouter router = GoRouter(
           ),
           BlocProvider(create: (context) => getIt<FavoriteCubit>()),
         ],
-          child: ProductDetailsView(isFree: isFree),
+          child: const ProductDetailsView(),
         );
         
       },

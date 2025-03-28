@@ -8,15 +8,21 @@ import '../../data/remote/categories_remote_ds.dart';
 
 abstract class CategoriesRepository {
   Future<Either<ErrorModel, List<CategoryModel>>> getCategories();
-  Future<Either<ErrorModel, List<ProductModel>>> getCategoryProducts({int? categoryId});
-  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(int productId);
-
+  // Future<Either<ErrorModel, List<ProductModel>>> getCategoryProducts({int? categoryId});
+  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(
+      int productId);
+  Future<Either<ErrorModel, List<ProductModel>>> getCategoryProducts(
+      {
+        int? categoryId,
+    int? subCategoryId,
+    String? searchName,
+    String? priceOrder,
+      });
 }
 
 class CategoriesRepositoryImpl implements CategoriesRepository {
   final CategoriesRemoteDs remoteDs;
   CategoriesRepositoryImpl(this.remoteDs);
-
 
   @override
   Future<Either<ErrorModel, List<CategoryModel>>> getCategories() async {
@@ -26,19 +32,30 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
       (response) => Right(response.data),
     );
   }
-  
+
   @override
-  Future<Either<ErrorModel, List<ProductModel>>> getCategoryProducts({int? categoryId}) async {
-    final result = await remoteDs.getCategoryProducts(categoryId: categoryId);
+  Future<Either<ErrorModel, List<ProductModel>>> getCategoryProducts(
+      {
+        int? categoryId,
+    int? subCategoryId,
+    String? searchName,
+    String? priceOrder,
+      }) async {
+    final result = await remoteDs.getCategoryProducts(
+        categoryId: categoryId,
+        subCategoryId: subCategoryId,
+        searchName: searchName,
+        priceOrder: priceOrder
+        );
     return result.fold(
       (error) => Left(error),
       (response) => Right(response.data),
     );
   }
-  
+
   @override
-  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(int productId) async {
+  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(
+      int productId) async {
     return await remoteDs.getProductDetails(productId);
-   
   }
 }

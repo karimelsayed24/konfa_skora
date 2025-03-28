@@ -22,7 +22,7 @@ class HaveAnAccountWidget extends StatelessWidget {
         children: [
           Text(
             title1,
-            style: AppStyles.s16.copyWith(
+            style: AppStyles.s15.copyWith(
               color: AppColors.black,
               fontWeight: FontWeight.w400,
             ),
@@ -31,7 +31,7 @@ class HaveAnAccountWidget extends StatelessWidget {
             onTap: onTap,
             child: Text(
               title2,
-              style: AppStyles.s16.copyWith(
+              style: AppStyles.s15.copyWith(
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.w400,
               ),

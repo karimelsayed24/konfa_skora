@@ -22,12 +22,13 @@ class CategoryProductView extends StatelessWidget {
           builder: (context, state) {
             return state.maybeWhen(
               loading: () => const Center(child: CircularProgressIndicator()),
-              loaded: (products, filters, selectedFilter) {
+              loaded: (products, filters, selectedFilter,subCategoryId ,name, priceOrder,) {
                 return CategoryProductBody(
                   category: category,
                   products: products,
                   filters: filters ?? [],
                   selectedFilter: selectedFilter,
+                 
                 );
               },
               error: (message) => Center(child: Text(message)),

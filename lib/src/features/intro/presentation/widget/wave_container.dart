@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:konaf_skora/core/theme/app_colors.dart';
-import 'package:konaf_skora/main.dart';
 import 'package:konaf_skora/src/features/intro/presentation/widget/wave_clipper.dart';
 import 'package:konaf_skora/src/features/intro/presentation/widget/wave_painter.dart';
 

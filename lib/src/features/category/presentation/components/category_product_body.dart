@@ -25,7 +25,7 @@ class CategoryProductBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 10.h),
-          const SearchRow(),
+           SearchRow(category: category,),
           SizedBox(height: 20.h),
           if (filters.isNotEmpty)
             FilterListRow(

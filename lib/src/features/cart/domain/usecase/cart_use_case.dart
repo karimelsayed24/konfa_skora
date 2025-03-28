@@ -19,8 +19,8 @@ class AddToCartUseCase {
 
   AddToCartUseCase(this.repository);
 
-  Future<Either<ErrorModel, CartResponse>> call(int productId, int quantity, int isFree) async {
-    return await repository.addToCart(productId, quantity, isFree);
+  Future<Either<ErrorModel, String>> call(int productId, int quantity, int isFree, List<Map<String, dynamic>> additions) async {
+    return await repository.addToCart(productId, quantity, isFree , additions);
   }
 }
 

@@ -89,10 +89,11 @@ class BestSellerCardItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title
+                                    SizedBox(height: 3.h),
+
                   Text(
                     item.name,
-                    style: AppStyles.s15,
+                    style: AppStyles.s16,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -125,7 +126,6 @@ class BestSellerCardItem extends StatelessWidget {
                       Text(
                         '${item.price} ج.م',
                         style: AppStyles.s16.copyWith(
-                          color: AppColors.black,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -147,7 +147,7 @@ class BestSellerCardItem extends StatelessWidget {
                           ),
                           onPressed: () {
                             context.push(RouterNames.productDetailsView,
-                                extra: {'isFree': 0, 'productId': item.id});
+                                extra: { 'productId': item.id});
                           },
                         ),
                       ),

@@ -11,10 +11,15 @@ import '../../data/model/product_details_response.dart';
 import 'custom_title_in_details.dart';
 
 class ProductAdditionsSection extends StatefulWidget {
-  const ProductAdditionsSection({super.key, required this.additions, required this.productId, required this.isFree, });
+  const ProductAdditionsSection({
+    super.key,
+    required this.additions,
+    required this.productId,
+    required this.isFree,
+  });
   final List<Addition> additions;
-final int productId;
-final int isFree;
+  final int productId;
+  final int isFree;
   @override
   State<ProductAdditionsSection> createState() =>
       _ProductAdditionsSectionState();
@@ -152,13 +157,20 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
           child: CustomButton(
             text: AppStrings.addToCart,
             onPressed: () {
-              context.read<CartCubit>().addToCart(
+              List<Map<String, dynamic>> selectedAdditionsList = widget
+                  .additions
+                  .asMap()
+                  .entries
+                  .where((entry) => _selectedAdditions[entry.key])
+                  .map((entry) => {"id": entry.value.id})
+                  .toList();
 
+              context.read<CartCubit>().addToCart(
                     quantity: _quantity,
-                     productId: widget.productId,
-                      isFree: widget.isFree,
+                    productId: widget.productId,
+                    isFree: widget.isFree,
+                    additions: selectedAdditionsList,
                   );
-              // Add to cart logic
             },
           ),
         ),

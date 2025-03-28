@@ -20,8 +20,13 @@ mixin _$CategoryProductsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductModel> products,
-            List<CategoryChild>? filters, CategoryChild? selectedFilter)
+    required TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)
         loaded,
     required TResult Function(String message) error,
   }) =>
@@ -30,8 +35,13 @@ mixin _$CategoryProductsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult? Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult? Function(String message)? error,
   }) =>
@@ -40,8 +50,13 @@ mixin _$CategoryProductsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -139,8 +154,13 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductModel> products,
-            List<CategoryChild>? filters, CategoryChild? selectedFilter)
+    required TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -152,8 +172,13 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult? Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -165,8 +190,13 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -262,8 +292,13 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductModel> products,
-            List<CategoryChild>? filters, CategoryChild? selectedFilter)
+    required TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -275,8 +310,13 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult? Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -288,8 +328,13 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -351,7 +396,10 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   $Res call(
       {List<ProductModel> products,
       List<CategoryChild>? filters,
-      CategoryChild? selectedFilter});
+      CategoryChild? selectedFilter,
+      int? subCategoryId,
+      String? searchName,
+      String? priceOrder});
 }
 
 /// @nodoc
@@ -370,6 +418,9 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? products = null,
     Object? filters = freezed,
     Object? selectedFilter = freezed,
+    Object? subCategoryId = freezed,
+    Object? searchName = freezed,
+    Object? priceOrder = freezed,
   }) {
     return _then(_$LoadedImpl(
       products: null == products
@@ -384,6 +435,18 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
               as CategoryChild?,
+      subCategoryId: freezed == subCategoryId
+          ? _value.subCategoryId
+          : subCategoryId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      searchName: freezed == searchName
+          ? _value.searchName
+          : searchName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priceOrder: freezed == priceOrder
+          ? _value.priceOrder
+          : priceOrder // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -394,7 +457,10 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
       {required final List<ProductModel> products,
       required final List<CategoryChild>? filters,
-      this.selectedFilter})
+      this.selectedFilter,
+      this.subCategoryId,
+      this.searchName,
+      this.priceOrder})
       : _products = products,
         _filters = filters;
 
@@ -418,10 +484,16 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   final CategoryChild? selectedFilter;
+  @override
+  final int? subCategoryId;
+  @override
+  final String? searchName;
+  @override
+  final String? priceOrder;
 
   @override
   String toString() {
-    return 'CategoryProductsState.loaded(products: $products, filters: $filters, selectedFilter: $selectedFilter)';
+    return 'CategoryProductsState.loaded(products: $products, filters: $filters, selectedFilter: $selectedFilter, subCategoryId: $subCategoryId, searchName: $searchName, priceOrder: $priceOrder)';
   }
 
   @override
@@ -432,7 +504,13 @@ class _$LoadedImpl implements _Loaded {
             const DeepCollectionEquality().equals(other._products, _products) &&
             const DeepCollectionEquality().equals(other._filters, _filters) &&
             (identical(other.selectedFilter, selectedFilter) ||
-                other.selectedFilter == selectedFilter));
+                other.selectedFilter == selectedFilter) &&
+            (identical(other.subCategoryId, subCategoryId) ||
+                other.subCategoryId == subCategoryId) &&
+            (identical(other.searchName, searchName) ||
+                other.searchName == searchName) &&
+            (identical(other.priceOrder, priceOrder) ||
+                other.priceOrder == priceOrder));
   }
 
   @override
@@ -440,7 +518,10 @@ class _$LoadedImpl implements _Loaded {
       runtimeType,
       const DeepCollectionEquality().hash(_products),
       const DeepCollectionEquality().hash(_filters),
-      selectedFilter);
+      selectedFilter,
+      subCategoryId,
+      searchName,
+      priceOrder);
 
   /// Create a copy of CategoryProductsState
   /// with the given fields replaced by the non-null parameter values.
@@ -455,12 +536,18 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductModel> products,
-            List<CategoryChild>? filters, CategoryChild? selectedFilter)
+    required TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)
         loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(products, filters, selectedFilter);
+    return loaded(products, filters, selectedFilter, subCategoryId, searchName,
+        priceOrder);
   }
 
   @override
@@ -468,12 +555,18 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult? Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(products, filters, selectedFilter);
+    return loaded?.call(products, filters, selectedFilter, subCategoryId,
+        searchName, priceOrder);
   }
 
   @override
@@ -481,14 +574,20 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(products, filters, selectedFilter);
+      return loaded(products, filters, selectedFilter, subCategoryId,
+          searchName, priceOrder);
     }
     return orElse();
   }
@@ -535,11 +634,17 @@ abstract class _Loaded implements CategoryProductsState {
   const factory _Loaded(
       {required final List<ProductModel> products,
       required final List<CategoryChild>? filters,
-      final CategoryChild? selectedFilter}) = _$LoadedImpl;
+      final CategoryChild? selectedFilter,
+      final int? subCategoryId,
+      final String? searchName,
+      final String? priceOrder}) = _$LoadedImpl;
 
   List<ProductModel> get products;
   List<CategoryChild>? get filters;
   CategoryChild? get selectedFilter;
+  int? get subCategoryId;
+  String? get searchName;
+  String? get priceOrder;
 
   /// Create a copy of CategoryProductsState
   /// with the given fields replaced by the non-null parameter values.
@@ -618,8 +723,13 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ProductModel> products,
-            List<CategoryChild>? filters, CategoryChild? selectedFilter)
+    required TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)
         loaded,
     required TResult Function(String message) error,
   }) {
@@ -631,8 +741,13 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult? Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -644,8 +759,13 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ProductModel> products, List<CategoryChild>? filters,
-            CategoryChild? selectedFilter)?
+    TResult Function(
+            List<ProductModel> products,
+            List<CategoryChild>? filters,
+            CategoryChild? selectedFilter,
+            int? subCategoryId,
+            String? searchName,
+            String? priceOrder)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),

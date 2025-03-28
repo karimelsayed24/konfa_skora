@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart' as geo;
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:konaf_skora/src/features/location/presentation/logic/address_cubit.dart';
 
 import '../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../core/functions/show_toast.dart';
@@ -16,7 +15,6 @@ import '../logic/set_location/set_location_cubit.dart';
 import '../logic/set_location/set_location_state.dart';
 import '../widgets/create_account_title.dart';
 import '../widgets/register_app_bar.dart';
-import '../../../location/presentation/logic/address_state.dart';
 
 class SetLocationSelectorView extends StatefulWidget {
   const SetLocationSelectorView({super.key});

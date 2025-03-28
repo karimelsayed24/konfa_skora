@@ -75,9 +75,11 @@ class DailyOfferCardItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Title
+                SizedBox(height: 5.h),
+
                 Text(
                   item.name,
-                  style: AppStyles.s15,
+                  style: AppStyles.s16,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -95,9 +97,8 @@ class DailyOfferCardItem extends StatelessWidget {
                     Text(
                       '${item.price} ج.م',
                       style: AppStyles.s16.copyWith(
-                        color: AppColors.black,
                         fontWeight: FontWeight.w600,
-                      ),
+                      )
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -116,12 +117,8 @@ class DailyOfferCardItem extends StatelessWidget {
                           size: 20.r,
                         ),
                         onPressed: () {
-                            context.push(RouterNames.productDetailsView,
-                        extra: {
-                          'isFree': 0,
-                          'productId': item.id
-                        }
-                            );
+                          context.push(RouterNames.productDetailsView,
+                              extra: {'productId': item.id});
                         },
                       ),
                     ),

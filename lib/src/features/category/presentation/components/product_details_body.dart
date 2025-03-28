@@ -6,7 +6,6 @@ import 'package:konaf_skora/core/routes/router_names.dart';
 import '../../../cart/presentation/logic/cart_cubit.dart';
 import '../../../cart/presentation/logic/cart_state.dart';
 import '../widgets/product_additions_section.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:konaf_skora/core/utils/app_strings.dart';
@@ -19,10 +18,9 @@ import '../widgets/product_info_widget.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final ProductDetails productDetails;
-  final int isFree;
 
   const ProductDetailsBody(
-      {super.key, required this.productDetails, required this.isFree});
+      {super.key, required this.productDetails,});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +28,8 @@ class ProductDetailsBody extends StatelessWidget {
       child: BlocListener<CartCubit, CartState>(
         listener: (context, state) {
           state.maybeWhen(
-              loaded: (cart) {
-                showToast(message: "تم الاضافه الي السله", state: ToastStates.SUCCESS);
+              successAddToCart: (message) {
+                showToast(message: message, state: ToastStates.SUCCESS);
                 context.go(RouterNames.bottomNavigationBarRoot);
                 
               },
@@ -87,7 +85,7 @@ class ProductDetailsBody extends StatelessWidget {
                       ProductAdditionsSection(
                         additions: productDetails.additions,
                         productId: productDetails.id,
-                        isFree: isFree,
+                        isFree: productDetails.canApplyPrize,
                       ),
                     ],
                   ),

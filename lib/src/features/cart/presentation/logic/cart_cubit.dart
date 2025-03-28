@@ -29,13 +29,14 @@ class CartCubit extends Cubit<CartState> {
    {required int productId,
   required  int quantity,
     required int isFree,
+    required List<Map<String, dynamic>> additions,
    }
   ) async {
     emit(const CartState.loading());
-    final result = await addToCartUseCase.call(productId, quantity, isFree);
+    final result = await addToCartUseCase.call(productId, quantity, isFree , additions);
     result.fold(
       (error) => emit(CartState.error(error.message)),
-      (response) => emit(CartState.loaded(response)),
+      (message) => emit(CartState.successAddToCart(message)),
     );
   }
 

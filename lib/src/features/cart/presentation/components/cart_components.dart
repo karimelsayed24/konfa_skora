@@ -15,7 +15,8 @@ class CartComponents extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
-        return state.when(
+        return state.maybeWhen(
+          orElse: () => const SizedBox(),
           initial: () {
             context.read<CartCubit>().getCartItems();
             return const Center(child: CircularProgressIndicator());
@@ -30,6 +31,7 @@ class CartComponents extends StatelessWidget {
             ),
           ),
         );
+        
       },
     );
   }

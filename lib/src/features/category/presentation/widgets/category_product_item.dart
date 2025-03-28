@@ -74,7 +74,6 @@ class CategoryProductItem extends StatelessWidget {
                     print('------------------${product.id}') ;
                     context.push(RouterNames.productDetailsView,
                         extra: {
-                          'isFree': 0,
                           'productId': product.id
                         }
                        

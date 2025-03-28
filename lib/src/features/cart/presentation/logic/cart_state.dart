@@ -9,5 +9,6 @@ class CartState with _$CartState {
   const factory CartState.initial() = _Initial;
   const factory CartState.loading() = _Loading;
   const factory CartState.loaded( CartResponse cartData) = _Loaded;
+  const factory CartState.successAddToCart( String message) = _SuccessAddToCart;
   const factory CartState.error(String message) = _Error;
 }

@@ -36,7 +36,6 @@ final String subTitle;
             FittedBox(
               child: Text(
                 subTitle,
-                //overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: AppStyles.s14.copyWith(
                   color: AppColors.grey,

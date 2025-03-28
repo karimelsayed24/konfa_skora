@@ -21,7 +21,7 @@ class AppStyles {
     fontFamily: 'Cairo',
     fontSize: 20.0.sp,
     fontWeight: FontWeight.w400,
-    color: AppColors.white,
+    color: AppColors.grey,
   );
 
   static const TextStyle s18 = TextStyle(
@@ -30,7 +30,12 @@ class AppStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.black,
   );
-
+ static TextStyle s16White = TextStyle(
+    fontFamily: 'Cairo',
+    fontSize: 16.0.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
   static TextStyle s16 = TextStyle(
     fontFamily: 'Cairo',
     fontSize: 16.0.sp,

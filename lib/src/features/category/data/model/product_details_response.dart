@@ -34,6 +34,9 @@ class ProductDetails {
   
   @JsonKey(name: 'is_favorited')
   final bool isFavorited;
+
+  @JsonKey(name: 'can_apply_prize')
+  final int canApplyPrize;
   
   final List<Addition> additions;
 
@@ -45,6 +48,7 @@ class ProductDetails {
     required this.image,
     required this.recipe,
     required this.isFavorited,
+    required this.canApplyPrize,
     required this.additions,
   });
 
@@ -56,10 +60,12 @@ class ProductDetails {
 
 @JsonSerializable()
 class Addition {
+  final int id;
   final String name;
   final String price;
 
   Addition({
+    required this.id,
     required this.name,
     required this.price,
   });

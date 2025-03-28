@@ -18,7 +18,7 @@ class AddressSection extends StatelessWidget {
           children: [
             const Icon(Icons.person_pin, size: 18),
             const SizedBox(width: 4),
-            Text(address, style: AppStyles.s16),
+            Text(address, style: AppStyles.s15),
           ],
         ),
         subtitle: Text(subAddress, style: AppStyles.s12),

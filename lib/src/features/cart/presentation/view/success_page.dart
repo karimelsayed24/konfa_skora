@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:konaf_skora/core/routes/router_names.dart';
 import 'package:konaf_skora/core/utils/app_strings.dart';
 
 import '../../../../../core/common/widgets/custom_btn.dart';
@@ -26,7 +28,9 @@ class SuccessPage extends StatelessWidget {
           SizedBox(height: 40.h),
           CustomButton(
             text: 'تتبع طلبك',
-            onPressed: () {},
+            onPressed: () {
+              context.push(RouterNames.bottomNavigationBarRoot);
+            },
           )
                 ],
               ),

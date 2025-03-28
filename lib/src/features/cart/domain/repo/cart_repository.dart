@@ -7,8 +7,8 @@ import '../../data/remote/cart_remote_ds.dart';
 
 abstract class CartRepository {
   Future<Either<ErrorModel, CartResponse>> getCartItems();
-  Future<Either<ErrorModel, CartResponse>> addToCart(
-      int productId, int quantity, int isFree);
+  Future<Either<ErrorModel, String>> addToCart(
+      int productId, int quantity, int isFree, List<Map<String, dynamic>> additions);
   Future<Either<ErrorModel, CartResponse>> deleteCart(int cartItemId);
   Future<Either<ErrorModel, CartResponse>> updateCart(
       int cartItemId, int quantity, int isFree);
@@ -22,8 +22,8 @@ class CartRepositoryImpl implements CartRepository {
   CartRepositoryImpl(this.remote);
   
   @override
-  Future<Either<ErrorModel, CartResponse>> addToCart(int productId, int quantity, int isFree) async {
-    return remote.addToCart(productId, quantity, isFree);
+  Future<Either<ErrorModel, String>> addToCart(int productId, int quantity, int isFree, List<Map<String, dynamic>> additions) async {
+    return remote.addToCart(productId, quantity, isFree ,additions);
   }
   
   @override

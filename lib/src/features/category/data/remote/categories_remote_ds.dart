@@ -7,11 +7,16 @@ import '../model/product_details_response.dart';
 import 'categories_api_services.dart';
 
 abstract class CategoriesRemoteDs {
-
   Future<Either<ErrorModel, CategoryResponse>> getCategories();
-    Future<Either<ErrorModel, ProductResponse>> getCategoryProducts({int? categoryId});
-  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(int productId);
 
+  Future<Either<ErrorModel, ProductResponse>> getCategoryProducts({
+    int? categoryId,
+    int? subCategoryId,
+    String? searchName,
+    String? priceOrder,
+  });
+  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(
+      int productId);
 }
 
 class CategoriesRemoteDsImpl extends CategoriesRemoteDs {
@@ -21,14 +26,25 @@ class CategoriesRemoteDsImpl extends CategoriesRemoteDs {
   Future<Either<ErrorModel, CategoryResponse>> getCategories() async {
     return api.getCategories();
   }
-  
-    @override
-  Future<Either<ErrorModel, ProductResponse>> getCategoryProducts({int? categoryId}) async {
-    return api.getCategoryProducts(categoryId: categoryId);
-  }
-  
+
   @override
-  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(int productId) async {
+  Future<Either<ErrorModel, ProductResponse>> getCategoryProducts({
+    int? categoryId,
+    int? subCategoryId,
+    String? searchName,
+    String? priceOrder,
+  }) async {
+    return api.getCategoryProducts(
+        categoryId: categoryId,
+        subCategoryId: subCategoryId,
+        searchName: searchName,
+        priceOrder: priceOrder,
+        );
+  }
+
+  @override
+  Future<Either<ErrorModel, ProductDetailsResponse>> getProductDetails(
+      int productId) async {
     return api.getProductDetails(productId);
   }
 }
