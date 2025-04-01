@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:konaf_skora/core/app_cubit/app_cubit.dart';
 import 'package:konaf_skora/core/routes/app_routers.dart';
 import 'package:konaf_skora/core/services/service_locator.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../core/theme/app_themes.dart';
 
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,22 +21,16 @@ class MyApp extends StatelessWidget {
           create: (context) => getIt<AppCubit>(),
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme,
             routerConfig: router,
-            supportedLocales: const [Locale('ar')],
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            localeListResolutionCallback: (locales, supportedLocales) {
-              return const Locale('ar');
-            },
+            theme: AppTheme.lightTheme,
+            
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            
             builder: (context, child) {
-              return Directionality(
-                textDirection: TextDirection.rtl,
-                child: child!,
-              );
+              return child!;
+            
             },
           ),
         );

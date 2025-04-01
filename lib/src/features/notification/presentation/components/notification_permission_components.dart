@@ -21,7 +21,7 @@ class NotificationPermissionComponents extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: screenHeight * 0.05),
-          const CreateAccountTitle(
+           CreateAccountTitle(
             title: AppStrings.allNotifications,
             subTitle: AppStrings.allowAllNotificationFromApp,
           ),

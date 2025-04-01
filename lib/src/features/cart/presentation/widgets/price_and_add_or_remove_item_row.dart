@@ -26,10 +26,10 @@ final String currency;
               color: AppColors.primaryColor,
               fontWeight: FontWeight.w600,
             ),
-            children: const [
+            children:  [
               TextSpan(
                 text: AppStrings.totally,
-                style: TextStyle(
+                style:const TextStyle(
                   color: AppColors.secondGrey,
                   fontWeight: FontWeight.w600,
                   fontSize: 15,

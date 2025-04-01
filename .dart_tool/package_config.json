@@ -206,6 +206,18 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "easy_localization",
+      "rootUri": "file:///C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dev/easy_localization-3.0.7+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "easy_logger",
+      "rootUri": "file:///C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dev/easy_logger-0.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.7",
       "packageUri": "lib/",
@@ -288,12 +300,6 @@
       "rootUri": "file:///C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-4.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.1"
-    },
-    {
-      "name": "flutter_localization",
-      "rootUri": "file:///C:/Users/user/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_localization-0.2.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "flutter_localizations",
@@ -1148,7 +1154,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-03-28T22:05:06.205814Z",
+  "generated": "2025-04-01T12:46:58.413968Z",
   "generator": "pub",
   "generatorVersion": "3.6.0",
   "flutterRoot": "file:///C:/src/flutter3.24.2/flutter",

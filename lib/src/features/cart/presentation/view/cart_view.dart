@@ -13,7 +13,7 @@ class CartView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         
-        title: const Text(
+        title:  Text(
           AppStrings.cart,
           style: TextStyle(color: AppColors.primaryColor),
           textAlign: TextAlign.center,

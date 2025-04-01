@@ -7,21 +7,17 @@ import '../logic/home_cubit.dart';
 import '../logic/home_state.dart';
 import '../widgets/daily_offer_card_item.dart';
 
-class DailyOffersListView extends StatefulWidget {
+class DailyOffersListView extends StatelessWidget {
   const DailyOffersListView({super.key});
 
   @override
-  State<DailyOffersListView> createState() => _DailyOffersListViewState();
-}
-
-class _DailyOffersListViewState extends State<DailyOffersListView> {
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
-      buildWhen: (previous, current) => previous.dailyOrderState != current.dailyOrderState,
+      buildWhen: (previous, current) =>
+          previous.dailyOrderState != current.dailyOrderState,
       builder: (context, state) {
         final dailyOrderState = state.dailyOrderState;
-        
+
         if (dailyOrderState.isLoading) {
           return SizedBox(
             height: 300.h,
@@ -46,7 +42,7 @@ class _DailyOffersListViewState extends State<DailyOffersListView> {
           );
         } else if (dailyOrderState.data != null) {
           final items = dailyOrderState.data!.data;
-          
+
           if (items.isEmpty) {
             return SizedBox(
               height: 300.h,
@@ -61,19 +57,28 @@ class _DailyOffersListViewState extends State<DailyOffersListView> {
               ),
             );
           }
-          
+          // return SliverList(
+          //   delegate: SliverChildBuilderDelegate(
+          //     (context, index) => DailyOfferCardItem(item: items[index]),
+          //     childCount: items.length,
+          //   ),
+          // );
           return SizedBox(
             height: 300.h,
             child: ListView.builder(
+               addAutomaticKeepAlives: true,
               padding: EdgeInsets.symmetric(horizontal: 8.w),
               scrollDirection: Axis.horizontal,
               itemCount: items.length,
               itemBuilder: (context, index) {
                 final product = items[index];
-                return DailyOfferCardItem(item: product);
-              },
-            ),
+                return RepaintBoundary(
+            child: DailyOfferCardItem(item: product),
           );
+          
+            },
+          ),
+                    );
         } else {
           return SizedBox(
             height: 300.h,

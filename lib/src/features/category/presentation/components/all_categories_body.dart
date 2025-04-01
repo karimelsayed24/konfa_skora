@@ -23,7 +23,7 @@ class AllCategoriesBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CreateAccountTitle(
+             CreateAccountTitle(
               title: AppStrings.allTypeOfDesert,
               subTitle: AppStrings.choiceAllType,
             ),

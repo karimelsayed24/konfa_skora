@@ -26,8 +26,8 @@ class LoginViewSheet extends StatelessWidget {
           children: [
             Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 20, top: 25),
+                 Padding(
+                  padding: EdgeInsets.only(right: 20.w, top: 25.h),
                   child: CreateAccountTitle(
                     title: AppStrings.welcome,
                     subTitle: AppStrings.signIn,

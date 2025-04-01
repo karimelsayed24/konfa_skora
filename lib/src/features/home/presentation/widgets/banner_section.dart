@@ -67,6 +67,7 @@ class _BannerSectionState extends State<BannerSection> {
                         borderRadius: BorderRadius.circular(9.r),
                         child: CachedNetworkImage(
                           imageUrl: banner.image,
+                          memCacheWidth: 400,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Container(
                             color: AppColors.grey.withOpacity(0.3),

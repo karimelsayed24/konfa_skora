@@ -14,6 +14,8 @@ class PrizeProductsCubit extends Cubit<PrizeProductsState> {
     required this.getUserPointsUseCase,
   }) : super(const PrizeProductsState.initial());
 
+
+
   Future<void> loadAllData() async {
     emit(const PrizeProductsState.loading());
     

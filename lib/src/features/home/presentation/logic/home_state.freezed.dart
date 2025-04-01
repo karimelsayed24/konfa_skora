@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  BannerState get bannerState => throw _privateConstructorUsedError;
-  BestSellerState get bestSellerState => throw _privateConstructorUsedError;
+  BannerState get bannerState =>
+      throw _privateConstructorUsedError; // @Default(BestSellerState()) BestSellerState bestSellerState,
   DailyOrderState get dailyOrderState => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
@@ -32,13 +32,9 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call(
-      {BannerState bannerState,
-      BestSellerState bestSellerState,
-      DailyOrderState dailyOrderState});
+  $Res call({BannerState bannerState, DailyOrderState dailyOrderState});
 
   $BannerStateCopyWith<$Res> get bannerState;
-  $BestSellerStateCopyWith<$Res> get bestSellerState;
   $DailyOrderStateCopyWith<$Res> get dailyOrderState;
 }
 
@@ -58,7 +54,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? bannerState = null,
-    Object? bestSellerState = null,
     Object? dailyOrderState = null,
   }) {
     return _then(_value.copyWith(
@@ -66,10 +61,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.bannerState
           : bannerState // ignore: cast_nullable_to_non_nullable
               as BannerState,
-      bestSellerState: null == bestSellerState
-          ? _value.bestSellerState
-          : bestSellerState // ignore: cast_nullable_to_non_nullable
-              as BestSellerState,
       dailyOrderState: null == dailyOrderState
           ? _value.dailyOrderState
           : dailyOrderState // ignore: cast_nullable_to_non_nullable
@@ -84,16 +75,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $BannerStateCopyWith<$Res> get bannerState {
     return $BannerStateCopyWith<$Res>(_value.bannerState, (value) {
       return _then(_value.copyWith(bannerState: value) as $Val);
-    });
-  }
-
-  /// Create a copy of HomeState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BestSellerStateCopyWith<$Res> get bestSellerState {
-    return $BestSellerStateCopyWith<$Res>(_value.bestSellerState, (value) {
-      return _then(_value.copyWith(bestSellerState: value) as $Val);
     });
   }
 
@@ -116,15 +97,10 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {BannerState bannerState,
-      BestSellerState bestSellerState,
-      DailyOrderState dailyOrderState});
+  $Res call({BannerState bannerState, DailyOrderState dailyOrderState});
 
   @override
   $BannerStateCopyWith<$Res> get bannerState;
-  @override
-  $BestSellerStateCopyWith<$Res> get bestSellerState;
   @override
   $DailyOrderStateCopyWith<$Res> get dailyOrderState;
 }
@@ -143,7 +119,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? bannerState = null,
-    Object? bestSellerState = null,
     Object? dailyOrderState = null,
   }) {
     return _then(_$HomeStateImpl(
@@ -151,10 +126,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.bannerState
           : bannerState // ignore: cast_nullable_to_non_nullable
               as BannerState,
-      bestSellerState: null == bestSellerState
-          ? _value.bestSellerState
-          : bestSellerState // ignore: cast_nullable_to_non_nullable
-              as BestSellerState,
       dailyOrderState: null == dailyOrderState
           ? _value.dailyOrderState
           : dailyOrderState // ignore: cast_nullable_to_non_nullable
@@ -168,22 +139,19 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
       {this.bannerState = const BannerState(),
-      this.bestSellerState = const BestSellerState(),
       this.dailyOrderState = const DailyOrderState()});
 
   @override
   @JsonKey()
   final BannerState bannerState;
-  @override
-  @JsonKey()
-  final BestSellerState bestSellerState;
+// @Default(BestSellerState()) BestSellerState bestSellerState,
   @override
   @JsonKey()
   final DailyOrderState dailyOrderState;
 
   @override
   String toString() {
-    return 'HomeState(bannerState: $bannerState, bestSellerState: $bestSellerState, dailyOrderState: $dailyOrderState)';
+    return 'HomeState(bannerState: $bannerState, dailyOrderState: $dailyOrderState)';
   }
 
   @override
@@ -193,15 +161,12 @@ class _$HomeStateImpl implements _HomeState {
             other is _$HomeStateImpl &&
             (identical(other.bannerState, bannerState) ||
                 other.bannerState == bannerState) &&
-            (identical(other.bestSellerState, bestSellerState) ||
-                other.bestSellerState == bestSellerState) &&
             (identical(other.dailyOrderState, dailyOrderState) ||
                 other.dailyOrderState == dailyOrderState));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, bannerState, bestSellerState, dailyOrderState);
+  int get hashCode => Object.hash(runtimeType, bannerState, dailyOrderState);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -215,13 +180,11 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final BannerState bannerState,
-      final BestSellerState bestSellerState,
       final DailyOrderState dailyOrderState}) = _$HomeStateImpl;
 
   @override
-  BannerState get bannerState;
-  @override
-  BestSellerState get bestSellerState;
+  BannerState
+      get bannerState; // @Default(BestSellerState()) BestSellerState bestSellerState,
   @override
   DailyOrderState get dailyOrderState;
 
@@ -395,172 +358,6 @@ abstract class _BannerState implements BannerState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BannerStateImplCopyWith<_$BannerStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$BestSellerState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  BestSellerResponse? get data => throw _privateConstructorUsedError;
-  ErrorModel? get error => throw _privateConstructorUsedError;
-
-  /// Create a copy of BestSellerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BestSellerStateCopyWith<BestSellerState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BestSellerStateCopyWith<$Res> {
-  factory $BestSellerStateCopyWith(
-          BestSellerState value, $Res Function(BestSellerState) then) =
-      _$BestSellerStateCopyWithImpl<$Res, BestSellerState>;
-  @useResult
-  $Res call({bool isLoading, BestSellerResponse? data, ErrorModel? error});
-}
-
-/// @nodoc
-class _$BestSellerStateCopyWithImpl<$Res, $Val extends BestSellerState>
-    implements $BestSellerStateCopyWith<$Res> {
-  _$BestSellerStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BestSellerState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? data = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as BestSellerResponse?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$BestSellerStateImplCopyWith<$Res>
-    implements $BestSellerStateCopyWith<$Res> {
-  factory _$$BestSellerStateImplCopyWith(_$BestSellerStateImpl value,
-          $Res Function(_$BestSellerStateImpl) then) =
-      __$$BestSellerStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool isLoading, BestSellerResponse? data, ErrorModel? error});
-}
-
-/// @nodoc
-class __$$BestSellerStateImplCopyWithImpl<$Res>
-    extends _$BestSellerStateCopyWithImpl<$Res, _$BestSellerStateImpl>
-    implements _$$BestSellerStateImplCopyWith<$Res> {
-  __$$BestSellerStateImplCopyWithImpl(
-      _$BestSellerStateImpl _value, $Res Function(_$BestSellerStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BestSellerState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? data = freezed,
-    Object? error = freezed,
-  }) {
-    return _then(_$BestSellerStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as BestSellerResponse?,
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorModel?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$BestSellerStateImpl implements _BestSellerState {
-  const _$BestSellerStateImpl({this.isLoading = false, this.data, this.error});
-
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  final BestSellerResponse? data;
-  @override
-  final ErrorModel? error;
-
-  @override
-  String toString() {
-    return 'BestSellerState(isLoading: $isLoading, data: $data, error: $error)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BestSellerStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.data, data) || other.data == data) &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, isLoading, data, error);
-
-  /// Create a copy of BestSellerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BestSellerStateImplCopyWith<_$BestSellerStateImpl> get copyWith =>
-      __$$BestSellerStateImplCopyWithImpl<_$BestSellerStateImpl>(
-          this, _$identity);
-}
-
-abstract class _BestSellerState implements BestSellerState {
-  const factory _BestSellerState(
-      {final bool isLoading,
-      final BestSellerResponse? data,
-      final ErrorModel? error}) = _$BestSellerStateImpl;
-
-  @override
-  bool get isLoading;
-  @override
-  BestSellerResponse? get data;
-  @override
-  ErrorModel? get error;
-
-  /// Create a copy of BestSellerState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BestSellerStateImplCopyWith<_$BestSellerStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

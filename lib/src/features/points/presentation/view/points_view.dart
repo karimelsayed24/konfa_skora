@@ -9,6 +9,7 @@ import '../components/points_components.dart';
 import '../logic/prize_product_cubit.dart';
 import '../logic/rate/rate_app_cubit.dart';
 import '../logic/rate/rate_app_state.dart';
+
 class PointsView extends StatelessWidget {
   const PointsView({super.key});
 

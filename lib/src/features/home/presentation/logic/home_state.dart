@@ -13,7 +13,7 @@ class HomeState with _$HomeState {
   const factory HomeState({
     @Default(BannerState()) BannerState bannerState,
     
-    @Default(BestSellerState()) BestSellerState bestSellerState,
+    // @Default(BestSellerState()) BestSellerState bestSellerState,
     
     @Default(DailyOrderState()) DailyOrderState dailyOrderState,
   }) = _HomeState;
@@ -31,14 +31,14 @@ class BannerState with _$BannerState {
   }) = _BannerState;
 }
 
-@freezed
-class BestSellerState with _$BestSellerState {
-  const factory BestSellerState({
-    @Default(false) bool isLoading,
-    BestSellerResponse? data,
-    ErrorModel? error,
-  }) = _BestSellerState;
-}
+// @freezed
+// class BestSellerState with _$BestSellerState {
+//   const factory BestSellerState({
+//     @Default(false) bool isLoading,
+//     BestSellerResponse? data,
+//     ErrorModel? error,
+//   }) = _BestSellerState;
+// }
 
 @freezed
 class DailyOrderState with _$DailyOrderState {

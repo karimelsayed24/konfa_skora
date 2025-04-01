@@ -70,7 +70,7 @@ class ProductDetailsBody extends StatelessWidget {
                         initialIsFavorite: productDetails.isFavorited,
                       ),
                       // Recipe
-                      const CustomTitleInDetails(
+                       CustomTitleInDetails(
                         title: AppStrings.recipes,
                       ),
                       SizedBox(
@@ -83,6 +83,7 @@ class ProductDetailsBody extends StatelessWidget {
 
                       SizedBox(height: 20.h),
                       ProductAdditionsSection(
+                        price: productDetails.price,
                         additions: productDetails.additions,
                         productId: productDetails.id,
                         isFree: productDetails.canApplyPrize,

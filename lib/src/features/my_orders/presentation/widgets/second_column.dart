@@ -54,7 +54,7 @@ class SecondColumn extends StatelessWidget {
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.w600,
               ),
-              children: const [
+              children:  [
                 TextSpan(
                   text: AppStrings.totally,
                   style: TextStyle(

@@ -100,9 +100,9 @@ class _OtpTimerState extends State<OtpTimer> {
                     onPressed: () {
                       context.read<VerificationCubit>().resendCode(widget.phone);
                     },
-                    child: const Text(
+                    child:  Text(
                       AppStrings.resendCode,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

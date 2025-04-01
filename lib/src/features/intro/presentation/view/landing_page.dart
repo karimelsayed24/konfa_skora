@@ -40,51 +40,53 @@ class _LandingPageViewState extends State<LandingPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const IntroHeader(),
-          CustomButton(
-            text: AppStrings.signIn,
-            textStyle: AppStyles.s16,
-            onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height * 0.8,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const IntroHeader(),
+            CustomButton(
+              text: AppStrings.signIn,
+              textStyle: AppStyles.s16,
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.8,
                         ),
-                        child: const LoginViewSheet(),
-                      )));
-              // context.push(RouterNames.register);
-            },
-            backgroundColor: AppColors.lightGrey,
-            borderRadius: BorderRadius.circular(12),
-            width: 358.w,
-            height: 57.h,
-          ),
-          CustomButton(
-            text: AppStrings.register,
-            textStyle: AppStyles.s20.copyWith(color: AppColors.white),
-            onPressed: () {
-              context.push(RouterNames.register);
-            },
-            backgroundColor: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(12),
-            width: 358.w,
-            height: 57.h,
-          ),
-          HaveAnAccountWidget(
-            onTap: () {},
-            title1: "بالمتابعه اؤكد انني  موافق علي ",
-            title2: "الشروط والاحكام",
-          ),
-        ],
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                          ),
+                          child: const LoginViewSheet(),
+                        )));
+                // context.push(RouterNames.register);
+              },
+              backgroundColor: AppColors.lightGrey,
+              borderRadius: BorderRadius.circular(12),
+              width: 358.w,
+              height: 57.h,
+            ),
+            CustomButton(
+              text: AppStrings.register,
+              textStyle: AppStyles.s20.copyWith(color: AppColors.white),
+              onPressed: () {
+                context.push(RouterNames.register);
+              },
+              backgroundColor: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(12),
+              width: 358.w,
+              height: 57.h,
+            ),
+            HaveAnAccountWidget(
+              onTap: () {},
+              title1: "بالمتابعه اؤكد انني  موافق علي ",
+              title2: "الشروط والاحكام",
+            ),
+          ],
+        ),
       ),
     );
   }

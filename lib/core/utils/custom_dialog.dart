@@ -45,6 +45,8 @@ class CustomDialog extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
                 child: CustomButton(
@@ -52,20 +54,26 @@ class CustomDialog extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: OutlinedButton(
-                  onPressed: onCancel,
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: AppColors.primaryColor),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                child: Padding(
+                  padding:  EdgeInsets.only(top:  16.h),
+                  child: OutlinedButton(
+                    onPressed: onCancel,
+                    
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: AppColors.primaryColor),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding:  EdgeInsets.symmetric(vertical: 14.h),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
-                  child: const Text(
-                    AppStrings.cancel,
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 16,
+                    child:  Center(
+                      child: Text(
+                        AppStrings.cancel,
+                        style: const TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ),
                 ),

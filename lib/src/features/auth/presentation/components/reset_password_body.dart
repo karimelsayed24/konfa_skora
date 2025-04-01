@@ -57,7 +57,7 @@ class ResetPasswordBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 45.h),
-                  const CreateAccountTitle(
+                   CreateAccountTitle(
                     title: AppStrings.resetPassword,
                     subTitle: AppStrings.newPasswordShouldHaveKeyAndNumber,
                   ),

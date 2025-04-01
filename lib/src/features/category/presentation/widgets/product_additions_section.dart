@@ -7,19 +7,21 @@ import '../../../../../core/common/widgets/custom_btn.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../cart/presentation/logic/cart_cubit.dart';
+import '../../../cart/presentation/widgets/price_row.dart';
 import '../../data/model/product_details_response.dart';
 import 'custom_title_in_details.dart';
-
 class ProductAdditionsSection extends StatefulWidget {
   const ProductAdditionsSection({
     super.key,
     required this.additions,
     required this.productId,
-    required this.isFree,
+    required this.isFree, 
+    required this.price,
   });
   final List<Addition> additions;
   final int productId;
   final int isFree;
+  final String price;
   @override
   State<ProductAdditionsSection> createState() =>
       _ProductAdditionsSectionState();
@@ -28,24 +30,52 @@ class ProductAdditionsSection extends StatefulWidget {
 class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
   int _quantity = 1;
   List<bool> _selectedAdditions = [];
+  double _totalPrice = 0.0;
 
   @override
   void initState() {
     super.initState();
     _selectedAdditions =
         List.generate(widget.additions.length, (index) => false);
+    _calculateTotalPrice();
   }
 
   void _incrementQuantity() {
     setState(() {
       _quantity++;
+      _calculateTotalPrice();
     });
   }
 
   void _decrementQuantity() {
     setState(() {
-      if (_quantity > 1) _quantity--;
+      if (_quantity > 1) {
+        _quantity--;
+        _calculateTotalPrice();
+      }
     });
+  }
+
+  void _calculateTotalPrice() {
+    // Parse the base price from string to double
+    double basePrice = double.tryParse(widget.price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0;
+    
+    // Calculate price based on quantity
+    double quantityPrice = basePrice * _quantity;
+    
+    // Calculate the total price of selected additions
+    double additionsPrice = 0.0;
+    for (int i = 0; i < widget.additions.length; i++) {
+      if (_selectedAdditions[i]) {
+        // Parse addition price from string to double
+        double additionPrice = double.tryParse(
+            widget.additions[i].price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0;
+        additionsPrice += additionPrice;
+      }
+    }
+    
+    // Set the total price (base price * quantity + additions price)
+    _totalPrice = quantityPrice + additionsPrice;
   }
 
   @override
@@ -56,7 +86,7 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CustomTitleInDetails(
+             CustomTitleInDetails(
               title: AppStrings.quantity,
             ),
             Container(
@@ -89,7 +119,7 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
           ],
         ),
         SizedBox(height: 16.h),
-        const CustomTitleInDetails(
+         CustomTitleInDetails(
           title: AppStrings.additions,
         ),
         Text(
@@ -104,6 +134,7 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
               onTap: () {
                 setState(() {
                   _selectedAdditions[index] = !_selectedAdditions[index];
+                  _calculateTotalPrice();
                 });
               },
               child: Row(
@@ -140,6 +171,7 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
                     onChanged: (bool? value) {
                       setState(() {
                         _selectedAdditions[index] = value ?? false;
+                        _calculateTotalPrice();
                       });
                     },
                     side: const BorderSide(color: AppColors.primaryColor),
@@ -152,6 +184,11 @@ class _ProductAdditionsSectionState extends State<ProductAdditionsSection> {
           }),
         ),
         SizedBox(height: 30.h),
+        buildPriceRow(
+            AppStrings.totalPrice,
+            '${_totalPrice.toStringAsFixed(2)} ر.س',
+            isTotal: true,
+          ),
         Align(
           alignment: Alignment.center,
           child: CustomButton(

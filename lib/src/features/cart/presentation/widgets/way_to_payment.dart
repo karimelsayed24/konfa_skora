@@ -98,9 +98,9 @@ class _WayToPaymentState extends State<WayToPayment> {
                         },
                         activeColor: const Color(0xFFEF8A8A),
                       ),
-                      const Text(
+                       Text(
                         AppStrings.cashOnDelivery,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                         ),
@@ -143,9 +143,9 @@ class _WayToPaymentState extends State<WayToPayment> {
                         },
                         activeColor: const Color(0xFFEF8A8A),
                       ),
-                      const Text(
+                       Text(
                         AppStrings.visa,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                         ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,8 +9,8 @@ import '../../../../../core/routes/router_names.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../data/model/best_seller_response.dart';
+import '../logic/best_seller/best_seller_cubit.dart';
 import '../logic/favorite/favorite_state.dart';
-import '../logic/home_cubit.dart';
 
 class BestSellerCardItem extends StatelessWidget {
   final BestSellerItem item;
@@ -25,7 +26,7 @@ class BestSellerCardItem extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           loaded: (message) {
-            context.read<HomeCubit>().getBestSeller();
+            context.read<BestSellerCubit>().getBestSeller();
           },
           orElse: () {},
         );
@@ -48,49 +49,60 @@ class BestSellerCardItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 150.h,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl: item.image,
+                    height: 150.h,
+                    memCacheWidth: 400,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
                 ),
-                image: DecorationImage(
-                  image: NetworkImage(item.image),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  margin: EdgeInsets.all(8.w),
-                  decoration: BoxDecoration(
+                Positioned(
+                  top: 8.w,
+                  right: 8.w,
+                  child: Container(
+                    decoration: BoxDecoration(
                       color: AppColors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 6.h),
-                  child: InkWell(
-                    onTap: () {
-                      context.read<FavoriteCubit>().addFavorite(item.id);
-                    },
-                    child: Icon(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 6.w, vertical: 6.h),
+                    child: InkWell(
+                      onTap: () {
+                        context.read<FavoriteCubit>().addFavorite(item.id);
+                      },
+                      child: Icon(
                         item.isFavorite
                             ? Icons.favorite
                             : Icons.favorite_border,
                         size: 20.r,
                         color: item.isFavorite
                             ? AppColors.primaryColor
-                            : AppColors.grey),
+                            : AppColors.grey,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
             Padding(
               padding: EdgeInsets.all(8.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                                    SizedBox(height: 3.h),
-
+                  SizedBox(height: 3.h),
                   Text(
                     item.name,
                     style: AppStyles.s16,
@@ -147,7 +159,7 @@ class BestSellerCardItem extends StatelessWidget {
                           ),
                           onPressed: () {
                             context.push(RouterNames.productDetailsView,
-                                extra: { 'productId': item.id});
+                                extra: {'productId': item.id});
                           },
                         ),
                       ),

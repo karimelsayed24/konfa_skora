@@ -7,6 +7,10 @@ import '../../../core/app_cubit/app_cubit.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../cart/presentation/view/cart_view.dart';
+import '../category/presentation/logic/categories_cubit.dart';
+import '../home/presentation/logic/best_seller/best_seller_cubit.dart';
+import '../home/presentation/logic/favorite/favorite_cubit.dart';
+import '../home/presentation/logic/home_cubit.dart';
 import '../home/presentation/view/home_view.dart';
 import '../points/presentation/view/points_view.dart';
 import '../profile/presentation/logic/profile_cubit.dart';
@@ -20,7 +24,20 @@ class BottomNavigationBarRoot extends StatelessWidget {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         final List<Widget> pages = [
-          const HomeView(),
+          MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (context) => getIt<HomeCubit>()..loadAllHomeData(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<FavoriteCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<BestSellerCubit>()..getBestSeller(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<CategoriesCubit>()..getCategories(),
+            )
+          ], child: const HomeView()),
           BlocProvider(
             create: (context) => getIt<CartCubit>()..getCartItems(),
             child: const CartView(),
@@ -59,19 +76,19 @@ class BottomNavigationBarRoot extends StatelessWidget {
               onTap: (index) => context
                   .read<AppCubit>()
                   .changeBottomNavBarSelectedIndex(index),
-              items: const [
+              items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
+                  icon: const Icon(Icons.home),
                   label: AppStrings.home,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.shopping_cart,
                   ),
                   label: AppStrings.cart,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.card_giftcard_rounded),
+                  icon: const Icon(Icons.card_giftcard_rounded),
                   label: AppStrings.points,
                 ),
                 // BottomNavigationBarItem(
@@ -79,7 +96,7 @@ class BottomNavigationBarRoot extends StatelessWidget {
                 //   label: AppStrings.trackOrder,
                 // ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
+                  icon: const Icon(Icons.person),
                   label: AppStrings.profile,
                 ),
               ],

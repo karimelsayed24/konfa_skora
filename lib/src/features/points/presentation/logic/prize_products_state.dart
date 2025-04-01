@@ -16,3 +16,4 @@ class PrizeProductsState with _$PrizeProductsState {
   }) = _Loaded;
   const factory PrizeProductsState.error({required String message}) = _Error;
 }
+

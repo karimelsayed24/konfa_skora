@@ -33,7 +33,7 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
   final Set<Marker> _markers = {};
   bool _isLoading = true;
   final LocationService _locationService = LocationService();
-
+  final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -172,102 +172,115 @@ class _AddNewAddressViewState extends State<AddNewAddressView> {
         },
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
-                ),
-                child: IntrinsicHeight(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(16.0.r),
-                        child: const CreateAccountTitle(
-                          title: AppStrings.addNewAddress,
-                          subTitle: AppStrings.yourLocation,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(16.0.r),
-                        child: TextField(
-                          controller: _searchController,
-                          decoration: InputDecoration(
-                            hintText: AppStrings.searchForYourLocation,
-                            prefixIcon: const Icon(
-                              Icons.location_on,
-                              color: AppColors.primaryColor,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                color: AppColors.borderGrey,
-                                width: 1.5,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                color: AppColors.primaryColor,
-                                width: 1.5,
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                color: AppColors.borderGrey,
-                                width: 1.5,
-                              ),
-                            ),
-                            suffixIcon: IconButton(
-                              icon: const Icon(Icons.search),
-                              onPressed: _searchLocation,
-                            ),
-                          ),
-                          textDirection: TextDirection.rtl,
-                          textAlign: TextAlign.right,
-                          onSubmitted: (_) => _searchLocation(),
-                        ),
-                      ),
-                      Expanded(
-                        child: _isLoading
-                            ? const Center(child: CircularProgressIndicator())
-                            : GoogleMap(
-                                initialCameraPosition: CameraPosition(
-                                  target: _currentPosition,
-                                  zoom: 15,
-                                ),
-                                markers: _markers,
-                                myLocationEnabled: true,
-                                myLocationButtonEnabled: true,
-                                mapType: MapType.normal,
-                                zoomControlsEnabled: true,
-                                onMapCreated: (controller) {
-                                  _mapController = controller;
-                                },
-                                onTap: (position) {
-                                  setState(() {
-                                    _currentPosition = position;
-                                    _addMarker(position);
-                                  });
-                                },
-                              ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(16.0.r),
-                        child: CustomTextFormField(
-                          hintText: AppStrings.describeLocationHint,
-                          controller: _describeLocationController,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.0.r, vertical: 8.0.r),
-                        child: CustomButton(
-                          text: AppStrings.confirmAddress,
-                          onPressed: _confirmLocation,
-                        ),
-                      ),
-                    ],
+            return Form(
+                                  key: _formKey,
+
+              child: SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: IntrinsicHeight(
+                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(16.0.r),
+                                          child: CreateAccountTitle(
+                                            title: AppStrings.addNewAddress,
+                                            subTitle: AppStrings.yourLocation,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(16.0.r),
+                                          child: TextField(
+                                            controller: _searchController,
+                                            decoration: InputDecoration(
+                                              hintText: AppStrings.searchForYourLocation,
+                                              prefixIcon: const Icon(
+                                                Icons.location_on,
+                                                color: AppColors.primaryColor,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.circular(8.0),
+                                                borderSide: const BorderSide(
+                                                  color: AppColors.borderGrey,
+                                                  width: 1.5,
+                                                ),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.circular(8.0),
+                                                borderSide: const BorderSide(
+                                                  color: AppColors.primaryColor,
+                                                  width: 1.5,
+                                                ),
+                                              ),
+                                              border: OutlineInputBorder(
+                                                borderRadius: BorderRadius.circular(8.0),
+                                                borderSide: const BorderSide(
+                                                  color: AppColors.borderGrey,
+                                                  width: 1.5,
+                                                ),
+                                              ),
+                                              suffixIcon: IconButton(
+                                                icon: const Icon(Icons.search),
+                                                onPressed: _searchLocation,
+                                              ),
+                                            ),
+                                            textDirection: TextDirection.rtl,
+                                            textAlign: TextAlign.right,
+                                            onSubmitted: (_) => _searchLocation(),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: _isLoading
+                                              ? const Center(child: CircularProgressIndicator())
+                                              : GoogleMap(
+                                                  initialCameraPosition: CameraPosition(
+                                                    target: _currentPosition,
+                                                    zoom: 15,
+                                                  ),
+                                                  markers: _markers,
+                                                  myLocationEnabled: true,
+                                                  myLocationButtonEnabled: true,
+                                                  mapType: MapType.normal,
+                                                  zoomControlsEnabled: true,
+                                                  onMapCreated: (controller) {
+                                                    _mapController = controller;
+                                                  },
+                                                  onTap: (position) {
+                                                    setState(() {
+                                                      _currentPosition = position;
+                                                      _addMarker(position);
+                                                    });
+                                                  },
+                                                ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(16.0.r),
+                                          child: CustomTextFormField(
+                                            hintText: AppStrings.describeLocationHint,
+                                            controller: _describeLocationController,
+                                            validator: (value) {
+                                               if (value == null || value.isEmpty) {
+                                                return 'يرجى إدخال وصف للموقع';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 16.0.r, vertical: 8.0.r),
+                                          child: CustomButton(
+                                              text: AppStrings.confirmAddress,
+                                              onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                                  _confirmLocation();
+                                                }
+                                              }),
+                                        ),
+                                      ],
+                                    ),
                   ),
                 ),
               ),

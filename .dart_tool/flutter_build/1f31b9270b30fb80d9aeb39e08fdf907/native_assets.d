@@ -1,0 +1,1 @@
+ D:\\flutter\ projects\\slman\\konaf_skora\\.dart_tool\\flutter_build\\1f31b9270b30fb80d9aeb39e08fdf907\\native_assets.yaml: 

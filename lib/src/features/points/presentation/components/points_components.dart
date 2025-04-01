@@ -31,7 +31,7 @@ class PointsComponents extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CreateAccountTitle(
+                     CreateAccountTitle(
                       title: AppStrings.collectAndWin,
                       subTitle: AppStrings.collectPointsAndWin,
                     ),

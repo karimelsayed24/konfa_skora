@@ -131,7 +131,7 @@ class _VerifyOtpViewState extends State<VerifyOtpView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 45.h),
-                  const CreateAccountTitle(
+                   CreateAccountTitle(
                     title: AppStrings.otpVerification,
                     subTitle: AppStrings.otpVerificationSubTitle,
                   ),

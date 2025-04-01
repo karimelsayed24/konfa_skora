@@ -39,7 +39,7 @@ class FilterListRow extends StatelessWidget {
               return Padding(
                 padding:  EdgeInsets.only(left: 8.0.w),
                 child: FilterChip(
-                  label: const Text(AppStrings.all),
+                  label:  Text(AppStrings.all),
                   selected: selectedFilter == null,
                   backgroundColor: AppColors.filterGrey,
                   selectedColor: AppColors.primaryColor,

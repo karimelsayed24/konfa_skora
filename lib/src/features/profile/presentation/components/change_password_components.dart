@@ -34,9 +34,9 @@ class ChangePasswordComponents extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+             Text(
               AppStrings.currentPassword,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:const TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10.h),
             AuthTextFieldWidget(
@@ -46,9 +46,9 @@ class ChangePasswordComponents extends StatelessWidget {
               validator: Validator.validatePassword,
             ),
              SizedBox(height: 16.h),
-            const Text(
+             Text(
               AppStrings.newPassword,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:const TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10.h),
             AuthTextFieldWidget(
@@ -58,9 +58,9 @@ class ChangePasswordComponents extends StatelessWidget {
               validator: Validator.validatePassword,
             ),
              SizedBox(height: 16.h),
-            const Text(
+             Text(
               AppStrings.confirmPassword,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:const TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10.h),
             AuthTextFieldWidget(

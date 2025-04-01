@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +21,7 @@ class CategoryProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 328.h,
+      height: 340.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.r),
@@ -31,12 +32,15 @@ class CategoryProductItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(19.r),
-            child: Image.network(
-              product.image,
+            child: CachedNetworkImage(
+              imageUrl: product.image,
               fit: BoxFit.cover,
               width: double.infinity,
               height: 185.h,
-              errorBuilder: (ctx, error, _) => Container(
+              placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              errorWidget: (context, url, error) => Container(
                 color: AppColors.fillGrey,
                 height: 185.h,
                 child: const Center(
@@ -71,13 +75,9 @@ class CategoryProductItem extends StatelessWidget {
                   height: 35.h,
                   text: AppStrings.addToCart,
                   onPressed: () {
-                    print('------------------${product.id}') ;
+                    print('------------------${product.id}');
                     context.push(RouterNames.productDetailsView,
-                        extra: {
-                          'productId': product.id
-                        }
-                       
-                        );
+                        extra: {'productId': product.id});
                   },
                   textStyle: AppStyles.s12.copyWith(
                     color: AppColors.white,

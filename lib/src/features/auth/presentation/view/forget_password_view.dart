@@ -84,7 +84,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 45.h),
-                  const CreateAccountTitle(
+                   CreateAccountTitle(
                     title: AppStrings.resetPassword,
                     subTitle: AppStrings.forgetPasswordMessage,
                   ),

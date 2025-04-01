@@ -1,18 +1,15 @@
 import 'package:bloc/bloc.dart';
 
 import '../../domain/usecase/get_banner_uc.dart';
-import '../../domain/usecase/get_best_seller_uc.dart';
 import '../../domain/usecase/get_daily_order_uc.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final GetBannerUc _getBannerUseCase;
-  final GetBestSellerUC _getBestSellerUC;
   final GetDailyOrderUC _getDailyOrderUC;
 
   HomeCubit(
     this._getBannerUseCase,
-    this._getBestSellerUC,
     this._getDailyOrderUC,
   ) : super(HomeState.initial());
 
@@ -41,30 +38,8 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  Future<void> getBestSeller() async {
-    emit(state.copyWith(
-      bestSellerState: state.bestSellerState.copyWith(isLoading: true)
-    ));
-    
-    final result = await _getBestSellerUC.getBestSeller();
-    
-    result.fold(
-      (error) => emit(state.copyWith(
-        bestSellerState: state.bestSellerState.copyWith(
-          isLoading: false,
-          error: error,
-          data: null,
-        )
-      )),
-      (response) => emit(state.copyWith(
-        bestSellerState: state.bestSellerState.copyWith(
-          isLoading: false,
-          data: response,
-          error: null,
-        )
-      )),
-    );
-  }
+ 
+  
 
   Future<void> getDailyOrder() async {
     emit(state.copyWith(
@@ -91,9 +66,8 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  Future<void> loadAllHomeData() async {
-    getBanner();
-    getBestSeller();
-    getDailyOrder();
-  }
+Future<void> loadAllHomeData() async {
+   getBanner();
+   getDailyOrder();
+}
 }

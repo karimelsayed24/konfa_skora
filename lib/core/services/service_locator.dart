@@ -41,6 +41,7 @@ import '../../src/features/home/domain/usecase/add_to_favorite_use_case.dart';
 import '../../src/features/home/domain/usecase/get_banner_uc.dart';
 import '../../src/features/home/domain/usecase/get_best_seller_uc.dart';
 import '../../src/features/home/domain/usecase/get_daily_order_uc.dart';
+import '../../src/features/home/presentation/logic/best_seller/best_seller_cubit.dart';
 import '../../src/features/home/presentation/logic/favorite/favorite_cubit.dart';
 import '../../src/features/home/presentation/logic/home_cubit.dart';
 import '../../src/features/location/data/remote/address_api_services.dart';
@@ -194,7 +195,9 @@ void setupLocator() {
   // !Cubits //
   getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
   getIt.registerLazySingleton<RegisterCubit>(() => RegisterCubit(getIt()));
-  getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt(), getIt(), getIt()));
+  getIt.registerFactory<BestSellerCubit>(() => BestSellerCubit(getIt()));
+  
+  getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt(), getIt(), ));
   getIt.registerFactory(() => ProfileCubit(getIt(), getIt(), getIt(), getIt()));
   getIt.registerFactory(() => OrdersCubit(getIt()));
   getIt.registerFactory(() => OrderDetailsCubit(getIt()));

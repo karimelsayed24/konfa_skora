@@ -100,7 +100,7 @@ class _RegisterFormState extends State<RegisterForm> {
             key: _formKey,
             child: Column(
               children: [
-                const CreateAccountTitle(
+                 CreateAccountTitle(
                   title: AppStrings.createNewAccount,
                   subTitle: AppStrings.personalData,
                 ),

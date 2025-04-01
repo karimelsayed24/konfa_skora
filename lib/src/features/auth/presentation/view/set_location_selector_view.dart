@@ -178,7 +178,7 @@ class _SetLocationSelectorViewState extends State<SetLocationSelectorView> {
               children: [
                 Padding(
                   padding: EdgeInsets.all(16.0.r),
-                  child: const CreateAccountTitle(
+                  child:  CreateAccountTitle(
                     title: AppStrings.createNewAccount,
                     subTitle: AppStrings.yourLocation,
                   ),

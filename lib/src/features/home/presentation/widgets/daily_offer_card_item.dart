@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -35,39 +36,51 @@ class DailyOfferCardItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 150.h,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-              ),
-              image: DecorationImage(
-                image: NetworkImage(item.image),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                margin: EdgeInsets.all(8.w),
-                decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(15)),
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.local_offer_outlined,
-                        size: 20.r, color: AppColors.primaryColor),
-                    Text(
-                      'خصم ${item.discount}%',
-                      style: AppStyles.s12.copyWith(color: AppColors.black),
-                    ),
-                  ],
+          Stack(
+            children: [
+              // Cached Network Image with border radius
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: item.image,
+                  height: 150.h,
+                  memCacheWidth: 400,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
-            ),
+
+              // Discount label at bottom left
+              Positioned(
+                bottom: 8.w,
+                left: 8.w,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.local_offer_outlined,
+                          size: 20.r, color: AppColors.primaryColor),
+                      Text(
+                        'خصم ${item.discount}%',
+                        style: AppStyles.s12.copyWith(color: AppColors.black),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: EdgeInsets.all(8.r),
@@ -94,12 +107,10 @@ class DailyOfferCardItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '${item.price} ج.م',
-                      style: AppStyles.s16.copyWith(
-                        fontWeight: FontWeight.w600,
-                      )
-                    ),
+                    Text('${item.price} ج.م',
+                        style: AppStyles.s16.copyWith(
+                          fontWeight: FontWeight.w600,
+                        )),
                     Container(
                       decoration: BoxDecoration(
                         color: AppColors.primaryColor,
