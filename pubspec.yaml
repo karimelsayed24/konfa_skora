@@ -16,13 +16,13 @@ dependencies:
   device_preview: ^1.2.0
   dio: ^5.7.0
   easy_localization: ^3.0.7+1
-  flutter_localizations:
-    sdk: flutter
   equatable: ^2.0.7
   file_picker: ^8.1.4
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_localizations:
+    sdk: flutter
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.16
@@ -50,6 +50,8 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.13
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.3
+
   flutter_test:
     sdk: flutter
   freezed: ^2.5.7
@@ -73,3 +75,16 @@ flutter:
           weight: 700
         - asset: assets/fonts/Cairo-Light.ttf
           weight: 300
+
+
+flutter_launcher_icons:
+ android: "ic_launcher"
+ ios: true
+ image_path: "assets/images/logo.jpg"
+ adaptive_icon_background: "#FFFFFF"
+ web:
+    generate: false
+ windows:
+    generate: false
+ macos:
+    generate: false
