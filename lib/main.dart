@@ -6,15 +6,17 @@ import 'core/services/service_locator.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 Future<void> main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   setupLocator();
   await getIt<CacheHelper>().init();
- await EasyLocalization.ensureInitialized();
-   runApp(
+
+  runApp(
     EasyLocalization(
       supportedLocales: const [Locale('ar')],
       path: 'assets/translations',
       fallbackLocale: const Locale('ar'),
+      startLocale: const Locale('ar'),
       child: const MyApp(),
     ),
   );

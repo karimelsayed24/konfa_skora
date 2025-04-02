@@ -37,11 +37,17 @@ import '../../src/features/profile/presentation/logic/change_password_cubit.dart
 import '../../src/features/profile/presentation/logic/profile_cubit.dart';
 import '../../src/features/profile/presentation/view/change_password_view.dart';
 import '../../src/features/profile/presentation/view/settings_view.dart';
+import '../../src/features/splash/splash_view.dart';
 import '../../src/features/support_policy/presentation/view/questions_view.dart';
 import '../services/service_locator.dart';
 
 final GoRouter router = GoRouter(
   routes: [
+    
+     GoRoute(
+      path: RouterNames.splash,
+      builder: (context, state) => const AnimatedSplashScreen(),
+    ),
     GoRoute(
       path: RouterNames.landing,
       builder: (context, state) => const LandingPageView(),

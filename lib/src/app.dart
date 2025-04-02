@@ -27,10 +27,13 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            
-            builder: (context, child) {
-              return child!;
-            
+           builder: (context, child) {
+              return EasyLocalization(
+                supportedLocales: const [Locale('ar')],
+                path: 'assets/translations',
+                fallbackLocale: const Locale('ar'),
+                child: child!,
+              );
             },
           ),
         );

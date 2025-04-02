@@ -22,20 +22,20 @@ class LandingPageView extends StatefulWidget {
 }
 
 class _LandingPageViewState extends State<LandingPageView> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _checkTokenAndNavigate();
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     _checkTokenAndNavigate();
+  //   });
+  // }
 
-  void _checkTokenAndNavigate() {
-    String? token = CacheHelper.getToken();
-    if (token != null && token.isNotEmpty) {
-      context.go(RouterNames.bottomNavigationBarRoot);
-    }
-  }
+  // void _checkTokenAndNavigate() {
+  //   String? token = CacheHelper.getToken();
+  //   if (token != null && token.isNotEmpty) {
+  //     context.go(RouterNames.bottomNavigationBarRoot);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
