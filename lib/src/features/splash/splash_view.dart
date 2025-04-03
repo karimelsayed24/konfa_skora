@@ -72,14 +72,13 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
       backgroundColor: AppColors.white,
       body: Stack(
         children: [
-          // Center Logo
-          // const Center(
-          //   child: AppImageView(
-          //     AppAssets.blackLogo,
-          //     width: 150,
-          //     height: 150,
-          //   ),
-          // ),
+          const Center(
+            child: AppImageView(
+              AppAssets.konafatSokara,
+              width: 150,
+              height: 150,
+            ),
+          ),
           AnimatedBuilder(
             animation: _topAnimation,
             builder: (context, child) {
@@ -90,13 +89,24 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
                   clipper: CustomCurveClipper(),
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.75,
-                    color: AppColors.primaryColor,
-                    child: const Center(
-                      child: AppImageView(
-                        AppAssets.konafatSokara,
-                        width: 100,
-                        height: 100,
-                      ),
+                    color: AppColors.primaryColor.withOpacity(0.5),
+                    child: Row(
+                      children: [
+                        // const Center(
+                        //   child: AppImageView(
+                        //     AppAssets.cake,
+                        //     width: 100,
+                        //     height: 100,
+                        //   ),
+                        // ),
+                          //  const Center(
+                          // child: AppImageView(
+                          //   AppAssets.konafa,
+                          //   width: 100,
+                          //   height: 100,
+                          // ),
+                       // ),
+                      ],
                     ),
                   ),
                 ),

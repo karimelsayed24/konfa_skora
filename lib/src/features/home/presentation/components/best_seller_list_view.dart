@@ -6,7 +6,6 @@ import '../../../../../core/theme/app_colors.dart';
 import '../logic/best_seller/best_seller_cubit.dart';
 import '../logic/best_seller/best_seller_state.dart';
 import '../widgets/best_seller_card_item.dart';
-
 class BestSellerListView extends StatelessWidget {
   const BestSellerListView({super.key});
 
@@ -15,66 +14,101 @@ class BestSellerListView extends StatelessWidget {
     return BlocBuilder<BestSellerCubit, BestSellerState>(
       builder: (context, state) {
         return state.when(
-            initial: () => SizedBox(
-                  height: 300.h,
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ),
-            loading: () => SizedBox(
-                  height: 300.h,
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ),
-            error: (error) => SizedBox(
-                  height: 300.h,
-                  child: Center(
-                    child: Text(
-                      error,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-            loaded: (bestSellerState) {
-              final mostOrdered = bestSellerState.data;
+          initial: () =>  Center(child: CircularProgressIndicator(color: AppColors.primaryColor)),
+          
+          loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primaryColor)),
+          error: (error) => Center(child: Text(error, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500))),
+          loaded: (bestSellerState) {
+            if (bestSellerState.data.isEmpty) {
+              return const Center(child: Text('لا توجد منتجات متاحة حالياً', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)));
+            }
 
-              if (mostOrdered.isEmpty) {
-                return SizedBox(
-                  height: 300.h,
-                  child: const Center(
-                    child: Text(
-                      'لا توجد منتجات متاحة حالياً',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                );
-              }
-              return SizedBox(
-                height: 300.h,
-                child: ListView.builder(
-                  addAutomaticKeepAlives: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: mostOrdered.length,
-                  itemBuilder: (context, index) {
-                    return BestSellerCardItem(item: mostOrdered[index]);
-                  },
-                ),
-              );
-                },
+            return SizedBox(
+              height: 300.h,
+              child: ListView.builder(
+                cacheExtent: 1000, 
+                 shrinkWrap: true,
+              //physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: bestSellerState.data.length,
+                itemBuilder: (context, index) => BestSellerCardItem(item: bestSellerState.data[index]),
+              ),
             );
+          },
+        );
       },
     );
   }
 }
+
+// class BestSellerListView extends StatelessWidget {
+//   const BestSellerListView({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<BestSellerCubit, BestSellerState>(
+//       builder: (context, state) {
+//         return state.when(
+//             initial: () => SizedBox(
+//                   height: 300.h,
+//                   child: const Center(
+//                     child: CircularProgressIndicator(
+//                       color: AppColors.primaryColor,
+//                     ),
+//                   ),
+//                 ),
+//             loading: () => SizedBox(
+//                   height: 300.h,
+//                   child: const Center(
+//                     child: CircularProgressIndicator(
+//                       color: AppColors.primaryColor,
+//                     ),
+//                   ),
+//                 ),
+//             error: (error) => SizedBox(
+//                   height: 300.h,
+//                   child: Center(
+//                     child: Text(
+//                       error,
+//                       style: const TextStyle(
+//                         fontSize: 16,
+//                         fontWeight: FontWeight.w500,
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//             loaded: (bestSellerState) {
+//               final mostOrdered = bestSellerState.data;
+
+//               if (mostOrdered.isEmpty) {
+//                 return SizedBox(
+//                   height: 300.h,
+//                   child: const Center(
+//                     child: Text(
+//                       'لا توجد منتجات متاحة حالياً',
+//                       style: TextStyle(
+//                         fontSize: 16,
+//                         fontWeight: FontWeight.w500,
+//                       ),
+//                     ),
+//                   ),
+//                 );
+//               }
+//               return SizedBox(
+//                 height: 300.h,
+//                 child: ListView.builder(
+//                   addAutomaticKeepAlives: true,
+//                   padding: const EdgeInsets.symmetric(horizontal: 8),
+//                   scrollDirection: Axis.horizontal,
+//                   itemCount: mostOrdered.length,
+//                   itemBuilder: (context, index) {
+//                     return BestSellerCardItem(item: mostOrdered[index]);
+//                   },
+//                 ),
+//               );
+//                 },
+//             );
+//       },
+//     );
+//   }
+// }

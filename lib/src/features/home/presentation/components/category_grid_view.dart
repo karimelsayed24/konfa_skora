@@ -36,25 +36,24 @@ class HomeCategoryGridView extends StatelessWidget {
   final List<CategoryModel> categories;
   @override
   Widget build(BuildContext context) {
-    return SliverGrid(
+    return SliverGrid.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: 0.8,
         crossAxisSpacing: 11,
         mainAxisSpacing: 23,
       ),
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          return CategoryItem(
-            category: categories[index],
-            onTap: () {
-              context.push(RouterNames.categoryProductsView,
-                  extra: categories[index]);
-            },
-          );
-        },
-        childCount: categories.length > 6 ? 6 : categories.length,
-      ),
+      itemBuilder: (context, index) {
+        return CategoryItem(
+          category: categories[index],
+          onTap: () {
+            context.push(RouterNames.categoryProductsView,
+                extra: categories[index]);
+          },
+        );
+      },
+      itemCount: categories.length > 6 ? 6 : categories.length,
+     
     );
   }
 }

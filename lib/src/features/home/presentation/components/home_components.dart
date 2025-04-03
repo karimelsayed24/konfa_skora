@@ -15,7 +15,7 @@ class HomeComponents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  CustomScrollView(
+    return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
           child: AddressSection(
@@ -23,37 +23,25 @@ class HomeComponents extends StatelessWidget {
             subAddress: AppStrings.welcomeToKonafaSokar,
           ),
         ),
-
-      
         const SliverToBoxAdapter(
           child: BannerSection(),
         ),
-
         const SliverToBoxAdapter(
           child: CategorySection(),
         ),
-
-        const SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            sliver: CategoriesInHome(),
-            ),
-
+        const CategoriesInHome(),
         SliverToBoxAdapter(
           child: SectionTitle(title: AppStrings.dailyOffers),
         ),
-
-         const SliverToBoxAdapter(
-          child:DailyOffersListView(),
+        const SliverToBoxAdapter(
+          child: DailyOffersListView(),
         ),
-
         SliverToBoxAdapter(
           child: SectionTitle(title: AppStrings.bestSeller),
         ),
-
-         const SliverToBoxAdapter(
-          child:BestSellerListView(),
+        const SliverToBoxAdapter(
+          child: BestSellerListView(),
         ),
-
         const SliverToBoxAdapter(
           child: SizedBox(height: 20),
         ),

@@ -1,4 +1,4 @@
-#Wed Apr 02 20:37:50 EET 2025
+#Thu Apr 03 15:17:35 EET 2025
 base.0=D\:\\flutter projects\\slman\\konaf_skora\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
